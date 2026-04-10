@@ -3,7 +3,8 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import Button from './Button';
+import { useTranslations } from 'next-intl';
+import Link from 'next/link';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -11,6 +12,7 @@ if (typeof window !== 'undefined') {
 }
 
 export default function ServicesSection() {
+  const t = useTranslations('servicesSection');
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const servicesRef = useRef<HTMLDivElement>(null);
@@ -65,25 +67,25 @@ export default function ServicesSection() {
 
   const services = [
     {
-      title: "Auktoriserad Service",
-      subtitle: "Hyundai • Aixam",
-      description: "Officiell garanti-service för Hyundai och Aixam med ursprungliga reservdelar och certifierade tekniker.",
-      features: ["Garanti-service", "Ursprungliga delar", "Certifierade tekniker"],
-      highlight: "Auktoriserad"
+      title: t('service1.title'),
+      subtitle: t('service1.subtitle'),
+      description: t('service1.description'),
+      features: [t('service1.feature1'), t('service1.feature2'), t('service1.feature3')],
+      highlight: t('service1.highlight')
     },
     {
-      title: "Alla Bilmärken",
-      subtitle: "Fullservice verkstad",
-      description: "Professionell service och reparationer för alla bilmärken med bibehållen tillverkargaranti.",
-      features: ["Alla märken", "Bibehållen garanti", "Expertis & kvalitet"],
-      highlight: "Fullservice"
+      title: t('service2.title'),
+      subtitle: t('service2.subtitle'),
+      description: t('service2.description'),
+      features: [t('service2.feature1'), t('service2.feature2'), t('service2.feature3')],
+      highlight: t('service2.highlight')
     },
     {
-      title: "Bilförsäljning",
-      subtitle: "Nya & begagnade",
-      description: "Kvalitetsgranskade fordon med transparent historik och konkurrenskraftiga priser.",
-      features: ["Kvalitetsgranskat", "Transparent historik", "Konkurrenskraftigt"],
-      highlight: "Kvalitet"
+      title: t('service3.title'),
+      subtitle: t('service3.subtitle'),
+      description: t('service3.description'),
+      features: [t('service3.feature1'), t('service3.feature2'), t('service3.feature3')],
+      highlight: t('service3.highlight')
     }
   ];
 
@@ -99,9 +101,9 @@ export default function ServicesSection() {
             ref={titleRef}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-gray-900 mb-6"
           >
-            Våra
+            {t('titleEmphasis')}
             <br />
-            <span className="font-normal">Tjänster</span>
+            <span className="font-normal">{t('title')}</span>
           </h2>
         </div>
 
@@ -172,7 +174,7 @@ export default function ServicesSection() {
         {/* Stats Section */}
         <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mt-20 sm:mt-24 pt-16 sm:pt-20 border-t border-gray-100">
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">25+</div>
+            <div className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">45+</div>
             <div className="text-sm sm:text-base text-gray-600 font-medium tracking-wide">År av expertis</div>
           </div>
           <div className="text-center">
@@ -180,7 +182,7 @@ export default function ServicesSection() {
             <div className="text-sm sm:text-base text-gray-600 font-medium tracking-wide">Auktoriserade märken</div>
           </div>
           <div className="text-center">
-            <div className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">100%</div>
+            <div className="text-3xl sm:text-4xl font-light text-gray-900 mb-2">90%</div>
             <div className="text-sm sm:text-base text-gray-600 font-medium tracking-wide">Kundnöjdhet</div>
           </div>
         </div>
@@ -189,29 +191,28 @@ export default function ServicesSection() {
         <div className="text-center mt-16 sm:mt-20">
           <div className="max-w-3xl mx-auto mb-8">
             <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-              Redo att lita på expertisen?
+              {t('cta.title')}
             </h3>
             <p className="text-lg sm:text-xl text-gray-600 leading-relaxed">
-              Boka tid för professionell service eller rådgivning från våra certifierade tekniker.
+              {t('cta.description')}
             </p>
           </div>
           
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button 
-              variant="primary" 
-              size="xl"
-              onClick={() => console.log('Navigate to booking')}
+            <Link 
+              href="/contact" 
+              className="group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-gray-900 hover:bg-gray-800 transition-all duration-300 overflow-hidden inline-block text-center"
             >
-              Boka service
-            </Button>
+              <span className="relative z-10">{t('cta.button')}</span>
+              <div className="absolute inset-0 bg-gray-800 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+            </Link>
             
-            <Button 
-              variant="outline" 
-              size="xl"
-              onClick={() => console.log('Open phone dialer')}
+            <a 
+              href="tel:+46700929433" 
+              className="group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-gray-900 bg-transparent border-2 border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 overflow-hidden inline-block text-center"
             >
-              Ring oss
-            </Button>
+              <span className="relative z-10">Ring oss</span>
+            </a>
           </div>
         </div>
       </div>

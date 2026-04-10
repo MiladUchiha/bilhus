@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Link from 'next/link';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -16,112 +17,110 @@ export default function Footer() {
   const sectionsRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
+    // Simple approach: always ensure footer is visible
+    const ensureVisibility = () => {
+      if (contentRef.current && bottomRef.current) {
+        gsap.set([contentRef.current, bottomRef.current, sectionsRef.current], {
+          opacity: 1,
+          y: 0
+        });
+      }
+    };
+
+    // Ensure visibility immediately
+    ensureVisibility();
+
+    // Try to add scroll animation only if conditions are right
     const ctx = gsap.context(() => {
-      // Set initial states
-      gsap.set([contentRef.current, bottomRef.current], {
-        opacity: 0,
-        y: 30
-      });
+      if (typeof window !== 'undefined' && footerRef.current && typeof ScrollTrigger !== 'undefined') {
+        try {
+          // Only animate on the homepage or if page is at the top
+          const isHomepage = window.location.pathname === '/';
+          const isPageTop = window.scrollY < 100;
+          
+          if (isHomepage && isPageTop) {
+            // Set initial animation states
+            gsap.set([contentRef.current, bottomRef.current], {
+              opacity: 0,
+              y: 30
+            });
 
-      gsap.set(sectionsRef.current, {
-        opacity: 0,
-        y: 20
-      });
+            gsap.set(sectionsRef.current, {
+              opacity: 0,
+              y: 20
+            });
 
-      // Create scroll-triggered animation
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: footerRef.current,
-          start: "top 90%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
+            // Create scroll-triggered animation
+            const tl = gsap.timeline({
+              scrollTrigger: {
+                trigger: footerRef.current,
+                start: "top 95%",
+                end: "bottom 10%",
+                toggleActions: "play none none reverse"
+              }
+            });
+
+            tl.to(contentRef.current, {
+              opacity: 1,
+              y: 0,
+              duration: 0.8,
+              ease: "power2.out"
+            })
+            .to(sectionsRef.current, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              stagger: 0.1,
+              ease: "power2.out"
+            }, "-=0.4")
+            .to(bottomRef.current, {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              ease: "power2.out"
+            }, "-=0.2");
+          }
+        } catch {
+          // If anything fails, ensure visibility
+          ensureVisibility();
         }
-      });
-
-      // Animate footer content
-      tl.to(contentRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      })
-      .to(sectionsRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "power2.out"
-      }, "-=0.4")
-      .to(bottomRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.2");
-
+      }
     }, footerRef);
 
-    return () => ctx.revert();
+    // Fallback timer
+    const fallbackTimer = setTimeout(ensureVisibility, 100);
+
+    return () => {
+      clearTimeout(fallbackTimer);
+      ctx.revert();
+    };
   }, []);
 
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Hem', href: '#hero' },
-    { name: 'Tjänster', href: '#services' },
-    { name: 'Om Oss', href: '#about' },
-    { name: 'Kontakt', href: '#contact' }
+    { name: 'Hem', href: '/' },
+    { name: 'Tjänster', href: '/service' },
+    { name: 'Om Oss', href: '/about' },
+    { name: 'Kontakt', href: '/contact' }
   ];
 
   const services = [
-    { name: 'Auktoriserad Service', href: '#services' },
-    { name: 'Bilreparationer', href: '#services' },
-    { name: 'Bilförsäljning', href: '#services' },
-    { name: 'Värdering', href: '#contact' }
+    { name: 'Auktoriserad Service', href: '/service' },
+    { name: 'Bilreparationer', href: '/service' },
+    { name: 'Bilförsäljning', href: '/cars' },
+    { name: 'Värdering', href: '/contact' }
   ];
-
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
-    e.preventDefault();
-    
-    if (href.startsWith('#')) {
-      const targetId = href.substring(1);
-      let targetElement: HTMLElement | null = null;
-      
-      // Map section IDs to actual elements
-      switch (targetId) {
-        case 'hero':
-          targetElement = document.querySelector('main > div:first-child') as HTMLElement;
-          break;
-        case 'services':
-          targetElement = document.querySelector('[class*="ServicesSection"], section:nth-of-type(2)') as HTMLElement;
-          break;
-        case 'about':
-          targetElement = document.querySelector('[class*="AboutSection"], section:nth-of-type(3)') as HTMLElement;
-          break;
-        case 'contact':
-          targetElement = document.querySelector('[class*="ContactSection"], section:nth-of-type(4)') as HTMLElement;
-          break;
-        default:
-          targetElement = document.getElementById(targetId);
-      }
-      
-      if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-      }
-    }
-  };
 
   return (
     <footer 
       ref={footerRef}
       className="bg-gray-50 text-gray-900 py-16 sm:py-20 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32"
+      style={{ opacity: 1, transform: 'translateY(0)' }} // CSS fallback
     >
       <div className="max-w-7xl mx-auto">
         {/* Main Footer Content */}
-        <div ref={contentRef} className="mb-12 sm:mb-16">
+        <div ref={contentRef} className="mb-12 sm:mb-16" style={{ opacity: 1, transform: 'translateY(0)' }}>
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-12 lg:gap-16">
             
             {/* Company Info */}
@@ -138,7 +137,7 @@ export default function Footer() {
                   <span className="font-normal">Bilhus</span>
                 </h3>
                 <p className="text-lg text-gray-600 leading-relaxed max-w-md">
-                  Din pålitliga partner för bilservice och försäljning i Arlandastad sedan 1999.
+                  Din pålitliga partner för bilservice och försäljning i Arlandastad sedan mitten på 70-talet.
                 </p>
               </div>
 
@@ -149,17 +148,29 @@ export default function Footer() {
                     Kontakt
                   </h4>
                   <div className="space-y-2">
+                    <div>
+                      <a 
+                        href="tel:+46700929433" 
+                        className="text-gray-900 hover:text-gray-600 transition-colors duration-300 block"
+                      >
+                        0700 929 433
+                      </a>
+                      <span className="text-xs text-gray-500">Bilförsäljning</span>
+                    </div>
+                    <div>
+                      <a 
+                        href="tel:+46859120541"
+                        className="text-gray-900 hover:text-gray-600 transition-colors duration-300 block"
+                      >
+                        08 591 205 41
+                      </a>
+                      <span className="text-xs text-gray-500">Verkstad</span>
+                    </div>
                     <a 
-                      href="tel:+46850555555" 
+                      href="mailto:kundservice@marstabilhus.se" 
                       className="text-gray-900 hover:text-gray-600 transition-colors duration-300 block"
                     >
-                      +46 8-505 555 55
-                    </a>
-                    <a 
-                      href="mailto:info@marstabilhus.se" 
-                      className="text-gray-900 hover:text-gray-600 transition-colors duration-300 block"
-                    >
-                      info@marstabilhus.se
+                      kundservice@marstabilhus.se
                     </a>
                   </div>
                 </div>
@@ -190,20 +201,19 @@ export default function Footer() {
               <ul className="space-y-4">
                 {quickLinks.map((link) => (
                   <li key={link.name}>
-                    <a
+                    <Link
                       href={link.href}
-                      onClick={(e) => handleSmoothScroll(e, link.href)}
                       className="text-gray-900 hover:text-gray-600 transition-colors duration-300 text-lg"
                     >
                       {link.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
             </div>
 
             {/* Services Links */}
-            <div 
+            <div
               ref={(el) => {
                 sectionsRef.current[2] = el;
               }}
@@ -215,13 +225,12 @@ export default function Footer() {
               <ul className="space-y-4">
                 {services.map((service) => (
                   <li key={service.name}>
-                    <a
+                    <Link
                       href={service.href}
-                      onClick={(e) => handleSmoothScroll(e, service.href)}
                       className="text-gray-900 hover:text-gray-600 transition-colors duration-300 text-lg"
                     >
                       {service.name}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -235,18 +244,30 @@ export default function Footer() {
                 <h4 className="text-sm font-medium text-gray-500 uppercase tracking-wider mb-4">
                   Öppettider
                 </h4>
-                <div className="space-y-2 text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Måndag - Fredag</span>
-                    <span className="text-gray-900 font-medium">08:00 - 17:00</span>
+                <div className="space-y-3 text-gray-600 text-sm">
+                  <div>
+                    <div className="font-medium text-gray-900 mb-1">Bilförsäljning</div>
+                    <div className="space-y-1">
+                      <div className="flex justify-between">
+                        <span>Mån-Tors</span>
+                        <span className="text-gray-900">09:00-18:00</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Fredag</span>
+                        <span className="text-gray-900">09:00-17:00</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span>Lördag</span>
+                        <span className="text-gray-900">11:00-15:00</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex justify-between">
-                    <span>Lördag</span>
-                    <span className="text-gray-900 font-medium">09:00 - 14:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Söndag</span>
-                    <span className="text-gray-900 font-medium">Stängt</span>
+                  <div>
+                    <div className="font-medium text-gray-900 mb-1">Verkstad</div>
+                    <div className="flex justify-between">
+                      <span>Mån-Fre</span>
+                      <span className="text-gray-900">07:30-16:30</span>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -266,7 +287,7 @@ export default function Footer() {
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
-                    <span>Alla Bilmärken</span>
+                    <span>Auktoriserad skadeverkstad</span>
                   </div>
                 </div>
               </div>
@@ -286,7 +307,7 @@ export default function Footer() {
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-gray-900 rounded-full mr-3"></div>
-                    <span>25+ års expertis</span>
+                    <span>45+ års expertis</span>
                   </div>
                 </div>
               </div>
@@ -298,6 +319,7 @@ export default function Footer() {
         <div 
           ref={bottomRef}
           className="border-t border-gray-200 pt-8"
+          style={{ opacity: 1, transform: 'translateY(0)' }}
         >
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-8">
@@ -305,36 +327,44 @@ export default function Footer() {
                 © {currentYear} Märsta Bilhus AB. Alla rättigheter förbehållna.
               </p>
               <div className="flex space-x-6 text-sm">
-                <a 
-                  href="#privacy" 
+                <Link
+                  href="/cookies"
                   className="text-gray-500 hover:text-gray-900 transition-colors duration-300"
                 >
                   Integritetspolicy
-                </a>
-                <a 
-                  href="#terms" 
+                </Link>
+                <Link
+                  href="/cookies"
                   className="text-gray-500 hover:text-gray-900 transition-colors duration-300"
                 >
                   Villkor
-                </a>
-                <a 
-                  href="#cookies" 
+                </Link>
+                <Link 
+                  href="/cookies" 
                   className="text-gray-500 hover:text-gray-900 transition-colors duration-300"
                 >
                   Cookies
-                </a>
+                </Link>
               </div>
             </div>
 
             {/* Emergency Contact */}
             <div className="text-center md:text-right">
               <p className="text-sm text-gray-500 mb-1">Akut service</p>
-              <a 
-                href="tel:+46850555555"
-                className="text-lg font-medium text-gray-900 hover:text-gray-600 transition-colors duration-300"
-              >
-                +46 8-505 555 55
-              </a>
+              <div className="space-y-1">
+                <a 
+                  href="tel:+46700929433"
+                  className="text-base font-medium text-gray-900 hover:text-gray-600 transition-colors duration-300 block"
+                >
+                  0700 929 433
+                </a>
+                <a 
+                  href="tel:+46859120541"
+                  className="text-base font-medium text-gray-900 hover:text-gray-600 transition-colors duration-300 block"
+                >
+                  08 591 205 41
+                </a>
+              </div>
             </div>
           </div>
 
@@ -342,10 +372,10 @@ export default function Footer() {
           <div className="mt-8 pt-6 border-t border-gray-100">
             <div className="text-center text-xs text-gray-400">
               <p className="mb-2">
-                Märsta Bilhus AB - Organisationsnummer: 556123-4567 | Momsregistrerat
+                Märsta Bilhus AB - Organisationsnummer: 556631-7201 | Momsregistrerat
               </p>
               <p>
-                Auktoriserad återförsäljare och serviceverkstad för Hyundai och Aixam. 
+                Auktoriserad serviceverkstad för Hyundai och Aixam. 
                 Certifierad service av alla bilmärken med bibehållen tillverkargaranti.
               </p>
             </div>

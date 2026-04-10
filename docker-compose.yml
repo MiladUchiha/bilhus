@@ -1,0 +1,40 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: bilhus-app
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - LAGERIMPORT_API_URL=https://lagerimport.appdata.se/556631-7201.json
+    networks:
+      - bilhus-network
+
+  nginx:
+    image: nginx:alpine
+    container_name: bilhus-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./certbot/conf:/etc/letsencrypt:ro
+      - ./certbot/www:/var/www/certbot:ro
+    depends_on:
+      - app
+    networks:
+      - bilhus-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: bilhus-certbot
+    volumes:
+      - ./certbot/conf:/etc/letsencrypt
+      - ./certbot/www:/var/www/certbot
+
+networks:
+  bilhus-network:
+    driver: bridge

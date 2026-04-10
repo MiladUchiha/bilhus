@@ -1,0 +1,382 @@
+{
+  "navigation": {
+    "home": "Home",
+    "cars": "Cars",
+    "service": "Service & Workshop",
+    "services": "Services",
+    "about": "About Us",
+    "contact": "Contact"
+  },
+  "cars": {
+    "dropdown": {
+      "allCars": "All cars",
+      "allCarsDescription": "View our complete car selection",
+      "aixamCars": "Aixam moped cars",
+      "aixamCarsDescription": "License-free alternatives for all ages",
+      "financing": "Financing & leasing",
+      "financingDescription": "Flexible payment solutions",
+      "sellCar": "Sell your car to us",
+      "sellCarDescription": "We buy your car at the best price"
+    }
+  },
+  "service": {
+    "dropdown": {
+      "allServices": "All services",
+      "allServicesDescription": "Complete overview of our services",
+      "hyundaiService": "Hyundai original service",
+      "hyundaiServiceDescription": "Authorized service with original parts",
+      "aixamService": "Aixam original service",
+      "aixamServiceDescription": "Specialized service for moped cars",
+      "generalService": "General car service",
+      "generalServiceDescription": "Service for all car brands",
+      "inspection": "Inspection",
+      "inspectionDescription": "Vehicle testing and control inspection",
+      "tires": "Tires & rims",
+      "tiresDescription": "Tire change, balancing and wheel alignment",
+      "repairs": "Repairs & maintenance",
+      "repairsDescription": "Complete car workshop with expert technicians",
+      "booking": "Book online",
+      "bookingDescription": "Quick and easy appointment booking"
+    }
+  },
+  "services": {
+    "dropdown": {
+      "loans": "Car loans & financing",
+      "loansDescription": "Competitive car loans",
+      "insurance": "Insurance",
+      "insuranceDescription": "Car insurance through our partners",
+      "valuation": "Car valuation",
+      "valuationDescription": "Get a fair valuation of your car",
+      "delivery": "Home delivery",
+      "deliveryDescription": "We deliver the car to you",
+      "warranties": "Warranties",
+      "warrantiesDescription": "Extended warranties and protection",
+      "tradeIn": "Trade-in",
+      "tradeInDescription": "Trade in your current car"
+    }
+  },
+  "dropdownHeaders": {
+    "cars": "New and used vehicles",
+    "service": "Professional car service",
+    "services": "Complementary services",
+    "about": "Get to know us better",
+    "contact": "Get in touch with us"
+  },
+  "dropdownFooters": {
+    "cars": "Authorized Hyundai & Aixam dealer",
+    "service": "Certified workshop",
+    "services": "Everything for your car in one place",
+    "about": "Over 20 years of experience in the car industry",
+    "contact": "We are here to help you"
+  },
+  "hero": {
+    "title": "Märsta Car House",
+    "tagline": "Authorized Hyundai workshop and expert on all car brands",
+    "services": "Sells - Buys - Trades - Brokers",
+    "cta": "Book appointment",
+    "footer": {
+      "authorizedService": "Authorized service",
+      "brands": "Hyundai • Aixam",
+      "location": "Arlandastad",
+      "country": "Stockholm • Sweden"
+    },
+    "navigation": {
+      "previousImage": "Previous image",
+      "nextImage": "Next image",
+      "showImage": "Show image"
+    }
+  },
+  "about": {
+    "dropdown": {
+      "company": "The company",
+      "companyDescription": "Our history and values",
+      "workshop": "Our workshop",
+      "workshopDescription": "Modern equipment and facilities",
+      "authorization": "Hyundai authorization",
+      "authorizationDescription": "Official Hyundai partner",
+      "staff": "Staff & expertise",
+      "staffDescription": "Experienced and certified technicians",
+      "whyUs": "Why choose us",
+      "whyUsDescription": "What makes us unique",
+      "environment": "Environmental thinking",
+      "environmentDescription": "Our environmental commitment"
+    },
+    "title": "About",
+    "titleEmphasized": "Märsta Car House",
+    "subtitle": "Over 45 years of automotive expertise in the heart of Arlandastad",
+    "expertise": {
+      "title": "Expertise you can trust",
+      "description": "Since the mid-70s, Märsta Car House has been a reliable partner for car owners in the Stockholm area. As an authorized service workshop for Hyundai and Aixam, we combine official warranty service with expertise in all car brands."
+    },
+    "whyChoose": {
+      "title": "Why choose us?",
+      "uniqueLocation": {
+        "title": "Unique location in Arlandastad",
+        "description": "Leave your car for service while you travel abroad"
+      },
+      "warranty": {
+        "title": "Preserved manufacturer warranty",
+        "description": "Service of all brands without affecting the warranty"
+      },
+      "certified": {
+        "title": "Certified technicians",
+        "description": "Continuous training in the car's latest technology"
+      }
+    },
+    "cta": {
+      "contact": "Contact us",
+      "services": "See our services"
+    },
+    "locationHighlight": {
+      "title": "Strategically located in Arlandastad",
+      "description": "Our unique location near Arlanda airport makes us the perfect choice for travelers. Leave your car for service while you're away – we take care of everything while you're gone.",
+      "benefits": {
+        "terminal": "5 min from Arlanda Terminal",
+        "city": "30 min from Stockholm City",
+        "easy": "Easy to find"
+      }
+    }
+  },
+  "footer": {
+    "company": {
+      "name": "Märsta",
+      "nameEmphasized": "Car House",
+      "description": "Your reliable partner for car service and sales in Arlandastad since the mid-70s."
+    },
+    "contact": {
+      "title": "Contact",
+      "carSales": "Car sales",
+      "workshop": "Workshop"
+    },
+    "address": {
+      "title": "Address",
+      "street": "Maskingatan 12",
+      "postal": "195 60 Arlandastad",
+      "country": "Sweden"
+    },
+    "quickLinks": {
+      "title": "Quick links",
+      "home": "Home",
+      "services": "Services",
+      "about": "About Us",
+      "contact": "Contact"
+    },
+    "services": {
+      "title": "Services",
+      "authorizedService": "Authorized Service",
+      "repairs": "Car repairs",
+      "sales": "Car sales",
+      "valuation": "Valuation"
+    },
+    "openingHours": {
+      "title": "Opening hours",
+      "carSales": "Car sales",
+      "workshop": "Workshop",
+      "mondayThursday": "Mon-Thu",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "mondayFriday": "Mon-Fri"
+    },
+    "authorizations": {
+      "title": "Authorizations",
+      "hyundai": "Hyundai Service",
+      "aixam": "Aixam Service",
+      "damage": "Authorized damage workshop"
+    },
+    "benefits": {
+      "title": "Benefits",
+      "freeParking": "Free parking",
+      "nearArlanda": "Close to Arlanda",
+      "experience": "45+ years of expertise"
+    },
+    "legal": {
+      "copyright": "All rights reserved.",
+      "privacy": "Privacy policy",
+      "terms": "Terms",
+      "cookies": "Cookies"
+    },
+    "emergency": {
+      "title": "Emergency service"
+    },
+    "companyInfo": {
+      "orgNumber": "Märsta Car House AB - Organization number: 556631-7201 | VAT registered",
+      "description": "Authorized service workshop for Hyundai and Aixam. Certified service of all car brands with preserved manufacturer warranty."
+    }
+  },
+  "testimonials": {
+    "title": "Our customers",
+    "titleEmphasized": "say",
+    "subtitle": "Genuine reviews from satisfied customers",
+    "navigation": {
+      "goToReview": "Go to review"
+    },
+    "stats": {
+      "satisfaction": "Customer satisfaction",
+      "customers": "Satisfied customers annually",
+      "rating": "Average rating"
+    },
+    "cta": {
+      "title": "Ready to become the next satisfied customer?",
+      "description": "Contact us today to experience our award-winning service yourself.",
+      "contact": "Contact us",
+      "readMore": "Read more about us"
+    }
+  },
+  "contact": {
+    "dropdown": {
+      "contactUs": "Contact us",
+      "contactUsDescription": "All contact options in one place",
+      "location": "Find us",
+      "locationDescription": "Directions and map",
+      "hours": "Opening hours",
+      "hoursDescription": "When we are open",
+      "phone": "Call us",
+      "phoneDescription": "Direct contact by phone",
+      "quote": "Request quote",
+      "quoteDescription": "Ask for a free quote"
+    },
+    "title": "Contact",
+    "titleEmphasized": "Us",
+    "subtitle": "We are here to help you with all your car needs",
+    "directContact": {
+      "title": "Contact us directly",
+      "description": "Choose the way that suits you best to get in touch with us."
+    },
+    "phone": {
+      "title": "Call us directly",
+      "description": "Fastest way to get help",
+      "carSales": "Car sales:",
+      "workshop": "Workshop:"
+    },
+    "email": {
+      "title": "Send email",
+      "description": "We respond within 24 hours",
+      "workshop": "Workshop:",
+      "sales": "Sales:"
+    },
+    "visit": {
+      "title": "Visit us",
+      "description": "Welcome to our workshop",
+      "address": "Maskingatan 12",
+      "postal": "195 60 Arlandastad",
+      "country": "Sweden",
+      "benefits": "• Free parking • 5 min from Arlanda"
+    },
+    "information": {
+      "title": "Contact information",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "carSales": "Car sales",
+      "workshopService": "Workshop / Service"
+    },
+    "openingHours": {
+      "title": "Opening hours",
+      "carSales": "Car sales",
+      "workshop": "Workshop",
+      "mondayThursday": "Monday - Thursday",
+      "friday": "Friday",
+      "saturday": "Saturday",
+      "sunday": "Sunday",
+      "mondayFriday": "Monday - Friday",
+      "weekends": "Saturday - Sunday",
+      "byAgreement": "By agreement",
+      "closed": "Closed",
+      "tip": "Call ahead to book an appointment. Urgent repairs can sometimes be accepted outside regular opening hours."
+    },
+    "locationBenefits": {
+      "title": "Why Arlandastad?",
+      "travelers": {
+        "title": "Perfect for travelers",
+        "description": "Leave your car for service while you travel"
+      },
+      "highway": {
+        "title": "Close to E4",
+        "description": "Easy to find and get to"
+      },
+      "parking": {
+        "title": "Free parking",
+        "description": "No parking fees during your visit"
+      }
+    },
+    "map": {
+      "title": "Find us",
+      "googleMaps": "Open in Google Maps",
+      "appleMaps": "Apple Maps",
+      "directions": "Get directions",
+      "addressTitle": "Address",
+      "company": "Märsta Car House AB",
+      "directionsTitle": "Directions",
+      "fromE4": "From E4: Take exit 195 towards Arlandastad",
+      "fromAirport": "5 minutes from Arlanda Airport",
+      "freeParking": "Free parking on site"
+    },
+    "emergency": {
+      "title": "Emergency help?",
+      "description": "For urgent repairs or emergencies, call us directly. We always try to help even outside regular opening hours.",
+      "carSales": "Car sales: 0700 929 433",
+      "workshop": "Workshop: 08 591 205 41"
+    }
+  },
+  "cookies": {
+    "popup": {
+      "title": "Your data, your choice.",
+      "description": "Märsta Car House handles your data. We use cookies to protect your data, and to customize services, offers and ads for you.",
+      "accept": "I understand",
+      "moreInfo": "More information",
+      "close": "Close"
+    }
+  },
+  "servicesSection": {
+    "title": "Services",
+    "titleEmphasis": "Our",
+    "service1": {
+      "title": "Authorized Service",
+      "subtitle": "Hyundai • Aixam",
+      "description": "Official warranty service for Hyundai and Aixam with original spare parts and certified technicians.",
+      "feature1": "Warranty service",
+      "feature2": "Original parts",
+      "feature3": "Certified technicians",
+      "highlight": "Authorized"
+    },
+    "service2": {
+      "title": "All Car Brands",
+      "subtitle": "Full-service workshop",
+      "description": "Professional service and repairs for all car brands with maintained manufacturer warranty.",
+      "feature1": "All brands",
+      "feature2": "Maintained warranty",
+      "feature3": "Expertise & quality",
+      "highlight": "Full-service"
+    },
+    "service3": {
+      "title": "Car Sales",
+      "subtitle": "Used vehicles",
+      "description": "Quality-inspected vehicles with transparent history and competitive prices.",
+      "feature1": "Quality-inspected",
+      "feature2": "Transparent history",
+      "feature3": "Competitive",
+      "highlight": "Quality"
+    },
+    "cta": {
+      "title": "Ready to trust the expertise?",
+      "description": "Book time for professional service or advice from our certified technicians.",
+      "button": "Book service"
+    }
+  },
+  "common": {
+    "readMore": "Read more",
+    "contactUs": "Contact us",
+    "bookTime": "Book appointment",
+    "learnMore": "Learn more",
+    "close": "Close",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous"
+  },
+  "meta": {
+    "title": "Märsta Car House",
+    "description": "We sell, buy and trade cars.",
+    "homeTitle": "Home - Märsta Bilhus",
+    "homeDescription": "Welcome to Märsta Bilhus, your reliable partner for cars and service. We offer a wide range of new and used cars, as well as professional service and repair."
+  }
+}

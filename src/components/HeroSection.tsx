@@ -3,25 +3,29 @@
 import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
+import { useTranslations } from 'next-intl';
 import Button from './Button';
+import BookingPopup from './BookingPopup';
+
+const heroImages = [
+  '/heropics/1.jpg',
+  '/heropics/2.jpg',
+  '/heropics/3.jpg',
+  '/heropics/4.jpg',
+  '/heropics/5.jpg',
+  '/heropics/6.jpg'
+];
 
 export default function HeroSection() {
+  const t = useTranslations('hero');
   const heroRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLButtonElement>(null);
   const footerRef = useRef<HTMLDivElement>(null);
-  
+
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  
-  const heroImages = [
-    '/heropics/1.jpg',
-    '/heropics/2.jpg',
-    '/heropics/3.jpg',
-    '/heropics/4.jpg',
-    '/heropics/5.jpg',
-    '/heropics/6.jpg'
-  ];
+  const [showBookingPopup, setShowBookingPopup] = useState(false);
 
   useEffect(() => {
     const tl = gsap.timeline();
@@ -67,11 +71,10 @@ export default function HeroSection() {
     }, 6000); // Slightly longer for better user experience
 
     return () => clearInterval(interval);
-  }, [heroImages.length]);
+  }, []);
 
   const handleCTAClick = () => {
-    // Smooth scroll to contact section (will be implemented later)
-    console.log('Navigate to booking');
+    setShowBookingPopup(true);
   };
 
   const handleImageChange = (index: number) => {
@@ -94,11 +97,13 @@ export default function HeroSection() {
           >
             <Image
               src={image}
-              alt={`Märsta Bilhus ${index + 1}`}
+              alt={`${t('title')} ${index + 1}`}
               fill
               className="object-cover"
               priority={index === 0}
-              quality={90}
+              loading={index === 0 ? "eager" : "lazy"}
+              quality={index === 0 ? 95 : 85}
+              sizes="100vw"
             />
           </div>
         ))}
@@ -119,9 +124,7 @@ export default function HeroSection() {
             textShadow: '3px 3px 6px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5), 1px 1px 3px rgba(0,0,0,1)'
           }}
         >
-          Märsta
-          <br />
-          <span className="font-normal">Bilhus</span>
+          {t('title')}
         </h1>
         
         <p 
@@ -131,9 +134,9 @@ export default function HeroSection() {
             textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.5), 1px 1px 3px rgba(0,0,0,1)'
           }}
         >
-          Auktoriserad service för alla bilmärken
-          <br className="hidden sm:block" />
-          i Arlandastad, Stockholm
+          {t('tagline')}
+          <br className="block" />
+          <span>{t('services')}</span> 
         </p>
         
         <Button
@@ -142,7 +145,7 @@ export default function HeroSection() {
           variant="hero"
           size="xl"
         >
-          Boka tid
+          {t('cta')}
         </Button>
       </div>
 
@@ -157,26 +160,26 @@ export default function HeroSection() {
         {/* Mobile Layout - Centered */}
         <div className="flex flex-col items-center space-y-4 sm:hidden">
           <div className="text-center">
-            <p className="font-semibold text-white mb-1">Auktoriserad service</p>
-            <p className="text-white/95 font-medium">Hyundai • Aixam</p>
+            <p className="font-semibold text-white mb-1">{t('footer.authorizedService')}</p>
+            <p className="text-white/95 font-medium">{t('footer.brands')}</p>
           </div>
           
           <div className="text-center">
-            <p className="font-semibold text-white mb-1">Arlandastad</p>
-            <p className="text-white/95 font-medium">Stockholm • Sverige</p>
+            <p className="font-semibold text-white mb-1">{t('footer.location')}</p>
+            <p className="text-white/95 font-medium">{t('footer.country')}</p>
           </div>
         </div>
 
         {/* Desktop Layout - Space Between */}
         <div className="hidden sm:flex sm:flex-row justify-between items-center">
           <div className="text-left">
-            <p className="font-semibold text-white mb-1">Auktoriserad service</p>
-            <p className="text-white/95 font-medium">Hyundai • Aixam</p>
+            <p className="font-semibold text-white mb-1">{t('footer.authorizedService')}</p>
+            <p className="text-white/95 font-medium">{t('footer.brands')}</p>
           </div>
           
           <div className="text-right">
-            <p className="font-semibold text-white mb-1">Arlandastad</p>
-            <p className="text-white/95 font-medium">Stockholm • Sverige</p>
+            <p className="font-semibold text-white mb-1">{t('footer.location')}</p>
+            <p className="text-white/95 font-medium">{t('footer.country')}</p>
           </div>
         </div>
       </footer>
@@ -217,6 +220,12 @@ export default function HeroSection() {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
         </svg>
       </button>
+
+      {/* Booking Popup */}
+      <BookingPopup 
+        isOpen={showBookingPopup} 
+        onClose={() => setShowBookingPopup(false)} 
+      />
     </main>
   );
 } 

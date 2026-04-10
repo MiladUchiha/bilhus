@@ -1,0 +1,382 @@
+{
+  "navigation": {
+    "home": "Startsida",
+    "cars": "Bilar",
+    "service": "Service & Verkstad",
+    "services": "Tjänster",
+    "about": "Om oss",
+    "contact": "Kontakt"
+  },
+  "cars": {
+    "dropdown": {
+      "allCars": "Alla bilar",
+      "allCarsDescription": "Se hela vårt bilutbud",
+      "aixamCars": "Aixam mopedbilar",
+      "aixamCarsDescription": "Körkortsfria alternativ för alla åldrar",
+      "financing": "Finansiering & leasing",
+      "financingDescription": "Flexibla betalningslösningar",
+      "sellCar": "Sälja bil till oss",
+      "sellCarDescription": "Vi köper din bil till bästa pris"
+    }
+  },
+  "service": {
+    "dropdown": {
+      "allServices": "Alla tjänster",
+      "allServicesDescription": "Komplett översikt av våra tjänster",
+      "hyundaiService": "Hyundai originalservice",
+      "hyundaiServiceDescription": "Auktoriserad service med originaldelar",
+      "aixamService": "Aixam originalservice",
+      "aixamServiceDescription": "Specialiserad service för mopedbilar",
+      "generalService": "Allmän bilservice",
+      "generalServiceDescription": "Service för alla bilmärken",
+      "inspection": "Besiktning",
+      "inspectionDescription": "Bilprovning och kontrollbesiktning",
+      "tires": "Däck & fälgar",
+      "tiresDescription": "Däckbyte, balansering och hjulinställning",
+      "repairs": "Reparationer & underhåll",
+      "repairsDescription": "Komplett bilverkstad med expertteknikiker",
+      "booking": "Boka tid online",
+      "bookingDescription": "Snabb och enkel tidsbokning"
+    }
+  },
+  "services": {
+    "dropdown": {
+      "loans": "Billån & finansiering",
+      "loansDescription": "Konkurrenskraftiga billån",
+      "insurance": "Försäkring",
+      "insuranceDescription": "Bilförsäkring genom våra partners",
+      "valuation": "Värdering av bil",
+      "valuationDescription": "Få en rättvis värdering av din bil",
+      "delivery": "Hemkörning",
+      "deliveryDescription": "Vi levererar bilen till dig",
+      "warranties": "Garantier",
+      "warrantiesDescription": "Utökade garantier och skydd",
+      "tradeIn": "Inbyte",
+      "tradeInDescription": "Byt in din nuvarande bil"
+    }
+  },
+  "dropdownHeaders": {
+    "cars": "Nya och begagnade fordon",
+    "service": "Professionell bilservice",
+    "services": "Kompletterande tjänster",
+    "about": "Lär känna oss bättre",
+    "contact": "Kom i kontakt med oss"
+  },
+  "dropdownFooters": {
+    "cars": "Auktoriserad Hyundai & Aixam återförsäljare",
+    "service": "Certifierad verkstad",
+    "services": "Allt för din bil på ett ställe",
+    "about": "Över 20 års erfarenhet av bilbranschen",
+    "contact": "Vi finns här för att hjälpa dig"
+  },
+  "hero": {
+    "title": "Märsta Bilhus",
+    "tagline": "Auktoriserad Hyundai-verkstad och expert på alla bilmärken",
+    "services": "Säljer - Köper - Byter - Förmedlar",
+    "cta": "Boka tid",
+    "footer": {
+      "authorizedService": "Auktoriserad service",
+      "brands": "Hyundai • Aixam",
+      "location": "Arlandastad",
+      "country": "Stockholm • Sverige"
+    },
+    "navigation": {
+      "previousImage": "Föregående bild",
+      "nextImage": "Nästa bild",
+      "showImage": "Visa bild"
+    }
+  },
+  "about": {
+    "dropdown": {
+      "company": "Företaget",
+      "companyDescription": "Vår historia och våra värderingar",
+      "workshop": "Vår verkstad",
+      "workshopDescription": "Modern utrustning och faciliteter",
+      "authorization": "Hyundai auktorisation",
+      "authorizationDescription": "Officiell Hyundai-partner",
+      "staff": "Personal & expertis",
+      "staffDescription": "Erfarna och certifierade tekniker",
+      "whyUs": "Varför välja oss",
+      "whyUsDescription": "Vad som gör oss unika",
+      "environment": "Miljötänk",
+      "environmentDescription": "Vårt miljöengagemang"
+    },
+    "title": "Om",
+    "titleEmphasized": "Märsta Bilhus",
+    "subtitle": "Över 45 år av bilexpertis i hjärtat av Arlandastad",
+    "expertise": {
+      "title": "Expertis du kan lita på",
+      "description": "Sedan mitten på 70-talet har Märsta Bilhus varit en pålitlig partner för bilägare i Stockholmsområdet. Som auktoriserad serviceverkstad för Hyundai och Aixam kombinerar vi officiell garanti-service med expertis inom alla bilmärken."
+    },
+    "whyChoose": {
+      "title": "Varför välja oss?",
+      "uniqueLocation": {
+        "title": "Unik plats i Arlandastad",
+        "description": "Lämna bilen för service medan du reser utomlands"
+      },
+      "warranty": {
+        "title": "Bibehållen tillverkargaranti",
+        "description": "Service av alla märken utan att påverka garantin"
+      },
+      "certified": {
+        "title": "Certifierade tekniker",
+        "description": "Kontinuerlig utbildning inom bilens senaste teknik"
+      }
+    },
+    "cta": {
+      "contact": "Kontakta oss",
+      "services": "Se våra tjänster"
+    },
+    "locationHighlight": {
+      "title": "Strategiskt beläget i Arlandastad",
+      "description": "Vår unika plats nära Arlanda flygplats gör oss till det perfekta valet för resenärer. Lämna din bil för service medan du är bortrest – vi tar hand om allt medan du är borta.",
+      "benefits": {
+        "terminal": "5 min från Arlanda Terminal",
+        "city": "30 min från Stockholm City",
+        "easy": "Enkelt att hitta"
+      }
+    }
+  },
+  "footer": {
+    "company": {
+      "name": "Märsta",
+      "nameEmphasized": "Bilhus",
+      "description": "Din pålitliga partner för bilservice och försäljning i Arlandastad sedan mitten på 70-talet."
+    },
+    "contact": {
+      "title": "Kontakt",
+      "carSales": "Bilförsäljning",
+      "workshop": "Verkstad"
+    },
+    "address": {
+      "title": "Adress",
+      "street": "Maskingatan 12",
+      "postal": "195 60 Arlandastad",
+      "country": "Sverige"
+    },
+    "quickLinks": {
+      "title": "Snabblänkar",
+      "home": "Hem",
+      "services": "Tjänster",
+      "about": "Om Oss",
+      "contact": "Kontakt"
+    },
+    "services": {
+      "title": "Tjänster",
+      "authorizedService": "Auktoriserad Service",
+      "repairs": "Bilreparationer",
+      "sales": "Bilförsäljning",
+      "valuation": "Värdering"
+    },
+    "openingHours": {
+      "title": "Öppettider",
+      "carSales": "Bilförsäljning",
+      "workshop": "Verkstad",
+      "mondayThursday": "Mån-Tors",
+      "friday": "Fredag",
+      "saturday": "Lördag",
+      "mondayFriday": "Mån-Fre"
+    },
+    "authorizations": {
+      "title": "Auktoriseringar",
+      "hyundai": "Hyundai Service",
+      "aixam": "Aixam Service",
+      "damage": "Auktoriserad skadeverkstad"
+    },
+    "benefits": {
+      "title": "Fördelar",
+      "freeParking": "Gratis parkering",
+      "nearArlanda": "Nära Arlanda",
+      "experience": "45+ års expertis"
+    },
+    "legal": {
+      "copyright": "Alla rättigheter förbehållna.",
+      "privacy": "Integritetspolicy",
+      "terms": "Villkor",
+      "cookies": "Cookies"
+    },
+    "emergency": {
+      "title": "Akut service"
+    },
+    "companyInfo": {
+      "orgNumber": "Märsta Bilhus AB - Organisationsnummer: 556631-7201 | Momsregistrerat",
+      "description": "Auktoriserad serviceverkstad för Hyundai och Aixam. Certifierad service av alla bilmärken med bibehållen tillverkargaranti."
+    }
+  },
+  "testimonials": {
+    "title": "Våra kunder",
+    "titleEmphasized": "säger",
+    "subtitle": "Äkta recensioner från nöjda kunder",
+    "navigation": {
+      "goToReview": "Gå till recension"
+    },
+    "stats": {
+      "satisfaction": "Kundnöjdhet",
+      "customers": "Nöjda kunder årligen",
+      "rating": "Genomsnittlig rating"
+    },
+    "cta": {
+      "title": "Redo att bli nästa nöjda kund?",
+      "description": "Kontakta oss idag för att uppleva vår prisade service själv.",
+      "contact": "Kontakta oss",
+      "readMore": "Läs mer om oss"
+    }
+  },
+  "contact": {
+    "dropdown": {
+      "contactUs": "Kontakta oss",
+      "contactUsDescription": "Alla kontaktmöjligheter på ett ställe",
+      "location": "Hitta hit",
+      "locationDescription": "Vägbeskrivning och karta",
+      "hours": "Öppettider",
+      "hoursDescription": "När vi har öppet",
+      "phone": "Ring oss",
+      "phoneDescription": "Direktkontakt per telefon",
+      "quote": "Offertförfrågan",
+      "quoteDescription": "Be om kostnadsfri offert"
+    },
+    "title": "Kontakta",
+    "titleEmphasized": "Oss",
+    "subtitle": "Vi finns här för att hjälpa dig med alla dina bilbehov",
+    "directContact": {
+      "title": "Kontakta oss direkt",
+      "description": "Välj det sätt som passar dig bäst för att komma i kontakt med oss."
+    },
+    "phone": {
+      "title": "Ring oss direkt",
+      "description": "Snabbaste sättet att få hjälp",
+      "carSales": "Bilförsäljning:",
+      "workshop": "Verkstad:"
+    },
+    "email": {
+      "title": "Skicka e-post",
+      "description": "Vi svarar inom 24 timmar",
+      "workshop": "Verkstad:",
+      "sales": "Försäljning:"
+    },
+    "visit": {
+      "title": "Besök oss",
+      "description": "Välkommen till vår verkstad",
+      "address": "Maskingatan 12",
+      "postal": "195 60 Arlandastad",
+      "country": "Sverige",
+      "benefits": "• Gratis parkering • 5 min från Arlanda"
+    },
+    "information": {
+      "title": "Kontaktinformation",
+      "phone": "Telefon",
+      "email": "E-post",
+      "address": "Adress",
+      "carSales": "Bilförsäljning",
+      "workshopService": "Verkstad / Service"
+    },
+    "openingHours": {
+      "title": "Öppettider",
+      "carSales": "Bilförsäljning",
+      "workshop": "Verkstad",
+      "mondayThursday": "Måndag - Torsdag",
+      "friday": "Fredag",
+      "saturday": "Lördag",
+      "sunday": "Söndag",
+      "mondayFriday": "Måndag - Fredag",
+      "weekends": "Lördag - Söndag",
+      "byAgreement": "Enligt överenskommelse",
+      "closed": "Stängt",
+      "tip": "Ring i förväg för att boka tid. Akuta reparationer kan ibland tas emot utanför ordinarie öppettider."
+    },
+    "locationBenefits": {
+      "title": "Varför Arlandastad?",
+      "travelers": {
+        "title": "Perfekt för resenärer",
+        "description": "Lämna bilen för service medan du reser"
+      },
+      "highway": {
+        "title": "Nära E4:an",
+        "description": "Enkelt att hitta och komma till"
+      },
+      "parking": {
+        "title": "Gratis parkering",
+        "description": "Inga parkeringsavgifter under besöket"
+      }
+    },
+    "map": {
+      "title": "Hitta till oss",
+      "googleMaps": "Öppna i Google Maps",
+      "appleMaps": "Apple Maps",
+      "directions": "Få vägbeskrivning",
+      "addressTitle": "Adress",
+      "company": "Märsta Bilhus AB",
+      "directionsTitle": "Vägbeskrivning",
+      "fromE4": "Från E4: Ta avfart 195 mot Arlandastad",
+      "fromAirport": "5 minuter från Arlanda Airport",
+      "freeParking": "Gratis parkering på plats"
+    },
+    "emergency": {
+      "title": "Akut hjälp?",
+      "description": "För akuta reparationer eller nödsituationer, ring oss direkt. Vi försöker alltid hjälpa till även utanför ordinarie öppettider.",
+      "carSales": "Bilförsäljning: 0700 929 433",
+      "workshop": "Verkstad: 08 591 205 41"
+    }
+  },
+  "cookies": {
+    "popup": {
+      "title": "Din data, ditt val.",
+      "description": "Märsta Bilhus hanterar din data. Vi använder cookies för att skydda din data, samt för att anpassa tjänster, erbjudanden och annonser till dig.",
+      "accept": "Jag förstår",
+      "moreInfo": "Mer information",
+      "close": "Stäng"
+    }
+  },
+  "servicesSection": {
+    "title": "Tjänster",
+    "titleEmphasis": "Våra",
+    "service1": {
+      "title": "Auktoriserad Service",
+      "subtitle": "Hyundai • Aixam",
+      "description": "Officiell garanti-service för Hyundai och Aixam med ursprungliga reservdelar och certifierade tekniker.",
+      "feature1": "Garanti-service",
+      "feature2": "Ursprungliga delar",
+      "feature3": "Certifierade tekniker",
+      "highlight": "Auktoriserad"
+    },
+    "service2": {
+      "title": "Alla Bilmärken",
+      "subtitle": "Fullservice verkstad",
+      "description": "Professionell service och reparationer för alla bilmärken med bibehållen tillverkargaranti.",
+      "feature1": "Alla märken",
+      "feature2": "Bibehållen garanti",
+      "feature3": "Expertis & kvalitet",
+      "highlight": "Fullservice"
+    },
+    "service3": {
+      "title": "Bilförsäljning",
+      "subtitle": "Begagnade",
+      "description": "Kvalitetsgranskade fordon med transparent historik och konkurrenskraftiga priser.",
+      "feature1": "Kvalitetsgranskat",
+      "feature2": "Transparent historik",
+      "feature3": "Konkurrenskraftigt",
+      "highlight": "Kvalitet"
+    },
+    "cta": {
+      "title": "Redo att lita på expertisen?",
+      "description": "Boka tid för professionell service eller rådgivning från våra certifierade tekniker.",
+      "button": "Boka service"
+    }
+  },
+  "common": {
+    "readMore": "Läs mer",
+    "contactUs": "Kontakta oss",
+    "bookTime": "Boka tid",
+    "learnMore": "Läs mer",
+    "close": "Stäng",
+    "back": "Tillbaka",
+    "next": "Nästa",
+    "previous": "Föregående"
+  },
+  "meta": {
+    "title": "Märsta Bilhus",
+    "description": "Vi säljer, köper och byter bilar.",
+    "homeTitle": "Hem - Märsta Bilhus",
+    "homeDescription": "Välkommen till Märsta Bilhus, din pålitliga partner för bilar och service. Vi erbjuder ett brett utbud av nya och begagnade bilar, samt professionell service och reparation."
+  }
+}

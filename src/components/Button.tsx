@@ -27,7 +27,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       secondary: "bg-gray-100 text-gray-900 hover:bg-gray-200 focus:ring-gray-500 border-2 border-gray-200 hover:border-gray-300",
       outline: "bg-transparent text-black border-2 border-black hover:bg-black hover:text-white focus:ring-gray-500",
       ghost: "bg-transparent text-gray-700 hover:bg-gray-100 hover:text-gray-900 focus:ring-gray-500",
-      hero: "group relative text-black bg-white border-2 border-white hover:bg-transparent hover:text-white overflow-hidden backdrop-blur-sm shadow-2xl hover:shadow-white/20"
+      hero: "group relative text-white bg-transparent border-2 border-white hover:bg-white hover:text-black overflow-hidden backdrop-blur-sm shadow-2xl hover:shadow-white/20"
     };
     
     const sizes = {

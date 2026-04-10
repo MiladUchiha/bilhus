@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# large media files
+public/1349/Air_conditioning_1.jpg
+public/1349/EV_Battery_Coolant_1.jpg
+public/1349/Wheels_and_tires_7.jpg

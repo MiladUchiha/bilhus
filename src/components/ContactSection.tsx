@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
@@ -13,20 +13,10 @@ export default function ContactSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const formRef = useRef<HTMLDivElement>(null);
+  const contactMethodsRef = useRef<HTMLDivElement>(null);
   const infoRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<HTMLDivElement>(null);
-  const formFieldsRef = useRef<(HTMLDivElement | null)[]>([]);
   
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    service: '',
-    message: ''
-  });
-
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -36,14 +26,9 @@ export default function ContactSection() {
         y: 50
       });
 
-      gsap.set([formRef.current, infoRef.current, mapRef.current], {
+      gsap.set([contactMethodsRef.current, infoRef.current, mapRef.current], {
         opacity: 0,
         y: 40
-      });
-
-      gsap.set(formFieldsRef.current, {
-        opacity: 0,
-        y: 20
       });
 
       // Create scroll-triggered animation
@@ -69,7 +54,7 @@ export default function ContactSection() {
         duration: 0.6,
         ease: "power2.out"
       }, "-=0.4")
-      .to([formRef.current, infoRef.current], {
+      .to([contactMethodsRef.current, infoRef.current], {
         opacity: 1,
         y: 0,
         duration: 0.8,
@@ -81,60 +66,13 @@ export default function ContactSection() {
         y: 0,
         duration: 0.6,
         ease: "power2.out"
-      }, "-=0.4")
-      .to(formFieldsRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.4,
-        stagger: 0.1,
-        ease: "power2.out"
-      }, "-=0.8");
+      }, "-=0.4");
 
     }, sectionRef);
 
     return () => ctx.revert();
   }, []);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    console.log('Form submitted:', formData);
-    setIsSubmitting(false);
-    
-    // Reset form
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      service: '',
-      message: ''
-    });
-    
-    alert('Tack för ditt meddelande! Vi återkommer så snart som möjligt.');
-  };
-
-  const serviceOptions = [
-    'Välj tjänst',
-    'Auktoriserad service (Hyundai)',
-    'Auktoriserad service (Aixam)',
-    'Allmän service',
-    'Reparation',
-    'Bilförsäljning',
-    'Värdering',
-    'Övrigt'
-  ];
 
   return (
     <section 
@@ -162,140 +100,95 @@ export default function ContactSection() {
 
         {/* Main Content Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
-          {/* Contact Form */}
-          <div ref={formRef} className="order-2 lg:order-1">
+          {/* Contact Methods */}
+          <div ref={contactMethodsRef} className="order-2 lg:order-1">
             <div className="mb-8">
               <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-                Skicka meddelande
+                Kontakta oss direkt
               </h3>
               <p className="text-lg text-gray-600 leading-relaxed">
-                Fyll i formuläret så återkommer vi så snart som möjligt.
+                Välj det sätt som passar dig bäst för att komma i kontakt med oss.
               </p>
             </div>
 
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div 
-                ref={(el) => {
-                  formFieldsRef.current[0] = el;
-                }}
-                className="group"
-              >
-                <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
-                  Namn *
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleInputChange}
-                  required
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 focus:ring-0 transition-colors duration-300 text-gray-900 placeholder-gray-500 bg-white"
-                  placeholder="Ditt fullständiga namn"
-                />
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                <div 
-                  ref={(el) => {
-                    formFieldsRef.current[1] = el;
-                  }}
-                  className="group"
-                >
-                  <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
-                    E-post *
-                  </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    value={formData.email}
-                    onChange={handleInputChange}
-                    required
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 focus:ring-0 transition-colors duration-300 text-gray-900 placeholder-gray-500 bg-white"
-                    placeholder="din.epost@exempel.se"
-                  />
+            <div className="space-y-6">
+              {/* Phone Contact */}
+              <div className="bg-gray-50 border border-gray-200 p-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900">Ring oss direkt</h4>
+                    <p className="text-gray-600">Snabbaste sättet att få hjälp</p>
+                  </div>
                 </div>
-
-                <div 
-                  ref={(el) => {
-                    formFieldsRef.current[2] = el;
-                  }}
-                  className="group"
-                >
-                  <label htmlFor="phone" className="block text-sm font-medium text-gray-900 mb-2">
-                    Telefon
-                  </label>
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    value={formData.phone}
-                    onChange={handleInputChange}
-                    className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 focus:ring-0 transition-colors duration-300 text-gray-900 placeholder-gray-500 bg-white"
-                    placeholder="070-123 45 67"
-                  />
+                <div className="space-y-3">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Bilförsäljning:</span>
+                    <a href="tel:0700929433" className="text-lg font-medium text-blue-600 hover:text-blue-800">
+                      0700 929 433
+                    </a>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">Verkstad:</span>
+                    <a href="tel:08-59120541" className="text-lg font-medium text-blue-600 hover:text-blue-800">
+                      08-59 120 541
+                    </a>
+                  </div>
                 </div>
               </div>
 
-              <div 
-                ref={(el) => {
-                  formFieldsRef.current[3] = el;
-                }}
-                className="group"
-              >
-                <label htmlFor="service" className="block text-sm font-medium text-gray-900 mb-2">
-                  Tjänst
-                </label>
-                <select
-                  id="service"
-                  name="service"
-                  value={formData.service}
-                  onChange={handleInputChange}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 focus:ring-0 transition-colors duration-300 text-gray-900 bg-white"
-                >
-                  {serviceOptions.map((option, index) => (
-                    <option key={index} value={index === 0 ? '' : option}>
-                      {option}
-                    </option>
-                  ))}
-                </select>
+              {/* Email Contact */}
+              <div className="bg-gray-50 border border-gray-200 p-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900">Skicka e-post</h4>
+                    <p className="text-gray-600">Vi svarar inom 24 timmar</p>
+                  </div>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Verkstad:</span>
+                  <a href="mailto:kundservice@marstabilhus.se" className="text-lg font-medium text-green-600 hover:text-green-800">
+                    kundservice@marstabilhus.se
+                  </a>
+                </div>
+                <div className="flex justify-between items-center">
+                  <span className="text-gray-600">Försäljning:</span>
+                  <a href="mailto:info@marstabilhus.se" className="text-lg font-medium text-green-600 hover:text-green-800">
+                    info@marstabilhus.se
+                  </a>
+                </div>
               </div>
 
-              <div 
-                ref={(el) => {
-                  formFieldsRef.current[4] = el;
-                }}
-                className="group"
-              >
-                <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
-                  Meddelande *
-                </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleInputChange}
-                  required
-                  rows={6}
-                  className="w-full px-4 py-3 border border-gray-200 focus:border-gray-900 focus:ring-0 transition-colors duration-300 text-gray-900 placeholder-gray-500 bg-white resize-none"
-                  placeholder="Berätta om ditt ärende..."
-                />
+              {/* Visit Us */}
+              <div className="bg-gray-50 border border-gray-200 p-6">
+                <div className="flex items-center mb-4">
+                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h4 className="text-lg font-medium text-gray-900">Besök oss</h4>
+                    <p className="text-gray-600">Välkommen till vår verkstad</p>
+                  </div>
+                </div>
+                <div className="space-y-2 text-gray-600">
+                  <p className="font-medium text-gray-900">Maskingatan 12</p>
+                  <p>195 60 Arlandastad</p>
+                  <p className="text-sm">• Gratis parkering • 5 min från Arlanda</p>
+                </div>
               </div>
-
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full sm:w-auto group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-gray-900 hover:bg-gray-800 disabled:bg-gray-400 transition-all duration-300 overflow-hidden"
-              >
-                <span className="relative z-10">
-                  {isSubmitting ? 'Skickar...' : 'Skicka meddelande'}
-                </span>
-                {!isSubmitting && (
-                  <div className="absolute inset-0 bg-gray-800 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-                )}
-              </button>
-            </form>
+            </div>
           </div>
 
           {/* Contact Information */}
@@ -310,12 +203,26 @@ export default function ContactSection() {
                 <div className="space-y-6">
                   <div>
                     <h4 className="text-lg font-medium text-gray-900 mb-3">Telefon</h4>
-                    <a 
-                      href="tel:+46850555555" 
-                      className="text-xl text-gray-600 hover:text-gray-900 transition-colors duration-300 block"
-                    >
-                      +46 8-505 555 55
-                    </a>
+                    <div className="space-y-3">
+                      <div>
+                        <a 
+                          href="tel:+46700929433" 
+                          className="text-xl text-gray-600 hover:text-gray-900 transition-colors duration-300 block"
+                        >
+                          0700 929 433
+                        </a>
+                        <span className="text-sm text-gray-500">Bilförsäljning</span>
+                      </div>
+                      <div>
+                        <a 
+                          href="tel:+46859120541" 
+                          className="text-xl text-gray-600 hover:text-gray-900 transition-colors duration-300 block"
+                        >
+                          08 591 205 41
+                        </a>
+                        <span className="text-sm text-gray-500">Verkstad / Service</span>
+                      </div>
+                    </div>
                   </div>
 
                   <div>
@@ -343,18 +250,40 @@ export default function ContactSection() {
               <div className="border-t border-gray-200 pt-8">
                 <h4 className="text-lg font-medium text-gray-900 mb-6">Öppettider</h4>
                 
-                <div className="space-y-3">
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Måndag - Fredag</span>
-                    <span className="text-gray-900 font-medium">08:00 - 17:00</span>
+                <div className="space-y-4">
+                  <div className="mb-4">
+                    <h5 className="font-medium text-gray-900 mb-2">Bilförsäljning</h5>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Måndag - Torsdag</span>
+                        <span className="text-gray-900 font-medium">09:00 - 18:00</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Fredag</span>
+                        <span className="text-gray-900 font-medium">09:00 - 17:00</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Lördag</span>
+                        <span className="text-gray-900 font-medium">11:00 - 15:00</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Söndag</span>
+                        <span className="text-gray-900 font-medium">Enligt överenskommelse</span>
+                      </div>
+                    </div>
                   </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Lördag</span>
-                    <span className="text-gray-900 font-medium">09:00 - 14:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span className="text-gray-600">Söndag</span>
-                    <span className="text-gray-900 font-medium">Stängt</span>
+                  <div>
+                    <h5 className="font-medium text-gray-900 mb-2">Verkstad</h5>
+                    <div className="space-y-2 text-sm">
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Måndag - Fredag</span>
+                        <span className="text-gray-900 font-medium">07:30 - 16:30</span>
+                      </div>
+                      <div className="flex justify-between">
+                        <span className="text-gray-600">Lördag - Söndag</span>
+                        <span className="text-gray-900 font-medium">Stängt</span>
+                      </div>
+                    </div>
                   </div>
                 </div>
                 
@@ -510,15 +439,24 @@ export default function ContactSection() {
           <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
             För akuta reparationer eller nödsituationer, ring oss direkt. Vi försöker alltid hjälpa till även utanför ordinarie öppettider.
           </p>
-          <a 
-            href="tel:+46850555555"
-            className="inline-block group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-all duration-300 overflow-hidden"
-          >
-            <span className="relative z-10">Ring nu: +46 8-505 555 55</span>
-            <div className="absolute inset-0 bg-red-700 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a 
+              href="tel:+46700929433"
+              className="inline-block group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-all duration-300 overflow-hidden text-center"
+            >
+              <span className="relative z-10">Bilförsäljning: 0700 929 433</span>
+              <div className="absolute inset-0 bg-red-700 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+            </a>
+            <a 
+              href="tel:+46859120541"
+              className="inline-block group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-all duration-300 overflow-hidden text-center"
+            >
+              <span className="relative z-10">Verkstad: 08 591 205 41</span>
+              <div className="absolute inset-0 bg-red-700 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+            </a>
+          </div>
         </div>
       </div>
     </section>
   );
-} 
+}

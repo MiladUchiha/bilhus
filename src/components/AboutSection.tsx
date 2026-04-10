@@ -3,8 +3,9 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslations } from 'next-intl';
 import Image from 'next/image';
-import Button from './Button';
+import Link from 'next/link';
 
 // Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
@@ -12,6 +13,7 @@ if (typeof window !== 'undefined') {
 }
 
 export default function AboutSection() {
+  const t = useTranslations('about');
   const sectionRef = useRef<HTMLElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const subtitleRef = useRef<HTMLParagraphElement>(null);
@@ -134,15 +136,15 @@ export default function AboutSection() {
             ref={titleRef}
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-gray-900 mb-6"
           >
-            Om
+            {t('title')}
             <br />
-            <span className="font-normal">Märsta Bilhus</span>
+            <span className="font-normal">{t('titleEmphasized')}</span>
           </h2>
           <p 
             ref={subtitleRef}
             className="text-xl sm:text-2xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed"
           >
-            25 år av bilexpertis i hjärtat av Arlandastad
+            {t('subtitle')}
           </p>
         </div>
 
@@ -153,24 +155,22 @@ export default function AboutSection() {
             <div className="space-y-8">
                              <div>
                  <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-                   Expertis du kan lita på
+                   {t('expertise.title')}
                  </h3>
                  <p className="text-lg text-gray-600 leading-relaxed">
-                   Sedan 1999 har Märsta Bilhus varit en pålitlig partner för bilägare i Stockholmsområdet. 
-                   Som auktoriserad serviceverkstad för Hyundai och Aixam kombinerar vi officiell garanti-service 
-                   med expertis inom alla bilmärken.
+                   {t('expertise.description')}
                  </p>
                </div>
 
                <div>
                  <h4 className="text-xl font-medium text-gray-900 mb-3">
-                   Varför välja oss?
+                   {t('whyChoose.title')}
                  </h4>
                  <div className="space-y-4">
                    <div className="flex items-start">
                      <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
                      <div>
-                       <p className="font-medium text-gray-900">Unik plats i Arlandastad</p>
+                       <p className="font-medium text-gray-900">{t('whyChoose.uniqueLocation.title')}</p>
                        <p className="text-gray-600">Lämna bilen för service medan du reser utomlands</p>
                      </div>
                    </div>
@@ -193,20 +193,19 @@ export default function AboutSection() {
 
                {/* CTA Buttons */}
                <div className="flex flex-col sm:flex-row gap-4 pt-8">
-                 <Button 
-                   variant="primary" 
-                   size="lg"
-                   onClick={() => console.log('Navigate to contact')}
+                 <Link 
+                   href="/contact" 
+                   className="group relative px-8 py-3 text-base font-medium text-white bg-gray-900 hover:bg-gray-800 transition-all duration-300 overflow-hidden inline-block text-center"
                  >
-                   Kontakta oss
-                 </Button>
-                 <Button 
-                   variant="outline" 
-                   size="lg"
-                   onClick={() => console.log('Navigate to services')}
+                   <span className="relative z-10">Kontakta oss</span>
+                   <div className="absolute inset-0 bg-gray-800 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+                 </Link>
+                 <Link 
+                   href="/service" 
+                   className="group relative px-8 py-3 text-base font-medium text-gray-900 bg-transparent border-2 border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 overflow-hidden inline-block text-center"
                  >
-                   Se våra tjänster
-                 </Button>
+                   <span className="relative z-10">Se våra tjänster</span>
+                 </Link>
                </div>
             </div>
           </div>
@@ -220,7 +219,7 @@ export default function AboutSection() {
               
               <Image
                 src="/bilhus.jpg"
-                alt="Märsta Bilhus facility"
+                alt={`${t('titleEmphasized')} facility`}
                 fill
                 className="object-cover"
                 quality={90}
@@ -236,7 +235,7 @@ export default function AboutSection() {
                  {/* Location Highlight */}
          <div className="bg-white p-8 sm:p-12 lg:p-16 border border-gray-200 rounded-none text-center shadow-sm">
            <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-6">
-             Strategiskt beläget i Arlandastad
+             {t('locationHighlight.title')}
            </h3>
            <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
              Vår unika plats nära Arlanda flygplats gör oss till det perfekta valet för resenärer. 
