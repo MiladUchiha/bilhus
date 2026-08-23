@@ -6,553 +6,229 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import Image from 'next/image';
 import Link from 'next/link';
 
-gsap.registerPlugin(ScrollTrigger);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(ScrollTrigger);
+}
 
 export default function RepairsPage() {
-  const heroRef = useRef<HTMLElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const tl = gsap.timeline();
-      
-      gsap.set(['.hero-title', '.hero-subtitle', '.hero-cta'], {
-        opacity: 0,
-        y: 50
+      gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          y: 28,
+          opacity: 0,
+          duration: 1.0,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+        });
       });
 
-      tl.to('.hero-title', {
-        opacity: 1,
-        y: 0,
-        duration: 1.2,
-        ease: "power3.out"
-      })
-      .to('.hero-subtitle', {
-        opacity: 1,
-        y: 0,
-        duration: 1,
-        ease: "power2.out"
-      }, "-=0.8")
-      .to('.hero-cta', {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      }, "-=0.5");
-
-      gsap.fromTo('.stat-item', 
-        { opacity: 0, scale: 0.8, y: 30 },
-        { 
-          opacity: 1, 
-          scale: 1, 
-          y: 0,
-          duration: 0.8, 
-          stagger: 0.1,
-          ease: "back.out(1.4)",
-          scrollTrigger: {
-            trigger: '.stats-section',
-            start: 'top 85%',
-          }
-        }
-      );
-
-      gsap.fromTo('.service-card', 
-        { opacity: 0, y: 60, rotationX: 15 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          rotationX: 0,
-          duration: 1, 
-          stagger: 0.15,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: '.repairs-services-section',
-            start: 'top 80%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-
-      gsap.fromTo('.section-header', 
-        { opacity: 0, y: 40 },
-        { 
-          opacity: 1, 
-          y: 0, 
-          duration: 0.8,
-          ease: "power2.out",
-          scrollTrigger: {
-            trigger: '.section-header',
-            start: 'top 85%',
-            toggleActions: 'play none none reverse'
-          }
-        }
-      );
-    });
-
+      gsap.set(['.hero-eyebrow', '.hero-title', '.hero-sub', '.hero-cta'], { opacity: 0, y: 28 });
+      const tl = gsap.timeline({ defaults: { ease: 'expo.out', duration: 1.0 } });
+      tl.to('.hero-eyebrow', { opacity: 1, y: 0, duration: 0.6 })
+        .to('.hero-title', { opacity: 1, y: 0 }, '-=0.2')
+        .to('.hero-sub', { opacity: 1, y: 0, duration: 0.8 }, '-=0.6')
+        .to('.hero-cta', { opacity: 1, y: 0, duration: 0.7 }, '-=0.5');
+    }, rootRef);
     return () => ctx.revert();
   }, []);
 
+  const systems = [
+    { idx: '01', title: 'Motor & transmission', items: ['Motordiagnostik och felsökning', 'Transmissionsreparationer', 'Kopplingsservice', 'Turboservice'] },
+    { idx: '02', title: 'Bromssystem', items: ['Bromsbeläggsbyte', 'Skivbromsar', 'Bromsvätskebyte', 'ABS-felsökning'] },
+    { idx: '03', title: 'Fjädring & styrning', items: ['Stötdämpare', 'Fjädrar', 'Styrleder', 'Hjulinställning'] },
+    { idx: '04', title: 'Elsystem', items: ['Generator & startmotor', 'Batterisystem', 'Belysning', 'Elektronikfelsökning'] },
+    { idx: '05', title: 'Klimat & komfort', items: ['AC-service', 'Värmesystem', 'Defrosterfunktion', 'Filterbyte'] },
+    { idx: '06', title: 'Kylsystem', items: ['Termostat', 'Kylvätskebyte', 'Vattenpumpsbyte', 'Kylar-reparation'] },
+  ];
+
+  const process = [
+    { idx: '01', title: 'Initial diagnos', detail: 'Vi börjar med en grundlig genomgång av problemet du upplever.' },
+    { idx: '02', title: 'Detaljerad undersökning', detail: 'Avancerad diagnostikutrustning för att hitta exakta felet.' },
+    { idx: '03', title: 'Offert', detail: 'Fast pris och tidsplan innan vi sätter igång.' },
+    { idx: '04', title: 'Reparation', detail: 'Vi använder kvalitetsdelar och certifierade metoder.' },
+  ];
+
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
-      <section 
-        ref={heroRef}
-        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
-      >
-        <div className="absolute inset-0 z-0">
+    <div ref={rootRef} className="bg-paper">
+      {/* Hero */}
+      <section className="relative min-h-[80vh] flex items-end overflow-hidden">
+        <div className="absolute inset-0">
           <Image
-            src="/heropics/1.jpg"
-            alt="Bilreparationer verkstad"
+            src="/heropics/5.jpg"
+            alt="Reparationer och underhåll"
             fill
+            sizes="100vw"
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-black/50"></div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/60"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-ink/40 via-ink/30 to-ink/90" />
         </div>
 
-        <div className="relative z-10 text-center max-w-5xl mx-auto px-4 hero-content">
-          <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-light text-white mb-8 tracking-tight leading-[0.9]"
-              style={{
-                textShadow: '3px 3px 8px rgba(0,0,0,0.8), 0 0 20px rgba(0,0,0,0.5)'
-              }}>
-            Bil<span className="font-normal">reparationer</span>
-          </h1>
-          <p className="hero-subtitle text-xl md:text-2xl lg:text-3xl text-white/95 mb-10 font-light leading-relaxed max-w-3xl mx-auto"
-             style={{
-               textShadow: '2px 2px 6px rgba(0,0,0,0.8), 0 0 15px rgba(0,0,0,0.4)'
-             }}>
-            Professionell felsökning och reparation av alla bilmärken
-          </p>
-          <div className="hero-cta">
-            <Link href="/service/booking" className="group bg-white/15 backdrop-blur-lg border-2 border-white/30 text-white px-10 py-4 rounded-xl font-medium text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 hover:scale-105 hover:shadow-2xl inline-flex items-center">
-              <span className="flex items-center">
-                Boka Reparation Nu
-                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+        <div className="relative z-10 w-full px-5 sm:px-8 lg:px-12 pb-16 sm:pb-20 pt-32">
+          <div className="max-w-[1280px] mx-auto">
+            <div className="hero-eyebrow flex items-center gap-3 text-paper/80">
+              <span className="h-px w-10 bg-paper/60" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
+                Reparationer & underhåll
               </span>
-            </Link>
+            </div>
+            <h1 className="hero-title mt-6 font-display text-paper text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-[-0.03em] max-w-[16ch]">
+              Vi fixar <span className="italic">det mesta</span>.
+            </h1>
+            <p className="hero-sub mt-6 font-display italic text-2xl sm:text-3xl text-paper/85 max-w-[34ch] leading-[1.3]">
+              Komplett bilverkstad — felsökning och reparation under samma tak.
+            </p>
+            <div className="hero-cta mt-10 flex flex-col sm:flex-row gap-3">
+              <Link
+                href="/service/booking"
+                className="inline-flex items-center justify-center gap-2 bg-paper px-7 py-4 text-ink font-medium transition-colors duration-200 hover:bg-garnet hover:text-paper"
+              >
+                Boka reparation
+              </Link>
+              <a
+                href="tel:+46859120541"
+                className="inline-flex items-center justify-center gap-2 border border-paper/40 px-7 py-4 text-paper transition-colors duration-200 hover:bg-paper hover:text-ink"
+              >
+                <span className="font-mono tabular">08 591 205 41</span>
+              </a>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Main Content */}
-      <div ref={contentRef} className="service-content">
-        {/* Service Stats */}
-        <section className="stats-section py-20 bg-gradient-to-br from-gray-50 via-white to-gray-100">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="section-header text-2xl md:text-3xl font-light text-gray-900 mb-4 tracking-tight">
-                Varför välja vår verkstad?
-              </h2>
+      {/* Trust */}
+      <section className="bg-paper-2 border-b border-line">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 py-16 sm:py-20">
+          <div className="grid grid-cols-12 gap-8" data-reveal>
+            <div className="col-span-12 lg:col-span-3">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                Så jobbar vi
+              </span>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
-              <div className="stat-item text-center group">
-                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 100 4m0-4v2m0-6V4" />
-                    </svg>
-                  </div>
-                  <div className="text-lg font-medium text-gray-900 mb-2">Modern Diagnos</div>
-                  <div className="text-sm text-gray-600 font-light">Avancerad utrustning</div>
+            <div className="col-span-12 lg:col-span-9 grid grid-cols-1 sm:grid-cols-3 gap-x-8 gap-y-8">
+              {[
+                ['01', 'Fast pris', 'Du får en bindande offert innan vi börjar.'],
+                ['02', 'Kvalitetsdelar', 'Originaldelar eller likvärdigt — alltid spårbart.'],
+                ['03', '12 mån garanti', 'Allt utfört arbete täcks av vår garanti.'],
+              ].map(([n, title, desc]) => (
+                <div key={n}>
+                  <span className="font-mono text-[10px] tabular text-ink-3">{n}</span>
+                  <h3 className="mt-2 font-display text-xl text-ink tracking-[-0.015em]">{title}</h3>
+                  <p className="mt-2 text-[13px] text-ink-2 leading-[1.55] max-w-[32ch]">{desc}</p>
                 </div>
-              </div>
-              <div className="stat-item text-center group">
-                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                    </svg>
-                  </div>
-                  <div className="text-lg font-medium text-gray-900 mb-2">Snabb Service</div>
-                  <div className="text-sm text-gray-600 font-light">Effektiv reparation</div>
-                </div>
-              </div>
-              <div className="stat-item text-center group">
-                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1" />
-                    </svg>
-                  </div>
-                  <div className="text-lg font-medium text-gray-900 mb-2">Rättvisa Priser</div>
-                  <div className="text-sm text-gray-600 font-light">Transparent kostnad</div>
-                </div>
-              </div>
-              <div className="stat-item text-center group">
-                <div className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                  <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-                    </svg>
-                  </div>
-                  <div className="text-lg font-medium text-gray-900 mb-2">Kvalitetsgaranti</div>
-                  <div className="text-sm text-gray-600 font-light">På allt arbete</div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Repair Services */}
-        <section className="repairs-services-section py-24 bg-white">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-20">
-              <div className="inline-flex items-center bg-gray-100 rounded-full px-6 py-2 mb-6">
-                <span className="text-sm font-medium text-gray-700 tracking-wide uppercase">Våra tjänster</span>
-              </div>
-              <h2 className="section-header text-4xl md:text-5xl lg:text-6xl font-light text-gray-900 mb-6 tracking-tight">
-                Felsökning & Reparationer
+      {/* Systems */}
+      <section className="py-24 sm:py-32">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-8 mb-16" data-reveal>
+            <div className="col-span-12 lg:col-span-3">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                Vad vi reparerar
+              </span>
+            </div>
+            <div className="col-span-12 lg:col-span-9">
+              <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.0] tracking-[-0.025em] text-ink max-w-[18ch]">
+                Felsökning &amp; reparationer
               </h2>
-              <p className="text-xl md:text-2xl text-gray-600 font-light max-w-3xl mx-auto leading-relaxed">
-                Vi utför alla typer av bilreparationer med modern utrustning och erfarna tekniker
+              <p className="mt-6 font-display italic text-xl text-ink-2 max-w-[48ch] leading-[1.4]">
+                Sex bilsystem, en verkstad. Diagnos och åtgärd i en process.
               </p>
             </div>
+          </div>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-10">
-              {/* Engine Repairs */}
-              <div className="service-card group bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2">
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-gray-900 group-hover:to-gray-700 transition-all duration-300">
-                  <svg className="w-10 h-10 text-gray-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-10 gap-y-12 border-t border-line pt-12" data-reveal>
+            {systems.map((s) => (
+              <div key={s.idx}>
+                <div className="flex items-baseline gap-3 mb-5">
+                  <span className="font-mono text-[10px] tabular text-ink-3">{s.idx}</span>
+                  <h3 className="font-display text-2xl tracking-[-0.015em] text-ink">{s.title}</h3>
                 </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 group-hover:text-gray-800 transition-colors duration-300">Motor & Transmission</h3>
-                <ul className="space-y-4 text-gray-600">
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Motordiagnos och reparation</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Växellådsservice</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Koppling och svänghjul</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Turbo och kompressor</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Avgassystem</span>
-                  </li>
+                <ul className="space-y-2.5">
+                  {s.items.map((item, i) => (
+                    <li key={i} className="flex items-baseline gap-3 text-[14px] text-ink-2 leading-[1.55]">
+                      <span className="font-mono text-[9px] tabular text-ink-3 shrink-0">
+                        {String(i + 1).padStart(2, '0')}
+                      </span>
+                      {item}
+                    </li>
+                  ))}
                 </ul>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              {/* Brake System */}
-              <div className="service-card group bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2">
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-gray-900 group-hover:to-gray-700 transition-all duration-300">
-                  <svg className="w-10 h-10 text-gray-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 group-hover:text-gray-800 transition-colors duration-300">Bromssystem</h3>
-                <ul className="space-y-4 text-gray-600">
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Bromsbelägg och skivor</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">ABS-system</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Handbroms</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Bromsledningar</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Bromscylinder</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Suspension & Steering */}
-              <div className="service-card group bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2">
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-gray-900 group-hover:to-gray-700 transition-all duration-300">
-                  <svg className="w-10 h-10 text-gray-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M19 10a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 group-hover:text-gray-800 transition-colors duration-300">Fjädring & Styrning</h3>
-                <ul className="space-y-4 text-gray-600">
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Stötdämpare och fjädrar</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Kuggstångsstyrning</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Främre drivknutar</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Styrstag och kulled</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Hjulinställning</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Electrical Systems */}
-              <div className="service-card group bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2">
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-gray-900 group-hover:to-gray-700 transition-all duration-300">
-                  <svg className="w-10 h-10 text-gray-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 group-hover:text-gray-800 transition-colors duration-300">Elsystem</h3>
-                <ul className="space-y-4 text-gray-600">
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Batteri och laddningssystem</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Startmotor och generator</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Belysning och säkringar</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">ECU och sensorer</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Tändning och insprutning</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Climate & Comfort */}
-              <div className="service-card group bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2">
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-gray-900 group-hover:to-gray-700 transition-all duration-300">
-                  <svg className="w-10 h-10 text-gray-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 group-hover:text-gray-800 transition-colors duration-300">Klimat & Komfort</h3>
-                <ul className="space-y-4 text-gray-600">
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">AC-system och kylmedel</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Kupévärmare</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Sätesvärme</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Fönsterhissar</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Taklucka</span>
-                  </li>
-                </ul>
-              </div>
-
-              {/* Cooling System */}
-              <div className="service-card group bg-white rounded-3xl p-10 shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 hover:border-gray-200 hover:-translate-y-2">
-                <div className="w-20 h-20 bg-gradient-to-br from-gray-100 to-gray-200 rounded-2xl flex items-center justify-center mb-8 group-hover:from-gray-900 group-hover:to-gray-700 transition-all duration-300">
-                  <svg className="w-10 h-10 text-gray-700 group-hover:text-white transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
-                  </svg>
-                </div>
-                <h3 className="text-2xl font-semibold text-gray-900 mb-6 group-hover:text-gray-800 transition-colors duration-300">Kylsystem</h3>
-                <ul className="space-y-4 text-gray-600">
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Kylare och kondensor</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Vattenpump</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Termostat</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Kylfläkt</span>
-                  </li>
-                  <li className="flex items-start group-hover:text-gray-700 transition-colors duration-300">
-                    <svg className="w-5 h-5 text-gray-400 mr-3 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span className="font-light text-base">Kylarslangar</span>
-                  </li>
-                </ul>
-              </div>
+      {/* Process */}
+      <section className="bg-paper-2 py-24 sm:py-32">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-8 mb-16" data-reveal>
+            <div className="col-span-12 lg:col-span-3">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                Process
+              </span>
+            </div>
+            <div className="col-span-12 lg:col-span-9">
+              <h2 className="font-display text-[clamp(2.25rem,5vw,4rem)] leading-[1.0] tracking-[-0.025em] text-ink max-w-[18ch]">
+                Från diagnos till färdig bil
+              </h2>
             </div>
           </div>
-        </section>
 
-        {/* Diagnostic Process */}
-        <section className="py-20 bg-gray-50">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-16">
-              <h2 className="text-3xl md:text-4xl font-light text-gray-900 mb-6 tracking-tight">
-                Vår Felsökningsprocess
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12 border-t border-line pt-12" data-reveal>
+            {process.map((p) => (
+              <div key={p.idx}>
+                <span className="font-display text-5xl tracking-[-0.02em] text-garnet">
+                  {p.idx}
+                </span>
+                <h3 className="mt-3 font-display text-xl text-ink tracking-[-0.015em]">{p.title}</h3>
+                <p className="mt-2 text-sm text-ink-2 leading-[1.55] max-w-[28ch]">{p.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* CTA */}
+      <section className="bg-ink text-paper">
+        <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12 py-24 sm:py-32">
+          <div className="grid grid-cols-12 gap-8 items-end" data-reveal>
+            <div className="col-span-12 lg:col-span-7">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper/50">
+                Boka tid
+              </span>
+              <h2 className="mt-4 font-display text-[clamp(2rem,5vw,4.5rem)] leading-[1.0] tracking-[-0.03em] text-paper max-w-[18ch]">
+                Bilen krånglar? <span className="italic">Boka tid.</span>
               </h2>
-              <p className="text-xl text-gray-600 font-light max-w-3xl mx-auto">
-                Vi använder modern diagnostisk utrustning för att snabbt identifiera problem
+              <p className="mt-6 text-base text-paper/70 max-w-[52ch] leading-[1.6]">
+                Vi tar in bilen för diagnos och ger dig en fast offert innan vi sätter igång.
               </p>
             </div>
-
-            <div className="grid md:grid-cols-4 gap-8">
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <span className="text-2xl font-bold text-white">1</span>
-                </div>
-                <h3 className="text-xl font-medium text-gray-900 mb-3">Initial Diagnos</h3>
-                <p className="text-gray-600 font-light">Datordiagnos för att identifiera felkoder och symptom</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <span className="text-2xl font-bold text-white">2</span>
-                </div>
-                <h3 className="text-xl font-medium text-gray-900 mb-3">Detaljerad Undersökning</h3>
-                <p className="text-gray-600 font-light">Manuell kontroll och testning av misstänkta komponenter</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <span className="text-2xl font-bold text-white">3</span>
-                </div>
-                <h3 className="text-xl font-medium text-gray-900 mb-3">Offert</h3>
-                <p className="text-gray-600 font-light">Transparent prisuppgift innan reparation påbörjas</p>
-              </div>
-              
-              <div className="text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-gray-900 to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                  <span className="text-2xl font-bold text-white">4</span>
-                </div>
-                <h3 className="text-xl font-medium text-gray-900 mb-3">Reparation</h3>
-                <p className="text-gray-600 font-light">Professionell reparation med kvalitetssäkring</p>
-              </div>
+            <div className="col-span-12 lg:col-span-5 flex flex-col sm:flex-row gap-3 lg:justify-end">
+              <Link
+                href="/service/booking"
+                className="inline-flex items-center justify-center gap-2 bg-paper px-7 py-4 text-ink font-medium transition-colors duration-200 hover:bg-garnet hover:text-paper"
+              >
+                Boka online
+              </Link>
+              <a
+                href="tel:+46859120541"
+                className="inline-flex items-center justify-center gap-2 border border-paper/40 px-7 py-4 text-paper transition-colors duration-200 hover:bg-paper hover:text-ink"
+              >
+                <span className="font-mono tabular">08 591 205 41</span>
+              </a>
             </div>
           </div>
-        </section>
-
-
-        {/* CTA Section */}
-        <section className="py-32 bg-gradient-to-br from-gray-900 via-gray-800 to-black relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-black/20 to-transparent"></div>
-          <div className="max-w-5xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-light text-white mb-8 tracking-tight leading-[0.9]"
-                style={{
-                  textShadow: '2px 2px 8px rgba(0,0,0,0.5)'
-                }}>
-              Behöver Du Hjälp Med Din Bil?
-            </h2>
-            <p className="text-2xl md:text-3xl text-white/90 mb-12 font-light leading-relaxed max-w-3xl mx-auto"
-               style={{
-                 textShadow: '1px 1px 4px rgba(0,0,0,0.3)'
-               }}>
-              Kontakta oss för professionell felsökning och reparation
-            </p>
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link href="/service/booking" className="group bg-white text-gray-900 px-12 py-5 rounded-2xl font-semibold text-lg hover:bg-gray-100 transition-all duration-300 hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center justify-center">
-                <span className="flex items-center justify-center">
-                  Boka Tid
-                  <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                  </svg>
-                </span>
-              </Link>
-              <Link href="/contact/quote" className="group border-2 border-white/30 backdrop-blur-sm text-white px-12 py-5 rounded-2xl font-semibold text-lg hover:bg-white hover:text-gray-900 transition-all duration-300 hover:scale-105 shadow-xl inline-flex items-center justify-center">
-                <span className="flex items-center justify-center">
-                  Ring För Offert
-                  <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                  </svg>
-                </span>
-              </Link>
-            </div>
-          </div>
-        </section>
-      </div>
+        </div>
+      </section>
     </div>
   );
 }

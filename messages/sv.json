@@ -34,7 +34,7 @@
       "tires": "Däck & fälgar",
       "tiresDescription": "Däckbyte, balansering och hjulinställning",
       "repairs": "Reparationer & underhåll",
-      "repairsDescription": "Komplett bilverkstad med expertteknikiker",
+      "repairsDescription": "Komplett bilverkstad med experttekniker",
       "booking": "Boka tid online",
       "bookingDescription": "Snabb och enkel tidsbokning"
     }
@@ -63,10 +63,10 @@
     "contact": "Kom i kontakt med oss"
   },
   "dropdownFooters": {
-    "cars": "Auktoriserad Hyundai & Aixam återförsäljare",
+    "cars": "Auktoriserad Hyundai- och Aixam-återförsäljare",
     "service": "Certifierad verkstad",
     "services": "Allt för din bil på ett ställe",
-    "about": "Över 20 års erfarenhet av bilbranschen",
+    "about": "Över 45 års erfarenhet i bilbranschen",
     "contact": "Vi finns här för att hjälpa dig"
   },
   "hero": {
@@ -323,6 +323,7 @@
       "title": "Din data, ditt val.",
       "description": "Märsta Bilhus hanterar din data. Vi använder cookies för att skydda din data, samt för att anpassa tjänster, erbjudanden och annonser till dig.",
       "accept": "Jag förstår",
+      "reject": "Bara nödvändiga",
       "moreInfo": "Mer information",
       "close": "Stäng"
     }
@@ -333,15 +334,15 @@
     "service1": {
       "title": "Auktoriserad Service",
       "subtitle": "Hyundai • Aixam",
-      "description": "Officiell garanti-service för Hyundai och Aixam med ursprungliga reservdelar och certifierade tekniker.",
-      "feature1": "Garanti-service",
-      "feature2": "Ursprungliga delar",
+      "description": "Officiell garantiservice för Hyundai och Aixam med originaldelar och certifierade tekniker.",
+      "feature1": "Garantiservice",
+      "feature2": "Originaldelar",
       "feature3": "Certifierade tekniker",
       "highlight": "Auktoriserad"
     },
     "service2": {
       "title": "Alla Bilmärken",
-      "subtitle": "Fullservice verkstad",
+      "subtitle": "Fullserviceverkstad",
       "description": "Professionell service och reparationer för alla bilmärken med bibehållen tillverkargaranti.",
       "feature1": "Alla märken",
       "feature2": "Bibehållen garanti",
@@ -350,7 +351,7 @@
     },
     "service3": {
       "title": "Bilförsäljning",
-      "subtitle": "Begagnade",
+      "subtitle": "Begagnade bilar",
       "description": "Kvalitetsgranskade fordon med transparent historik och konkurrenskraftiga priser.",
       "feature1": "Kvalitetsgranskat",
       "feature2": "Transparent historik",
@@ -360,7 +361,13 @@
     "cta": {
       "title": "Redo att lita på expertisen?",
       "description": "Boka tid för professionell service eller rådgivning från våra certifierade tekniker.",
-      "button": "Boka service"
+      "button": "Boka service",
+      "call": "Ring oss"
+    },
+    "stats": {
+      "experience": "År av expertis",
+      "brands": "Auktoriserade märken",
+      "satisfaction": "Kundnöjdhet"
     }
   },
   "common": {
@@ -371,12 +378,49 @@
     "close": "Stäng",
     "back": "Tillbaka",
     "next": "Nästa",
-    "previous": "Föregående"
+    "previous": "Föregående",
+    "viewAll": "Visa alla",
+    "seeCars": "Se bilarna",
+    "callUs": "Ring oss",
+    "since": "Sedan",
+    "available": "tillgängliga",
+    "sortBy": "Sortera efter",
+    "newest": "Nyast inkomna",
+    "price": "Pris",
+    "year": "Årsmodell",
+    "mileage": "Miltal",
+    "fuelType": "Bränsle",
+    "transmission": "Växellåda",
+    "equipment": "Utrustning",
+    "currentCars": "Aktuella bilar",
+    "qualityChecked": "Upptäck vårt utbud av kvalitetsgranskade fordon",
+    "noMatch": "Hittar du inte vad du letar efter?",
+    "noMatchDesc": "Vi hjälper dig att hitta rätt bil. Kontakta oss för personlig rådgivning.",
+    "showMore": "Visa mer",
+    "viewDetails": "Visa detaljer",
+    "bookTestDrive": "Boka provkörning",
+    "monthly": "kr/mån",
+    "currency": "kr",
+    "miles": "mil",
+    "used": "Begagnad",
+    "fetching": "Hämtar aktuella bilar...",
+    "tryAgain": "Försök igen",
+    "noCars": "Inga bilar tillgängliga just nu",
+    "loading": "Laddar...",
+    "didntFind": "Hittade inte rätt bil?",
+    "weHelp": "Vi hjälper dig hitta den perfekta begagnade bilen. Kontakta oss så berättar vi vad vi kan göra för dig.",
+    "sellYourCar": "Sälja din bil"
+  },
+  "booking": {
+    "title": "Bokningssystem under utveckling",
+    "description": "Vårt online-bokningssystem är för närvarande under utveckling. Kontakta oss istället för att boka tid.",
+    "phoneLabel": "Telefon",
+    "emailLabel": "E-post"
   },
   "meta": {
     "title": "Märsta Bilhus",
     "description": "Vi säljer, köper och byter bilar.",
-    "homeTitle": "Hem - Märsta Bilhus",
+    "homeTitle": "Hem – Märsta Bilhus",
     "homeDescription": "Välkommen till Märsta Bilhus, din pålitliga partner för bilar och service. Vi erbjuder ett brett utbud av nya och begagnade bilar, samt professionell service och reparation."
   }
 }

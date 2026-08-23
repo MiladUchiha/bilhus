@@ -16,7 +16,7 @@
       "financing": "Financing & leasing",
       "financingDescription": "Flexible payment solutions",
       "sellCar": "Sell your car to us",
-      "sellCarDescription": "We buy your car at the best price"
+      "sellCarDescription": "We buy your car at a fair price"
     }
   },
   "service": {
@@ -30,7 +30,7 @@
       "generalService": "General car service",
       "generalServiceDescription": "Service for all car brands",
       "inspection": "Inspection",
-      "inspectionDescription": "Vehicle testing and control inspection",
+      "inspectionDescription": "Vehicle testing and roadworthiness inspection",
       "tires": "Tires & rims",
       "tiresDescription": "Tire change, balancing and wheel alignment",
       "repairs": "Repairs & maintenance",
@@ -46,9 +46,9 @@
       "insurance": "Insurance",
       "insuranceDescription": "Car insurance through our partners",
       "valuation": "Car valuation",
-      "valuationDescription": "Get a fair valuation of your car",
+      "valuationDescription": "Get a fair valuation for your car",
       "delivery": "Home delivery",
-      "deliveryDescription": "We deliver the car to you",
+      "deliveryDescription": "We deliver the car to your door",
       "warranties": "Warranties",
       "warrantiesDescription": "Extended warranties and protection",
       "tradeIn": "Trade-in",
@@ -66,13 +66,13 @@
     "cars": "Authorized Hyundai & Aixam dealer",
     "service": "Certified workshop",
     "services": "Everything for your car in one place",
-    "about": "Over 20 years of experience in the car industry",
+    "about": "Over 45 years of experience in the car industry",
     "contact": "We are here to help you"
   },
   "hero": {
     "title": "Märsta Car House",
-    "tagline": "Authorized Hyundai workshop and expert on all car brands",
-    "services": "Sells - Buys - Trades - Brokers",
+    "tagline": "Authorized Hyundai workshop and experts on all car brands",
+    "services": "We sell · buy · trade · broker",
     "cta": "Book appointment",
     "footer": {
       "authorizedService": "Authorized service",
@@ -88,7 +88,7 @@
   },
   "about": {
     "dropdown": {
-      "company": "The company",
+      "company": "Our company",
       "companyDescription": "Our history and values",
       "workshop": "Our workshop",
       "workshopDescription": "Modern equipment and facilities",
@@ -115,7 +115,7 @@
         "description": "Leave your car for service while you travel abroad"
       },
       "warranty": {
-        "title": "Preserved manufacturer warranty",
+        "title": "Manufacturer warranty preserved",
         "description": "Service of all brands without affecting the warranty"
       },
       "certified": {
@@ -217,7 +217,7 @@
     },
     "cta": {
       "title": "Ready to become the next satisfied customer?",
-      "description": "Contact us today to experience our award-winning service yourself.",
+      "description": "Contact us today and experience our award-winning service for yourself.",
       "contact": "Contact us",
       "readMore": "Read more about us"
     }
@@ -240,16 +240,16 @@
     "subtitle": "We are here to help you with all your car needs",
     "directContact": {
       "title": "Contact us directly",
-      "description": "Choose the way that suits you best to get in touch with us."
+      "description": "Pick the option that suits you best."
     },
     "phone": {
       "title": "Call us directly",
-      "description": "Fastest way to get help",
+      "description": "The fastest way to get help",
       "carSales": "Car sales:",
       "workshop": "Workshop:"
     },
     "email": {
-      "title": "Send email",
+      "title": "Send an email",
       "description": "We respond within 24 hours",
       "workshop": "Workshop:",
       "sales": "Sales:"
@@ -280,9 +280,9 @@
       "sunday": "Sunday",
       "mondayFriday": "Monday - Friday",
       "weekends": "Saturday - Sunday",
-      "byAgreement": "By agreement",
+      "byAgreement": "By appointment",
       "closed": "Closed",
-      "tip": "Call ahead to book an appointment. Urgent repairs can sometimes be accepted outside regular opening hours."
+      "tip": "Call ahead to book an appointment. We can sometimes take in urgent repairs outside regular opening hours."
     },
     "locationBenefits": {
       "title": "Why Arlandastad?",
@@ -321,8 +321,9 @@
   "cookies": {
     "popup": {
       "title": "Your data, your choice.",
-      "description": "Märsta Car House handles your data. We use cookies to protect your data, and to customize services, offers and ads for you.",
+      "description": "Märsta Car House handles your data. We use cookies to protect your data and to tailor services, offers and ads to you.",
       "accept": "I understand",
+      "reject": "Only necessary",
       "moreInfo": "More information",
       "close": "Close"
     }
@@ -342,15 +343,15 @@
     "service2": {
       "title": "All Car Brands",
       "subtitle": "Full-service workshop",
-      "description": "Professional service and repairs for all car brands with maintained manufacturer warranty.",
+      "description": "Professional service and repairs for all car brands with your manufacturer warranty intact.",
       "feature1": "All brands",
-      "feature2": "Maintained warranty",
+      "feature2": "Warranty preserved",
       "feature3": "Expertise & quality",
       "highlight": "Full-service"
     },
     "service3": {
       "title": "Car Sales",
-      "subtitle": "Used vehicles",
+      "subtitle": "Used cars",
       "description": "Quality-inspected vehicles with transparent history and competitive prices.",
       "feature1": "Quality-inspected",
       "feature2": "Transparent history",
@@ -360,7 +361,13 @@
     "cta": {
       "title": "Ready to trust the expertise?",
       "description": "Book time for professional service or advice from our certified technicians.",
-      "button": "Book service"
+      "button": "Book service",
+      "call": "Call us"
+    },
+    "stats": {
+      "experience": "Years of expertise",
+      "brands": "Authorized brands",
+      "satisfaction": "Customer satisfaction"
     }
   },
   "common": {
@@ -371,12 +378,49 @@
     "close": "Close",
     "back": "Back",
     "next": "Next",
-    "previous": "Previous"
+    "previous": "Previous",
+    "viewAll": "View all",
+    "seeCars": "See cars",
+    "callUs": "Call us",
+    "since": "Since",
+    "available": "available",
+    "sortBy": "Sort by",
+    "newest": "Newest in",
+    "price": "Price",
+    "year": "Year",
+    "mileage": "Mileage",
+    "fuelType": "Fuel",
+    "transmission": "Transmission",
+    "equipment": "Equipment",
+    "currentCars": "Current inventory",
+    "qualityChecked": "Quality-checked vehicles, ready to drive home today.",
+    "noMatch": "Not seeing what you want?",
+    "noMatchDesc": "We help you find the right car. Get in touch for tailored advice.",
+    "showMore": "See more",
+    "viewDetails": "View details",
+    "bookTestDrive": "Book test drive",
+    "monthly": "kr/mo",
+    "currency": "kr",
+    "miles": "mil",
+    "used": "Used",
+    "fetching": "Loading current inventory…",
+    "tryAgain": "Try again",
+    "noCars": "No cars available right now",
+    "loading": "Loading…",
+    "didntFind": "Didn't find your car?",
+    "weHelp": "We help you find the right used car. Talk to us about what you're looking for.",
+    "sellYourCar": "Sell your car"
+  },
+  "booking": {
+    "title": "Booking system under development",
+    "description": "Our online booking system is currently being developed. Please contact us to book an appointment.",
+    "phoneLabel": "Phone",
+    "emailLabel": "Email"
   },
   "meta": {
     "title": "Märsta Car House",
     "description": "We sell, buy and trade cars.",
-    "homeTitle": "Home - Märsta Bilhus",
-    "homeDescription": "Welcome to Märsta Bilhus, your reliable partner for cars and service. We offer a wide range of new and used cars, as well as professional service and repair."
+    "homeTitle": "Home – Märsta Bilhus",
+    "homeDescription": "Welcome to Märsta Bilhus, your reliable partner for cars and service. We offer a wide range of new and used cars, plus professional service and repairs."
   }
 }

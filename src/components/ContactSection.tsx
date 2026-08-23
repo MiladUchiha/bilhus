@@ -3,337 +3,164 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useTranslations } from 'next-intl';
 
-// Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
 
 export default function ContactSection() {
+  const t = useTranslations('contact');
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const contactMethodsRef = useRef<HTMLDivElement>(null);
-  const infoRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<HTMLDivElement>(null);
-  
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Set initial states
-      gsap.set([titleRef.current, subtitleRef.current], {
-        opacity: 0,
-        y: 50
+      gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          y: 24,
+          opacity: 0,
+          duration: 1.0,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
+        });
       });
-
-      gsap.set([contactMethodsRef.current, infoRef.current, mapRef.current], {
-        opacity: 0,
-        y: 40
-      });
-
-      // Create scroll-triggered animation
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      });
-
-      // Animate elements in sequence
-      tl.to(titleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      })
-      .to(subtitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.4")
-      .to([contactMethodsRef.current, infoRef.current], {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out"
-      }, "-=0.2")
-      .to(mapRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.4");
-
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
-
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="min-h-screen bg-white py-20 sm:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32"
+      className="bg-paper py-24 sm:py-32 lg:py-40"
     >
-      <div className="max-w-7xl mx-auto">
-        {/* Section Header */}
-        <div className="text-center mb-16 sm:mb-20">
-          <h2 
-            ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-gray-900 mb-6"
-          >
-            Kontakta
-            <br />
-            <span className="font-normal">Oss</span>
-          </h2>
-          <p 
-            ref={subtitleRef}
-            className="text-xl sm:text-2xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed"
-          >
-            Vi finns här för att hjälpa dig med alla dina bilbehov
-          </p>
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Header */}
+        <div className="grid grid-cols-12 gap-8 mb-20 sm:mb-24">
+          <div className="col-span-12 lg:col-span-3" data-reveal>
+            <div className="flex items-center gap-3">
+              <span className="h-px w-8 bg-garnet" />
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                {t('title')}
+              </span>
+            </div>
+          </div>
+          <div className="col-span-12 lg:col-span-9" data-reveal>
+            <h2 className="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.0] tracking-[-0.025em] text-ink max-w-[18ch]">
+              {t('titleEmphasized')}
+            </h2>
+            <p className="mt-6 font-display italic text-xl text-ink-2 max-w-[44ch] leading-[1.4]">
+              {t('subtitle')}
+            </p>
+          </div>
         </div>
 
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 mb-20">
-          {/* Contact Methods */}
-          <div ref={contactMethodsRef} className="order-2 lg:order-1">
-            <div className="mb-8">
-              <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-                Kontakta oss direkt
+        {/* Main content — 2 columns */}
+        <div className="grid grid-cols-12 gap-12 lg:gap-16 mb-24 lg:mb-32">
+          {/* Left: contact methods */}
+          <div data-reveal className="col-span-12 lg:col-span-6">
+            <ChannelBlock
+              label={t('phone.title')}
+              eyebrow="01"
+              description={t('phone.description')}
+              rows={[
+                { label: t('phone.carSales'), value: '0700 929 433', href: 'tel:+46700929433' },
+                { label: t('phone.workshop'), value: '08-59 120 541', href: 'tel:+46859120541' },
+              ]}
+            />
+            <ChannelBlock
+              label={t('email.title')}
+              eyebrow="02"
+              description={t('email.description')}
+              rows={[
+                { label: t('email.sales'), value: 'info@marstabilhus.se', href: 'mailto:info@marstabilhus.se' },
+                { label: t('email.workshop'), value: 'kundservice@marstabilhus.se', href: 'mailto:kundservice@marstabilhus.se' },
+              ]}
+            />
+            <ChannelBlock
+              label={t('visit.title')}
+              eyebrow="03"
+              description={t('visit.description')}
+              rows={[
+                { label: t('information.address'), value: t('visit.address') },
+                { label: '', value: t('visit.postal') },
+                { label: t('visit.benefits'), value: '' },
+              ]}
+              last
+            />
+          </div>
+
+          {/* Right: opening hours */}
+          <div data-reveal className="col-span-12 lg:col-span-6">
+            <div className="lg:sticky lg:top-28">
+              <h3 className="font-display text-3xl tracking-[-0.02em] text-ink mb-10">
+                {t('openingHours.title')}
               </h3>
-              <p className="text-lg text-gray-600 leading-relaxed">
-                Välj det sätt som passar dig bäst för att komma i kontakt med oss.
+
+              <div className="border-t border-line">
+                <HoursBlock
+                  title={t('openingHours.carSales')}
+                  rows={[
+                    [t('openingHours.mondayThursday'), '09:00 – 18:00'],
+                    [t('openingHours.friday'), '09:00 – 17:00'],
+                    [t('openingHours.saturday'), '11:00 – 15:00'],
+                    [t('openingHours.sunday'), t('openingHours.byAgreement')],
+                  ]}
+                />
+                <HoursBlock
+                  title={t('openingHours.workshop')}
+                  rows={[
+                    [t('openingHours.mondayFriday'), '07:30 – 16:30'],
+                    [t('openingHours.weekends'), t('openingHours.closed')],
+                  ]}
+                />
+              </div>
+
+              <p className="mt-8 text-sm text-ink-2 leading-[1.6] max-w-[40ch]">
+                {t('openingHours.tip')}
               </p>
-            </div>
 
-            <div className="space-y-6">
-              {/* Phone Contact */}
-              <div className="bg-gray-50 border border-gray-200 p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900">Ring oss direkt</h4>
-                    <p className="text-gray-600">Snabbaste sättet att få hjälp</p>
-                  </div>
-                </div>
-                <div className="space-y-3">
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Bilförsäljning:</span>
-                    <a href="tel:0700929433" className="text-lg font-medium text-blue-600 hover:text-blue-800">
-                      0700 929 433
-                    </a>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-gray-600">Verkstad:</span>
-                    <a href="tel:08-59120541" className="text-lg font-medium text-blue-600 hover:text-blue-800">
-                      08-59 120 541
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Email Contact */}
-              <div className="bg-gray-50 border border-gray-200 p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900">Skicka e-post</h4>
-                    <p className="text-gray-600">Vi svarar inom 24 timmar</p>
-                  </div>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Verkstad:</span>
-                  <a href="mailto:kundservice@marstabilhus.se" className="text-lg font-medium text-green-600 hover:text-green-800">
-                    kundservice@marstabilhus.se
-                  </a>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-gray-600">Försäljning:</span>
-                  <a href="mailto:info@marstabilhus.se" className="text-lg font-medium text-green-600 hover:text-green-800">
-                    info@marstabilhus.se
-                  </a>
-                </div>
-              </div>
-
-              {/* Visit Us */}
-              <div className="bg-gray-50 border border-gray-200 p-6">
-                <div className="flex items-center mb-4">
-                  <div className="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                    <svg className="w-6 h-6 text-purple-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                  </div>
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900">Besök oss</h4>
-                    <p className="text-gray-600">Välkommen till vår verkstad</p>
-                  </div>
-                </div>
-                <div className="space-y-2 text-gray-600">
-                  <p className="font-medium text-gray-900">Maskingatan 12</p>
-                  <p>195 60 Arlandastad</p>
-                  <p className="text-sm">• Gratis parkering • 5 min från Arlanda</p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Contact Information */}
-          <div ref={infoRef} className="order-1 lg:order-2">
-            <div className="space-y-8">
-              {/* Direct Contact */}
-              <div>
-                <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-6">
-                  Kontaktinformation
-                </h3>
-                
-                <div className="space-y-6">
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900 mb-3">Telefon</h4>
-                    <div className="space-y-3">
-                      <div>
-                        <a 
-                          href="tel:+46700929433" 
-                          className="text-xl text-gray-600 hover:text-gray-900 transition-colors duration-300 block"
-                        >
-                          0700 929 433
-                        </a>
-                        <span className="text-sm text-gray-500">Bilförsäljning</span>
-                      </div>
-                      <div>
-                        <a 
-                          href="tel:+46859120541" 
-                          className="text-xl text-gray-600 hover:text-gray-900 transition-colors duration-300 block"
-                        >
-                          08 591 205 41
-                        </a>
-                        <span className="text-sm text-gray-500">Verkstad / Service</span>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900 mb-3">E-post</h4>
-                    <a 
-                      href="mailto:info@marstabilhus.se" 
-                      className="text-xl text-gray-600 hover:text-gray-900 transition-colors duration-300 block"
-                    >
-                      info@marstabilhus.se
-                    </a>
-                  </div>
-
-                  <div>
-                    <h4 className="text-lg font-medium text-gray-900 mb-3">Adress</h4>
-                    <div className="text-xl text-gray-600 leading-relaxed">
-                      Maskingatan 12<br />
-                      195 60 Arlandastad<br />
-                      Sverige
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Opening Hours */}
-              <div className="border-t border-gray-200 pt-8">
-                <h4 className="text-lg font-medium text-gray-900 mb-6">Öppettider</h4>
-                
-                <div className="space-y-4">
-                  <div className="mb-4">
-                    <h5 className="font-medium text-gray-900 mb-2">Bilförsäljning</h5>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Måndag - Torsdag</span>
-                        <span className="text-gray-900 font-medium">09:00 - 18:00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Fredag</span>
-                        <span className="text-gray-900 font-medium">09:00 - 17:00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Lördag</span>
-                        <span className="text-gray-900 font-medium">11:00 - 15:00</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Söndag</span>
-                        <span className="text-gray-900 font-medium">Enligt överenskommelse</span>
-                      </div>
-                    </div>
-                  </div>
-                  <div>
-                    <h5 className="font-medium text-gray-900 mb-2">Verkstad</h5>
-                    <div className="space-y-2 text-sm">
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Måndag - Fredag</span>
-                        <span className="text-gray-900 font-medium">07:30 - 16:30</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-gray-600">Lördag - Söndag</span>
-                        <span className="text-gray-900 font-medium">Stängt</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                
-                <div className="mt-6 p-4 bg-gray-50 border border-gray-200">
-                  <p className="text-sm text-gray-600">
-                    <strong>Tips:</strong> Ring i förväg för att boka tid. Akuta reparationer kan ibland tas emot utanför ordinarie öppettider.
-                  </p>
-                </div>
-              </div>
-
-              {/* Location Benefits */}
-              <div className="border-t border-gray-200 pt-8">
-                <h4 className="text-lg font-medium text-gray-900 mb-4">Varför Arlandastad?</h4>
-                
-                <div className="space-y-4">
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                    <div>
-                      <p className="font-medium text-gray-900">Perfekt för resenärer</p>
-                      <p className="text-gray-600">Lämna bilen för service medan du reser</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                    <div>
-                      <p className="font-medium text-gray-900">Nära E4:an</p>
-                      <p className="text-gray-600">Enkelt att hitta och komma till</p>
-                    </div>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                    <div>
-                      <p className="font-medium text-gray-900">Gratis parkering</p>
-                      <p className="text-gray-600">Inga parkeringsavgifter under besöket</p>
-                    </div>
-                  </div>
-                </div>
+              {/* Location benefits */}
+              <div className="mt-12 pt-8 border-t border-line">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3 mb-5 block">
+                  {t('locationBenefits.title')}
+                </span>
+                <ul className="space-y-4">
+                  {[
+                    [t('locationBenefits.travelers.title'), t('locationBenefits.travelers.description')],
+                    [t('locationBenefits.highway.title'), t('locationBenefits.highway.description')],
+                    [t('locationBenefits.parking.title'), t('locationBenefits.parking.description')],
+                  ].map(([title, desc], i) => (
+                    <li key={i} className="grid grid-cols-12 gap-3">
+                      <span className="col-span-12 sm:col-span-4 text-sm font-medium text-ink">
+                        {title}
+                      </span>
+                      <span className="col-span-12 sm:col-span-8 text-sm text-ink-2 leading-[1.55]">
+                        {desc}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Map Section */}
-        <div ref={mapRef} className="mb-16">
-          <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-6 text-center">
-            Hitta till oss
-          </h3>
-          
-          {/* Interactive Google Maps Embed */}
-          <div className="relative h-96 bg-gray-200 border border-gray-300 overflow-hidden rounded-none">
+        {/* Map — full-bleed editorial */}
+        <div data-reveal className="border-t border-line pt-16 lg:pt-20 mb-20 lg:mb-28">
+          <div className="grid grid-cols-12 gap-8 mb-10">
+            <div className="col-span-12 lg:col-span-3">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                {t('map.title')}
+              </span>
+            </div>
+            <div className="col-span-12 lg:col-span-9">
+              <h3 className="font-display text-3xl lg:text-4xl tracking-[-0.02em] text-ink leading-[1.1] max-w-[26ch]">
+                {t('map.addressTitle')}
+              </h3>
+            </div>
+          </div>
+
+          <div className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden bg-paper-2 border border-line">
             <iframe
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2026.5962836474654!2d17.9163447!3d59.6520228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d46c2f3e3d5%3A0x41e7c7c7c7c7c7c7!2sMaskingatan%2012%2C%20195%2060%20Arlandastad%2C%20Sweden!5e0!3m2!1sen!2sse!4v1703123456789!5m2!1sen!2sse"
               width="100%"
@@ -343,120 +170,168 @@ export default function ContactSection() {
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
               title="Märsta Bilhus AB - Maskingatan 12, Arlandastad"
-              className="grayscale hover:grayscale-0 transition-all duration-300"
+              className="grayscale-[60%] hover:grayscale-0 transition-all duration-500"
             />
-            
-            {/* Custom overlay for styling */}
-            <div className="absolute inset-0 pointer-events-none bg-gradient-to-t from-black/10 via-transparent to-transparent"></div>
           </div>
-          
-          <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4 text-center">
-            <a 
-              href="https://maps.google.com/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors duration-300 px-4 py-2 border border-gray-200 hover:border-gray-900"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
-              Öppna i Google Maps
-            </a>
-            
-            <a 
-              href="https://www.apple.com/maps/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors duration-300 px-4 py-2 border border-gray-200 hover:border-gray-900"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-              </svg>
-              Apple Maps
-            </a>
-            
-            <button
-              onClick={() => {
-                if (navigator.geolocation) {
-                  navigator.geolocation.getCurrentPosition((position) => {
-                    const { latitude, longitude } = position.coords;
-                    const destination = "Maskingatan 12, 195 60 Arlandastad";
-                    window.open(`https://www.google.com/maps/dir/${latitude},${longitude}/${encodeURIComponent(destination)}`, '_blank');
-                  });
-                } else {
-                  window.open('https://maps.google.com/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad', '_blank');
-                }
-              }}
-              className="inline-flex items-center justify-center text-gray-600 hover:text-gray-900 transition-colors duration-300 px-4 py-2 border border-gray-200 hover:border-gray-900"
-            >
-              <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Få vägbeskrivning
-            </button>
-          </div>
-          
-          {/* Address and directions info */}
-          <div className="mt-8 bg-gray-50 border border-gray-200 p-6 sm:p-8">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <h4 className="text-lg font-medium text-gray-900 mb-4">Adress</h4>
-                <p className="text-gray-600 mb-2">
-                  <strong>Märsta Bilhus AB</strong><br />
-                  Maskingatan 12<br />
-                  195 60 Arlandastad<br />
-                  Sverige
-                </p>
-              </div>
-              
-              <div>
-                <h4 className="text-lg font-medium text-gray-900 mb-4">Vägbeskrivning</h4>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <p>Från E4: Ta avfart 195 mot Arlandastad</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <p>5 minuter från Arlanda Airport</p>
-                  </div>
-                  <div className="flex items-start">
-                    <div className="w-2 h-2 bg-gray-400 rounded-full mt-2 mr-3 flex-shrink-0"></div>
-                    <p>Gratis parkering på plats</p>
-                  </div>
-                </div>
+
+          <div className="mt-8 grid grid-cols-12 gap-8">
+            <div className="col-span-12 md:col-span-4 lg:col-span-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3">
+                {t('map.company')}
+              </span>
+              <address className="not-italic mt-3 text-base text-ink leading-[1.55]">
+                {t('visit.address')}<br />
+                <span className="font-mono tabular text-sm">{t('visit.postal')}</span><br />
+                {t('visit.country')}
+              </address>
+            </div>
+            <div className="col-span-12 md:col-span-8 lg:col-span-8">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3 block mb-3">
+                {t('map.directionsTitle')}
+              </span>
+              <ul className="space-y-2 text-sm text-ink-2 leading-[1.55]">
+                <li className="flex items-baseline gap-3">
+                  <span className="font-mono text-[10px] tabular text-ink-3 shrink-0">01</span>
+                  {t('map.fromE4')}
+                </li>
+                <li className="flex items-baseline gap-3">
+                  <span className="font-mono text-[10px] tabular text-ink-3 shrink-0">02</span>
+                  {t('map.fromAirport')}
+                </li>
+                <li className="flex items-baseline gap-3">
+                  <span className="font-mono text-[10px] tabular text-ink-3 shrink-0">03</span>
+                  {t('map.freeParking')}
+                </li>
+              </ul>
+              <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                <a
+                  href="https://maps.google.com/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-ink hover:text-garnet transition-colors duration-200"
+                >
+                  <span className="link-underline">{t('map.googleMaps')}</span>
+                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5h5v5M19 5l-9 9" />
+                  </svg>
+                </a>
+                <a
+                  href="https://www.apple.com/maps/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1.5 text-ink hover:text-garnet transition-colors duration-200"
+                >
+                  <span className="link-underline">{t('map.appleMaps')}</span>
+                  <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5h5v5M19 5l-9 9" />
+                  </svg>
+                </a>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Emergency Contact */}
-        <div className="text-center bg-gray-50 border border-gray-200 p-8 sm:p-12">
-          <h3 className="text-2xl font-light text-gray-900 mb-4">
-            Akut hjälp?
-          </h3>
-          <p className="text-lg text-gray-600 mb-6 max-w-2xl mx-auto">
-            För akuta reparationer eller nödsituationer, ring oss direkt. Vi försöker alltid hjälpa till även utanför ordinarie öppettider.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a 
-              href="tel:+46700929433"
-              className="inline-block group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-all duration-300 overflow-hidden text-center"
-            >
-              <span className="relative z-10">Bilförsäljning: 0700 929 433</span>
-              <div className="absolute inset-0 bg-red-700 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-            </a>
-            <a 
-              href="tel:+46859120541"
-              className="inline-block group relative px-8 sm:px-12 py-4 text-base sm:text-lg font-medium text-white bg-red-600 hover:bg-red-700 transition-all duration-300 overflow-hidden text-center"
-            >
-              <span className="relative z-10">Verkstad: 08 591 205 41</span>
-              <div className="absolute inset-0 bg-red-700 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-            </a>
+        {/* Bottom block — call us directly */}
+        <div data-reveal className="border-t border-line pt-16">
+          <div className="grid grid-cols-12 gap-8 items-end">
+            <div className="col-span-12 lg:col-span-7">
+              <h3 className="font-display text-3xl lg:text-4xl tracking-[-0.02em] text-ink leading-[1.1] max-w-[26ch]">
+                {t('emergency.title')}
+              </h3>
+              <p className="mt-4 text-base text-ink-2 max-w-[52ch] leading-[1.6]">
+                {t('emergency.description')}
+              </p>
+            </div>
+            <div className="col-span-12 lg:col-span-5 flex flex-col sm:flex-row gap-3 lg:justify-end">
+              <a
+                href="tel:+46700929433"
+                className="inline-flex items-center justify-center gap-2 bg-garnet px-7 py-4 text-paper font-medium transition-colors duration-200 hover:bg-garnet-hover"
+              >
+                {t('emergency.carSales')}
+              </a>
+              <a
+                href="tel:+46859120541"
+                className="inline-flex items-center justify-center gap-2 border border-ink px-7 py-4 text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
+              >
+                {t('emergency.workshop')}
+              </a>
+            </div>
           </div>
         </div>
       </div>
     </section>
+  );
+}
+
+function ChannelBlock({
+  label,
+  eyebrow,
+  description,
+  rows,
+  last,
+}: {
+  label: string;
+  eyebrow: string;
+  description: string;
+  rows: { label: string; value: string; href?: string }[];
+  last?: boolean;
+}) {
+  return (
+    <div className={`py-8 ${last ? '' : 'border-b border-line'} ${eyebrow === '01' ? 'pt-0' : ''}`}>
+      <div className="grid grid-cols-12 gap-4 items-baseline mb-4">
+        <span className="col-span-2 font-mono text-[10px] tabular text-ink-3 uppercase tracking-[0.16em]">
+          {eyebrow}
+        </span>
+        <h3 className="col-span-10 font-display text-2xl tracking-[-0.015em] text-ink">
+          {label}
+        </h3>
+      </div>
+      <p className="text-sm text-ink-2 max-w-[44ch] leading-[1.55] mb-6 pl-[calc(16.666%+1rem)]">
+        {description}
+      </p>
+      <ul className="space-y-3 pl-[calc(16.666%+1rem)]">
+        {rows.map((row, i) => (
+          <li key={i} className="grid grid-cols-12 gap-3 items-baseline">
+            {row.label && (
+              <span className="col-span-12 sm:col-span-4 font-mono text-[10px] uppercase tracking-[0.14em] text-ink-3">
+                {row.label}
+              </span>
+            )}
+            {row.value && (
+              row.href ? (
+                <a
+                  href={row.href}
+                  className={`${row.label ? 'col-span-12 sm:col-span-8' : 'col-span-12'} text-base text-ink hover:text-garnet transition-colors duration-200`}
+                >
+                  <span className="font-mono tabular">{row.value}</span>
+                </a>
+              ) : (
+                <span className={`${row.label ? 'col-span-12 sm:col-span-8' : 'col-span-12'} text-base text-ink`}>
+                  {row.value}
+                </span>
+              )
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+function HoursBlock({ title, rows }: { title: string; rows: [string, string][] }) {
+  return (
+    <div className="py-8 border-b border-line last:border-0">
+      <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3 block mb-4">
+        {title}
+      </span>
+      <ul className="space-y-2">
+        {rows.map(([day, hours], i) => (
+          <li key={i} className="flex items-baseline justify-between gap-4">
+            <span className="text-base text-ink">{day}</span>
+            <span className="font-mono text-sm tabular text-ink-2">{hours}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

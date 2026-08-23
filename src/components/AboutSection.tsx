@@ -7,7 +7,6 @@ import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 
-// Register ScrollTrigger plugin
 if (typeof window !== 'undefined') {
   gsap.registerPlugin(ScrollTrigger);
 }
@@ -15,250 +14,143 @@ if (typeof window !== 'undefined') {
 export default function AboutSection() {
   const t = useTranslations('about');
   const sectionRef = useRef<HTMLElement>(null);
-  const titleRef = useRef<HTMLHeadingElement>(null);
-  const subtitleRef = useRef<HTMLParagraphElement>(null);
-  const contentRef = useRef<HTMLDivElement>(null);
-  const imageRef = useRef<HTMLDivElement>(null);
-  const statsRef = useRef<HTMLDivElement>(null);
-  const statsCountersRef = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Set initial states
-      gsap.set([titleRef.current, subtitleRef.current], {
-        opacity: 0,
-        y: 50
-      });
-
-      gsap.set([contentRef.current, imageRef.current], {
-        opacity: 0,
-        y: 40
-      });
-
-      gsap.set(statsRef.current, {
-        opacity: 0,
-        y: 30
-      });
-
-      gsap.set(statsCountersRef.current, {
-        opacity: 0,
-        scale: 0.8
-      });
-
-      // Create scroll-triggered animation
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top 80%",
-          end: "bottom 20%",
-          toggleActions: "play none none reverse"
-        }
-      });
-
-      // Animate elements in sequence
-      tl.to(titleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        ease: "power2.out"
-      })
-      .to(subtitleRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.4")
-      .to([contentRef.current, imageRef.current], {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.2,
-        ease: "power2.out"
-      }, "-=0.2")
-      .to(statsRef.current, {
-        opacity: 1,
-        y: 0,
-        duration: 0.6,
-        ease: "power2.out"
-      }, "-=0.4")
-      .to(statsCountersRef.current, {
-        opacity: 1,
-        scale: 1,
-        duration: 0.6,
-        stagger: 0.1,
-        ease: "back.out(1.7)"
-      }, "-=0.3");
-
-      // Animate counters
-      const animateCounter = (element: HTMLElement, target: number) => {
-        gsap.to({ value: 0 }, {
-          value: target,
-          duration: 2,
-          ease: "power2.out",
-          onUpdate: function() {
-            element.textContent = Math.round(this.targets()[0].value).toString();
-          },
-          scrollTrigger: {
-            trigger: element,
-            start: "top 90%",
-            toggleActions: "play none none none"
-          }
+      gsap.utils.toArray<HTMLElement>('[data-reveal]').forEach((el) => {
+        gsap.from(el, {
+          y: 28,
+          opacity: 0,
+          duration: 1.0,
+          ease: 'expo.out',
+          scrollTrigger: { trigger: el, start: 'top 88%' },
         });
-      };
-
-      // Set up counter animations
-      statsCountersRef.current.forEach((counter, index) => {
-        if (counter) {
-          const targets = [25, 2, 1000]; // years, brands, customers
-          animateCounter(counter, targets[index]);
-        }
       });
-
     }, sectionRef);
-
     return () => ctx.revert();
   }, []);
 
   return (
-    <section 
+    <section
       ref={sectionRef}
-      className="min-h-screen bg-gray-100 py-20 sm:py-32 px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 relative overflow-hidden"
+      className="bg-paper py-24 sm:py-32 lg:py-40 overflow-hidden"
     >
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute inset-0 bg-gradient-to-br from-gray-200 via-transparent to-gray-200"></div>
-      </div>
-
-      <div className="max-w-7xl mx-auto relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-16 sm:mb-20">
-          <h2 
-            ref={titleRef}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-light tracking-tight text-gray-900 mb-6"
-          >
-            {t('title')}
-            <br />
-            <span className="font-normal">{t('titleEmphasized')}</span>
-          </h2>
-          <p 
-            ref={subtitleRef}
-            className="text-xl sm:text-2xl font-light text-gray-600 max-w-3xl mx-auto leading-relaxed"
-          >
-            {t('subtitle')}
-          </p>
-        </div>
-
-        {/* Main Content Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center mb-20 sm:mb-24">
-          {/* Content */}
-          <div ref={contentRef} className="order-2 lg:order-1">
-            <div className="space-y-8">
-                             <div>
-                 <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-4">
-                   {t('expertise.title')}
-                 </h3>
-                 <p className="text-lg text-gray-600 leading-relaxed">
-                   {t('expertise.description')}
-                 </p>
-               </div>
-
-               <div>
-                 <h4 className="text-xl font-medium text-gray-900 mb-3">
-                   {t('whyChoose.title')}
-                 </h4>
-                 <div className="space-y-4">
-                   <div className="flex items-start">
-                     <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                     <div>
-                       <p className="font-medium text-gray-900">{t('whyChoose.uniqueLocation.title')}</p>
-                       <p className="text-gray-600">Lämna bilen för service medan du reser utomlands</p>
-                     </div>
-                   </div>
-                   <div className="flex items-start">
-                     <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                     <div>
-                       <p className="font-medium text-gray-900">Bibehållen tillverkargaranti</p>
-                       <p className="text-gray-600">Service av alla märken utan att påverka garantin</p>
-                     </div>
-                   </div>
-                   <div className="flex items-start">
-                     <div className="w-2 h-2 bg-gray-900 rounded-full mt-3 mr-4 flex-shrink-0"></div>
-                     <div>
-                       <p className="font-medium text-gray-900">Certifierade tekniker</p>
-                       <p className="text-gray-600">Kontinuerlig utbildning inom bilens senaste teknik</p>
-                     </div>
-                   </div>
-                 </div>
-               </div>
-
-               {/* CTA Buttons */}
-               <div className="flex flex-col sm:flex-row gap-4 pt-8">
-                 <Link 
-                   href="/contact" 
-                   className="group relative px-8 py-3 text-base font-medium text-white bg-gray-900 hover:bg-gray-800 transition-all duration-300 overflow-hidden inline-block text-center"
-                 >
-                   <span className="relative z-10">Kontakta oss</span>
-                   <div className="absolute inset-0 bg-gray-800 transform translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
-                 </Link>
-                 <Link 
-                   href="/service" 
-                   className="group relative px-8 py-3 text-base font-medium text-gray-900 bg-transparent border-2 border-gray-900 hover:bg-gray-900 hover:text-white transition-all duration-300 overflow-hidden inline-block text-center"
-                 >
-                   <span className="relative z-10">Se våra tjänster</span>
-                 </Link>
-               </div>
+      <div className="max-w-[1280px] mx-auto px-5 sm:px-8 lg:px-12">
+        {/* Editorial header with floating year */}
+        <div className="relative mb-20 sm:mb-28">
+          <div className="grid grid-cols-12 gap-8">
+            <div className="col-span-12 lg:col-span-3" data-reveal>
+              <div className="flex items-center gap-3">
+                <span className="h-px w-8 bg-garnet" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                  {t('title')}
+                </span>
+              </div>
+            </div>
+            <div className="col-span-12 lg:col-span-9" data-reveal>
+              <h2 className="font-display text-[clamp(2.25rem,5vw,4.5rem)] leading-[1.0] tracking-[-0.025em] text-ink max-w-[18ch]">
+                {t('titleEmphasized')}
+              </h2>
+              <p className="mt-6 font-display text-xl sm:text-2xl italic text-ink-2 max-w-[42ch] leading-[1.35]">
+                {t('subtitle')}
+              </p>
             </div>
           </div>
+        </div>
 
-                     {/* Image */}
-           <div ref={imageRef} className="order-1 lg:order-2">
-             <div className="relative h-96 sm:h-[500px] lg:h-[600px] bg-gray-200 border border-gray-300 rounded-none overflow-hidden">
-               {/* Placeholder for facility image */}
-              
-              
-              
+        {/* Image + content — asymmetric */}
+        <div className="grid grid-cols-12 gap-8 lg:gap-12 mb-24 lg:mb-32">
+          <div data-reveal className="col-span-12 lg:col-span-7 order-2 lg:order-1">
+            <div className="relative aspect-[4/3] lg:aspect-[5/4] overflow-hidden bg-paper-2">
               <Image
                 src="/bilhus.jpg"
                 alt={`${t('titleEmphasized')} facility`}
                 fill
+                sizes="(max-width: 1024px) 100vw, 60vw"
                 className="object-cover"
-                quality={90}
+                quality={92}
               />
-             
+              {/* Caption strip */}
+              <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/70 to-transparent p-5 sm:p-8">
+                <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/80">
+                  Maskingatan 12 · Arlandastad
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div data-reveal className="col-span-12 lg:col-span-5 order-1 lg:order-2 flex flex-col justify-center">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-ink-3 mb-3">
+              {t('expertise.title')}
+            </span>
+            <p className="font-display text-2xl sm:text-[1.75rem] leading-[1.25] tracking-[-0.015em] text-ink mb-8 max-w-[26ch]">
+              {t('expertise.description')}
+            </p>
+
+            <dl className="space-y-6 border-t border-line pt-8">
+              {[
+                { k: t('whyChoose.uniqueLocation.title'), v: t('whyChoose.uniqueLocation.description') },
+                { k: t('whyChoose.warranty.title'), v: t('whyChoose.warranty.description') },
+                { k: t('whyChoose.certified.title'), v: t('whyChoose.certified.description') },
+              ].map((row, i) => (
+                <div key={i} className="grid grid-cols-12 gap-4">
+                  <dt className="col-span-12 sm:col-span-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3 pt-0.5">
+                    {row.k}
+                  </dt>
+                  <dd className="col-span-12 sm:col-span-8 text-[15px] text-ink-2 leading-[1.55]">
+                    {row.v}
+                  </dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-10 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center justify-center gap-2 bg-garnet px-7 py-4 text-paper font-medium transition-colors duration-200 hover:bg-garnet-hover"
+              >
+                {t('cta.contact')}
+              </Link>
+              <Link
+                href="/service"
+                className="inline-flex items-center justify-center gap-2 border border-ink px-7 py-4 text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
+              >
+                {t('cta.services')}
+              </Link>
             </div>
           </div>
         </div>
 
-               
-        
-
-                 {/* Location Highlight */}
-         <div className="bg-white p-8 sm:p-12 lg:p-16 border border-gray-200 rounded-none text-center shadow-sm">
-           <h3 className="text-2xl sm:text-3xl font-light text-gray-900 mb-6">
-             {t('locationHighlight.title')}
-           </h3>
-           <p className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-             Vår unika plats nära Arlanda flygplats gör oss till det perfekta valet för resenärer. 
-             Lämna din bil för service medan du är bortrest – vi tar hand om allt medan du är borta.
-           </p>
-           <div className="flex flex-col sm:flex-row gap-6 justify-center text-sm text-gray-500 mb-8">
-             <div className="flex items-center justify-center">
-               <span className="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
-               5 min från Arlanda Terminal
-             </div>
-             <div className="flex items-center justify-center">
-               <span className="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
-               30 min från Stockholm City
-             </div>
-             <div className="flex items-center justify-center">
-               <span className="w-2 h-2 bg-gray-400 rounded-full mr-3"></span>
-               Enkelt att hitta
-             </div>
-           </div>
-           
-           
-         </div>
+        {/* Location highlight — minimal, editorial, no card */}
+        <div data-reveal className="border-t border-line pt-16 lg:pt-20">
+          <div className="grid grid-cols-12 gap-8">
+            <div className="col-span-12 lg:col-span-4">
+              <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+                {t('locationHighlight.title')}
+              </span>
+            </div>
+            <div className="col-span-12 lg:col-span-8">
+              <p className="font-display text-2xl sm:text-3xl leading-[1.2] tracking-[-0.015em] text-ink max-w-[34ch]">
+                {t('locationHighlight.description')}
+              </p>
+              <ul className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-y-3 gap-x-8">
+                {[
+                  t('locationHighlight.benefits.terminal'),
+                  t('locationHighlight.benefits.city'),
+                  t('locationHighlight.benefits.easy'),
+                ].map((b, i) => (
+                  <li key={i} className="text-sm text-ink-2 flex items-baseline gap-3">
+                    <span className="font-mono text-[10px] tabular text-ink-3 shrink-0">
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    {b}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
-} 
+}

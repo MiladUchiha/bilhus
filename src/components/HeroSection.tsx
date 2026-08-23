@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import Button from './Button';
 import BookingPopup from './BookingPopup';
 
 const heroImages = [
@@ -13,219 +12,201 @@ const heroImages = [
   '/heropics/3.jpg',
   '/heropics/4.jpg',
   '/heropics/5.jpg',
-  '/heropics/6.jpg'
+  '/heropics/6.jpg',
 ];
 
 export default function HeroSection() {
   const t = useTranslations('hero');
+  const tCommon = useTranslations('common');
   const heroRef = useRef<HTMLElement>(null);
+  const eyebrowRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLHeadingElement>(null);
   const taglineRef = useRef<HTMLParagraphElement>(null);
-  const ctaRef = useRef<HTMLButtonElement>(null);
-  const footerRef = useRef<HTMLDivElement>(null);
+  const actionsRef = useRef<HTMLDivElement>(null);
+  const metaRef = useRef<HTMLDivElement>(null);
 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showBookingPopup, setShowBookingPopup] = useState(false);
 
   useEffect(() => {
-    const tl = gsap.timeline();
-    
-    // Set initial states
-    gsap.set([titleRef.current, taglineRef.current, ctaRef.current, footerRef.current], {
-      opacity: 0,
-      y: 20
-    });
+    const targets = [
+      eyebrowRef.current,
+      titleRef.current,
+      taglineRef.current,
+      actionsRef.current,
+      metaRef.current,
+    ];
 
-    // Animate elements in sequence - no continuous animations
-    tl.to(titleRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1.5,
-      ease: "power2.out"
-    })
-    .to(taglineRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 1,
-      ease: "power2.out"
-    }, "-=0.8")
-    .to(ctaRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.5")
-    .to(footerRef.current, {
-      opacity: 1,
-      y: 0,
-      duration: 0.8,
-      ease: "power2.out"
-    }, "-=0.4");
+    gsap.set(targets, { opacity: 0, y: 28 });
 
+    const tl = gsap.timeline({ defaults: { ease: 'expo.out', duration: 1.1 } });
+    tl.to(eyebrowRef.current, { opacity: 1, y: 0, duration: 0.6 })
+      .to(titleRef.current, { opacity: 1, y: 0 }, '-=0.2')
+      .to(taglineRef.current, { opacity: 1, y: 0, duration: 0.9 }, '-=0.7')
+      .to(actionsRef.current, { opacity: 1, y: 0, duration: 0.7 }, '-=0.6')
+      .to(metaRef.current, { opacity: 1, y: 0, duration: 0.7 }, '-=0.5');
   }, []);
 
-  // Background image slideshow
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentImageIndex((prev) => (prev + 1) % heroImages.length);
-    }, 6000); // Slightly longer for better user experience
-
+    }, 7000);
     return () => clearInterval(interval);
   }, []);
 
-  const handleCTAClick = () => {
-    setShowBookingPopup(true);
-  };
-
-  const handleImageChange = (index: number) => {
-    setCurrentImageIndex(index);
-  };
-
   return (
-    <main 
+    <section
       ref={heroRef}
-      className="relative min-h-screen flex flex-col justify-between px-4 sm:px-6 md:px-12 lg:px-20 xl:px-32 py-8 sm:py-12 overflow-hidden"
+      className="relative min-h-[100svh] overflow-hidden"
+      aria-label={t('title')}
     >
-      {/* Background Image Slideshow */}
+      {/* Background slideshow — sole hero medium */}
       <div className="absolute inset-0 z-0">
         {heroImages.map((image, index) => (
           <div
             key={image}
-            className={`absolute inset-0 transition-opacity duration-2000 ease-in-out ${
+            className={`absolute inset-0 transition-opacity duration-2000 ease-out ${
               index === currentImageIndex ? 'opacity-100' : 'opacity-0'
             }`}
           >
             <Image
               src={image}
-              alt={`${t('title')} ${index + 1}`}
+              alt=""
               fill
               className="object-cover"
               priority={index === 0}
-              loading={index === 0 ? "eager" : "lazy"}
+              loading={index === 0 ? 'eager' : 'lazy'}
               quality={index === 0 ? 95 : 85}
               sizes="100vw"
             />
           </div>
         ))}
-        
-        {/* Enhanced dark overlay for better text readability */}
-        <div className="absolute inset-0 bg-black/60 sm:bg-black/45"></div>
-        
-        {/* Enhanced gradient overlay for better text contrast */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/20 to-black/80 sm:from-black/30 sm:via-transparent sm:to-black/70"></div>
+        {/* Layered scrim — preserves photography at top, ensures title legibility at bottom */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background:
+              'linear-gradient(to bottom, oklch(0.18 0.012 60 / 0.50) 0%, oklch(0.18 0.012 60 / 0.10) 28%, oklch(0.18 0.012 60 / 0.55) 55%, oklch(0.18 0.012 60 / 0.90) 80%, oklch(0.10 0.012 60 / 0.95) 100%)',
+          }}
+        />
       </div>
 
-      {/* Main Hero Content */}
-      <div className="relative z-10 flex-1 flex flex-col justify-center items-center text-center max-w-6xl mx-auto">
-        <h1 
-          ref={titleRef}
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl 2xl:text-9xl font-light tracking-tight text-white mb-6 sm:mb-8 leading-[0.85] sm:leading-[0.9]"
-          style={{
-            textShadow: '3px 3px 6px rgba(0,0,0,0.9), 0 0 15px rgba(0,0,0,0.5), 1px 1px 3px rgba(0,0,0,1)'
-          }}
-        >
-          {t('title')}
-        </h1>
-        
-        <p 
-          ref={taglineRef}
-          className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light text-white mb-8 sm:mb-12 max-w-4xl leading-relaxed px-4 sm:px-0"
-          style={{
-            textShadow: '2px 2px 6px rgba(0,0,0,0.9), 0 0 12px rgba(0,0,0,0.5), 1px 1px 3px rgba(0,0,0,1)'
-          }}
-        >
-          {t('tagline')}
-          <br className="block" />
-          <span>{t('services')}</span> 
-        </p>
-        
-        <Button
-          ref={ctaRef}
-          onClick={handleCTAClick}
-          variant="hero"
-          size="xl"
-        >
-          {t('cta')}
-        </Button>
-      </div>
+      {/* Content — bottom-left aligned, editorial */}
+      <div className="relative z-10 flex min-h-[100svh] flex-col">
+        <div className="flex-1" />
 
-      {/* Minimal Footer Info */}
-      <footer 
-        ref={footerRef}
-        className="relative z-10 text-xs sm:text-sm text-white border-t border-white/40 pt-6 sm:pt-8 mt-6 sm:mt-8 backdrop-blur-sm bg-black/20 rounded-t-lg"
-        style={{
-          textShadow: '2px 2px 4px rgba(0,0,0,0.9), 0 0 8px rgba(0,0,0,0.6)'
-        }}
-      >
-        {/* Mobile Layout - Centered */}
-        <div className="flex flex-col items-center space-y-4 sm:hidden">
-          <div className="text-center">
-            <p className="font-semibold text-white mb-1">{t('footer.authorizedService')}</p>
-            <p className="text-white/95 font-medium">{t('footer.brands')}</p>
-          </div>
-          
-          <div className="text-center">
-            <p className="font-semibold text-white mb-1">{t('footer.location')}</p>
-            <p className="text-white/95 font-medium">{t('footer.country')}</p>
+        <div className="px-5 pb-12 sm:px-10 sm:pb-16 lg:px-16 lg:pb-20 xl:px-24">
+          <div className="max-w-[1280px] mx-auto">
+            {/* Eyebrow */}
+            <div
+              ref={eyebrowRef}
+              className="mb-6 flex items-center gap-3 text-paper/85"
+            >
+              <span className="h-px w-10 bg-paper/60" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.18em]">
+                Märsta Bilhus · {t('footer.location')}
+              </span>
+            </div>
+
+            {/* Title — Fraunces display */}
+            <h1
+              ref={titleRef}
+              className="font-display text-paper text-[clamp(2.75rem,8vw,7rem)] leading-[0.95] tracking-[-0.03em] max-w-[20ch] [text-shadow:_0_2px_30px_rgba(0,0,0,0.35)]"
+              style={{ fontVariationSettings: "'opsz' 144, 'SOFT' 30" }}
+            >
+              {t('title')}
+            </h1>
+
+            {/* Tagline */}
+            <p
+              ref={taglineRef}
+              className="mt-8 max-w-[42ch] text-paper/90 text-lg sm:text-xl leading-[1.5] font-light"
+            >
+              {t('tagline')}
+              <span className="block text-paper/70 mt-1">{t('services')}</span>
+            </p>
+
+            {/* Actions */}
+            <div
+              ref={actionsRef}
+              className="mt-10 flex flex-col sm:flex-row gap-3 sm:gap-4"
+            >
+              <button
+                onClick={() => setShowBookingPopup(true)}
+                className="group inline-flex items-center justify-center gap-3 bg-paper px-7 py-4 text-ink font-medium tracking-tight transition-colors duration-200 hover:bg-garnet hover:text-paper"
+              >
+                <span>{t('cta')}</span>
+                <svg
+                  className="h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.6} d="M5 12h14M13 5l7 7-7 7" />
+                </svg>
+              </button>
+              <a
+                href="/cars"
+                className="inline-flex items-center justify-center gap-2 border border-paper/40 px-7 py-4 text-paper transition-colors duration-200 hover:bg-paper hover:text-ink"
+              >
+                {tCommon('seeCars')}
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Desktop Layout - Space Between */}
-        <div className="hidden sm:flex sm:flex-row justify-between items-center">
-          <div className="text-left">
-            <p className="font-semibold text-white mb-1">{t('footer.authorizedService')}</p>
-            <p className="text-white/95 font-medium">{t('footer.brands')}</p>
-          </div>
-          
-          <div className="text-right">
-            <p className="font-semibold text-white mb-1">{t('footer.location')}</p>
-            <p className="text-white/95 font-medium">{t('footer.country')}</p>
+        {/* Meta strip — bottom edge */}
+        <div
+          ref={metaRef}
+          className="border-t border-paper/15 bg-ink/30 backdrop-blur-[2px]"
+        >
+          <div className="max-w-[1280px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 py-5">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 text-paper/85">
+              <MetaItem label={t('footer.authorizedService')} value={t('footer.brands')} />
+              <MetaItem label={t('footer.location')} value={t('footer.country')} />
+              <MetaItem label="Tel" value="08-59 120 541" mono />
+              <MetaItem label="Est." value="1979" mono />
+            </div>
           </div>
         </div>
-      </footer>
 
-      {/* Enhanced Image indicators - clickable for user control (hidden on mobile) */}
-      <div className="absolute bottom-16 sm:bottom-20 md:bottom-24 left-1/2 transform -translate-x-1/2 z-10 hidden sm:flex space-x-2">
-        {heroImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => handleImageChange(index)}
-            className={`w-2 h-2 rounded-full transition-all duration-300 shadow-lg ${
-              index === currentImageIndex 
-                ? 'bg-white scale-100' 
-                : 'bg-white/50 hover:bg-white/80 hover:scale-105'
-            }`}
-            aria-label={`Visa bild ${index + 1}`}
-          />
-        ))}
+        {/* Slide indicators — subtle, bottom-right */}
+        <div className="absolute right-5 sm:right-10 lg:right-16 xl:right-24 bottom-32 sm:bottom-36 z-20 flex flex-col items-end gap-3">
+          <span className="font-mono text-[11px] text-paper/70 tabular">
+            {String(currentImageIndex + 1).padStart(2, '0')} / {String(heroImages.length).padStart(2, '0')}
+          </span>
+          <div className="flex gap-1.5">
+            {heroImages.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`h-px transition-all duration-500 ease-out ${
+                  index === currentImageIndex ? 'w-10 bg-paper' : 'w-5 bg-paper/40 hover:bg-paper/70'
+                }`}
+                aria-label={`${t('navigation.showImage')} ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
       </div>
 
-      {/* Navigation arrows for mobile */}
-      <button
-        onClick={() => handleImageChange((currentImageIndex - 1 + heroImages.length) % heroImages.length)}
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 z-10 sm:hidden bg-black/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200 hover:bg-black/50"
-        aria-label="Föregående bild"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </button>
-      
-      <button
-        onClick={() => handleImageChange((currentImageIndex + 1) % heroImages.length)}
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 z-10 sm:hidden bg-black/30 text-white p-3 rounded-full backdrop-blur-sm transition-all duration-200 hover:bg-black/50"
-        aria-label="Nästa bild"
-      >
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </button>
-
-      {/* Booking Popup */}
-      <BookingPopup 
-        isOpen={showBookingPopup} 
-        onClose={() => setShowBookingPopup(false)} 
+      <BookingPopup
+        isOpen={showBookingPopup}
+        onClose={() => setShowBookingPopup(false)}
       />
-    </main>
+    </section>
   );
-} 
+}
+
+function MetaItem({ label, value, mono }: { label: string; value: string; mono?: boolean }) {
+  return (
+    <div className="flex flex-col gap-1">
+      <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/55">
+        {label}
+      </span>
+      <span className={`text-sm ${mono ? 'font-mono tabular text-paper' : 'text-paper'}`}>
+        {value}
+      </span>
+    </div>
+  );
+}

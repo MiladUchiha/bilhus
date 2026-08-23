@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
+import { useTranslations } from 'next-intl';
 
 interface BookingPopupProps {
   isOpen: boolean;
@@ -9,24 +10,17 @@ interface BookingPopupProps {
 }
 
 export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
+  const t = useTranslations();
   const overlayRef = useRef<HTMLDivElement>(null);
   const popupRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
-      // Animate popup in
       gsap.set(overlayRef.current, { opacity: 0 });
-      gsap.set(popupRef.current, { opacity: 0, scale: 0.9, y: 20 });
-
-      gsap.to(overlayRef.current, { opacity: 1, duration: 0.3 });
-      gsap.to(popupRef.current, {
-        opacity: 1,
-        scale: 1,
-        y: 0,
-        duration: 0.4,
-        ease: "power2.out"
-      });
+      gsap.set(popupRef.current, { opacity: 0, y: 24 });
+      gsap.to(overlayRef.current, { opacity: 1, duration: 0.25, ease: 'power2.out' });
+      gsap.to(popupRef.current, { opacity: 1, y: 0, duration: 0.5, ease: 'expo.out' });
     }
     return () => {
       document.body.style.overflow = '';
@@ -34,18 +28,11 @@ export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
   }, [isOpen]);
 
   const handleClose = () => {
-    // Animate popup out
-    gsap.to(popupRef.current, { 
-      opacity: 0, 
-      scale: 0.9, 
-      y: 20, 
-      duration: 0.3, 
-      ease: "power2.in" 
-    });
-    gsap.to(overlayRef.current, { 
-      opacity: 0, 
-      duration: 0.3,
-      onComplete: onClose
+    gsap.to(popupRef.current, { opacity: 0, y: 24, duration: 0.2, ease: 'power2.in' });
+    gsap.to(overlayRef.current, {
+      opacity: 0,
+      duration: 0.25,
+      onComplete: onClose,
     });
   };
 
@@ -54,57 +41,71 @@ export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
   return (
     <div
       ref={overlayRef}
-      className="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center p-4"
+      className="fixed inset-0 z-50 bg-ink/60 backdrop-blur-[2px] flex items-center justify-center p-5"
       onClick={handleClose}
       role="dialog"
       aria-modal="true"
     >
-      <div 
+      <div
         ref={popupRef}
-        className="bg-white max-w-md w-full p-8 relative"
+        className="bg-paper max-w-[460px] w-full p-10 sm:p-12 relative"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close button */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition-colors"
-          aria-label="Stäng"
+          className="absolute top-5 right-5 text-ink-3 hover:text-ink transition-colors duration-200 p-1"
+          aria-label={t('common.close')}
         >
-          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+          <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M6 18L18 6M6 6l12 12" />
           </svg>
         </button>
 
-        {/* Icon */}
-        <div className="text-center mb-6">
-          <div className="mx-auto w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mb-4">
-            <svg className="w-8 h-8 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-          </div>
-          <h3 className="text-2xl font-light text-gray-900 mb-2">
-            Bokningssystem under utveckling
+        <div className="mb-8">
+          <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-garnet">
+            {t('common.bookTime')}
+          </span>
+          <h3 className="mt-3 font-display text-3xl tracking-[-0.02em] text-ink leading-[1.1]">
+            {t('booking.title')}
           </h3>
-          <p className="text-gray-600 leading-relaxed mb-6">
-            Vårt online-bokningssystem är för närvarande under utveckling. 
-            Kontakta oss istället för att boka tid.
+          <p className="mt-4 text-[15px] text-ink-2 leading-[1.55] max-w-[40ch]">
+            {t('booking.description')}
           </p>
         </div>
 
-        {/* Contact options */}
-        <div className="space-y-4">
-          <a 
+        <div className="space-y-3">
+          <a
             href="tel:+46859120541"
-            className="w-full bg-gray-900 text-white py-3 px-6 hover:bg-gray-800 transition-colors duration-300 text-center block"
+            className="group flex items-center justify-between border border-line hover:border-ink px-5 py-4 transition-colors duration-200"
           >
-            Telefon: 08 591 205 41
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3 block">
+                {t('booking.phoneLabel')}
+              </span>
+              <span className="font-mono text-base tabular text-ink mt-0.5 block group-hover:text-garnet transition-colors duration-200">
+                08 591 205 41
+              </span>
+            </div>
+            <svg className="h-4 w-4 text-ink-2 group-hover:text-ink transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
           </a>
-          
-          <a 
+
+          <a
             href="mailto:kundservice@marstabilhus.se"
-            className="w-full border border-gray-300 text-gray-900 py-3 px-6 hover:border-gray-900 transition-colors duration-300 text-center block"
+            className="group flex items-center justify-between border border-line hover:border-ink px-5 py-4 transition-colors duration-200"
           >
-            E-post: kundservice@marstabilhus.se
+            <div>
+              <span className="font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3 block">
+                {t('booking.emailLabel')}
+              </span>
+              <span className="text-base text-ink mt-0.5 block group-hover:text-garnet transition-colors duration-200">
+                kundservice@marstabilhus.se
+              </span>
+            </div>
+            <svg className="h-4 w-4 text-ink-2 group-hover:text-ink transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M5 12h14M13 5l7 7-7 7" />
+            </svg>
           </a>
         </div>
       </div>

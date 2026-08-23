@@ -1,56 +1,250 @@
 @import "tailwindcss";
 
-/* Custom Scrollbar for Dark Glass Design */
+/* ──────────────────────────────────────────────────────────────────
+   Märsta Bilhus — Design tokens (see DESIGN.md)
+   Tailwind 4 @theme directive — exposes utilities like bg-paper,
+   text-ink, border-line, font-display etc. via the custom-property
+   naming convention --color-*, --font-*.
+   ────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Surfaces — warm-neutral, never #fff */
+  --color-paper: oklch(0.972 0.005 80);
+  --color-paper-2: oklch(0.945 0.008 78);
+  --color-paper-3: oklch(0.92 0.01 75);
+
+  /* Ink — warm near-black, never #000 */
+  --color-ink: oklch(0.18 0.012 60);
+  --color-ink-2: oklch(0.38 0.012 60);
+  --color-ink-3: oklch(0.58 0.012 70);
+
+  /* Hairlines */
+  --color-line: oklch(0.86 0.012 75);
+  --color-line-strong: oklch(0.72 0.012 75);
+
+  /* Brand — deep garnet, single commitment */
+  --color-garnet: oklch(0.42 0.13 28);
+  --color-garnet-hover: oklch(0.34 0.13 28);
+  --color-garnet-soft: oklch(0.93 0.04 28);
+
+  /* Signal — sparing use */
+  --color-amber: oklch(0.74 0.14 70);
+  --color-success: oklch(0.62 0.13 145);
+
+  /* Type stacks */
+  --font-display: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  --font-sans: var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-jetbrains), ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Belt-and-braces: mirror the tokens to :root so they're available
+   as plain CSS variables for arbitrary values like text-[var(--color-ink)]
+   ────────────────────────────────────────────────────────────────── */
+
+:root {
+  --color-paper: oklch(0.972 0.005 80);
+  --color-paper-2: oklch(0.945 0.008 78);
+  --color-paper-3: oklch(0.92 0.01 75);
+  --color-ink: oklch(0.18 0.012 60);
+  --color-ink-2: oklch(0.38 0.012 60);
+  --color-ink-3: oklch(0.58 0.012 70);
+  --color-line: oklch(0.86 0.012 75);
+  --color-line-strong: oklch(0.72 0.012 75);
+  --color-garnet: oklch(0.42 0.13 28);
+  --color-garnet-hover: oklch(0.34 0.13 28);
+  --color-garnet-soft: oklch(0.93 0.04 28);
+  --color-amber: oklch(0.74 0.14 70);
+  --color-success: oklch(0.62 0.13 145);
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Base
+   ────────────────────────────────────────────────────────────────── */
+
+html {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-feature-settings: 'ss01', 'cv11';
+}
+
+body {
+  background-color: var(--color-paper);
+  color: var(--color-ink);
+}
+
+::selection {
+  background-color: var(--color-garnet);
+  color: var(--color-paper);
+}
+
+:focus-visible {
+  outline: 1px solid var(--color-garnet);
+  outline-offset: 2px;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Utility classes — guaranteed to work regardless of Tailwind theme
+   processing quirks under Turbopack. Use these everywhere.
+   ────────────────────────────────────────────────────────────────── */
+
+@layer utilities {
+  /* Backgrounds */
+  .bg-paper { background-color: var(--color-paper); }
+  .bg-paper-2 { background-color: var(--color-paper-2); }
+  .bg-paper-3 { background-color: var(--color-paper-3); }
+  .bg-ink { background-color: var(--color-ink); }
+  .bg-ink-2 { background-color: var(--color-ink-2); }
+  .bg-ink-3 { background-color: var(--color-ink-3); }
+  .bg-garnet { background-color: var(--color-garnet); }
+  .bg-garnet-hover { background-color: var(--color-garnet-hover); }
+  .bg-garnet-soft { background-color: var(--color-garnet-soft); }
+  .bg-amber { background-color: var(--color-amber); }
+  .bg-line { background-color: var(--color-line); }
+  .bg-line-strong { background-color: var(--color-line-strong); }
+
+  .hover\:bg-garnet:hover { background-color: var(--color-garnet); }
+  .hover\:bg-garnet-hover:hover { background-color: var(--color-garnet-hover); }
+  .hover\:bg-paper:hover { background-color: var(--color-paper); }
+  .hover\:bg-paper-2:hover { background-color: var(--color-paper-2); }
+  .hover\:bg-ink:hover { background-color: var(--color-ink); }
+
+  /* Text colors */
+  .text-paper { color: var(--color-paper); }
+  .text-ink { color: var(--color-ink); }
+  .text-ink-2 { color: var(--color-ink-2); }
+  .text-ink-3 { color: var(--color-ink-3); }
+  .text-garnet { color: var(--color-garnet); }
+  .text-garnet-hover { color: var(--color-garnet-hover); }
+  .text-amber { color: var(--color-amber); }
+
+  .hover\:text-garnet:hover { color: var(--color-garnet); }
+  .hover\:text-garnet-hover:hover { color: var(--color-garnet-hover); }
+  .hover\:text-paper:hover { color: var(--color-paper); }
+  .hover\:text-ink:hover { color: var(--color-ink); }
+  .hover\:text-ink-2:hover { color: var(--color-ink-2); }
+
+  /* Borders */
+  .border-paper { border-color: var(--color-paper); }
+  .border-ink { border-color: var(--color-ink); }
+  .border-ink-2 { border-color: var(--color-ink-2); }
+  .border-ink-3 { border-color: var(--color-ink-3); }
+  .border-line { border-color: var(--color-line); }
+  .border-line-strong { border-color: var(--color-line-strong); }
+  .border-garnet { border-color: var(--color-garnet); }
+
+  .hover\:border-ink:hover { border-color: var(--color-ink); }
+  .hover\:border-garnet:hover { border-color: var(--color-garnet); }
+  .hover\:border-paper:hover { border-color: var(--color-paper); }
+
+  /* Divider lines used with divide-line on flex/grid */
+  .divide-line > * + * { border-color: var(--color-line); }
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Display type helpers — Fraunces optical sizing turned up
+   ────────────────────────────────────────────────────────────────── */
+
+.font-display {
+  font-family: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  font-variation-settings: 'opsz' 144, 'SOFT' 30, 'WONK' 0;
+  font-feature-settings: 'ss01';
+}
+
+.font-display-italic {
+  font-family: var(--font-fraunces), Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-variation-settings: 'opsz' 144, 'SOFT' 100, 'WONK' 1;
+}
+
+.font-mono {
+  font-family: var(--font-jetbrains), ui-monospace, 'SF Mono', Menlo, monospace;
+}
+
+.font-sans {
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+/* Tabular numbers for spec data */
+.tabular {
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' 1;
+}
+
+/* Hairline divider */
+.hr {
+  height: 1px;
+  background: var(--color-line);
+  border: 0;
+}
+
+/* ──────────────────────────────────────────────────────────────────
+   Custom scrollbar — minimal, warm, no glass effects
+   ────────────────────────────────────────────────────────────────── */
+
 .custom-scrollbar {
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.3) transparent;
+  scrollbar-color: var(--color-line-strong) transparent;
 }
 
 .custom-scrollbar::-webkit-scrollbar {
   width: 6px;
+  height: 6px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-track {
   background: transparent;
-  border-radius: 3px;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--color-line-strong);
   border-radius: 3px;
-  backdrop-filter: blur(4px);
-  transition: all 0.3s ease;
 }
 
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.4);
-  transform: scaleY(1.1);
+  background: var(--color-ink-3);
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:active {
-  background: rgba(255, 255, 255, 0.5);
+/* Slow, dignified image cross-fade for hero */
+.duration-2000 {
+  transition-duration: 2000ms;
 }
 
-/* Enhanced scrollbar for dark glass theme */
-.custom-scrollbar::-webkit-scrollbar-corner {
-  background: transparent;
+/* Reduce motion — respect users */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
-/* Smooth scrolling behavior */
-.custom-scrollbar {
-  scroll-behavior: smooth;
+/* Editorial link underline */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size 300ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-/* Custom scrollbar glow effect */
-.custom-scrollbar::-webkit-scrollbar-thumb {
-  box-shadow: 
-    0 0 4px rgba(255, 255, 255, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+.link-underline:hover {
+  background-size: 0% 1px;
+  background-position: 100% 100%;
 }
 
-.custom-scrollbar::-webkit-scrollbar-thumb:hover {
-  box-shadow: 
-    0 0 6px rgba(255, 255, 255, 0.2),
-    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+/* Subtle reveal — for use without GSAP */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
+.reveal {
+  animation: rise 800ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
