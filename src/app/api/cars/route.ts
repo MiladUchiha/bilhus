@@ -6,6 +6,7 @@ export const dynamic = 'force-dynamic';
 
 // Data validation and sanitization helpers
 function sanitizeString(value: unknown): string {
+  if (typeof value === 'number' && !isNaN(value)) value = String(value);
   if (typeof value !== 'string') return '';
   return value.trim().replace(/[<>"'&]/g, '');
 }
@@ -43,19 +44,19 @@ interface LagerimportCar {
   modell: string;
   modellbeteckning: string;
   kaross: string;
-  amod: string;
+  amod: number;
   mil: number;
-  fabriksny: string;
-  cnr: string;
+  fabriksny: boolean;
+  cnr: string | null;
   farg: string;
   drivmedel: string;
   vaxel: string;
   begartpris: number;
   nedsattpris: number | null;
-  regyear: string;
-  regmonth: string;
-  effektkw: string;
-  effekthp: string;
+  regyear: number | null;
+  regmonth: number | null;
+  effektkw: number | null;
+  effekthp: number | null;
   antbadd: string;
   langd: string;
   totvikt: string;
@@ -68,8 +69,8 @@ interface LagerimportCar {
   utr: string;
   beskrivning: string;
   planlosningar: unknown[];
-  finansbolag: string;
-  ranta: string;
+  finansbolag: string | null;
+  ranta: number | null;
   manadskostnad: number;
   antalbilder: number;
   bilder: string[];
@@ -132,7 +133,7 @@ function createSpecs(car: LagerimportCar): Array<{ label: string; value: string 
   if (car.farg) specs.push({ label: 'Färg', value: car.farg });
   if (car.kaross) specs.push({ label: 'Kaross', value: car.kaross });
   if (car.regyear && car.regmonth) {
-    specs.push({ label: 'Registrerad', value: `${car.regyear}-${car.regmonth.padStart(2, '0')}` });
+    specs.push({ label: 'Registrerad', value: `${car.regyear}-${String(car.regmonth).padStart(2, '0')}` });
   }
   if (car.cnr) specs.push({ label: 'Chassinummer', value: car.cnr });
   if (car.finansbolag) specs.push({ label: 'Finansbolag', value: car.finansbolag });
