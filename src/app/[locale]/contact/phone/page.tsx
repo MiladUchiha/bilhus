@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Telefonkontakt - Märsta Bilhus',
-  description: 'Ring oss för personlig service. Här hittar du våra telefonnummer till försäljning och verkstad, samt våra telefontider.',
+  description: 'Ring Märsta Bilhus för bilförsäljning och Aixam-service. Här hittar du vårt telefonnummer och våra telefontider.',
 };
 
 export default function ContactPhonePage() {
@@ -29,30 +29,30 @@ export default function ContactPhonePage() {
               </svg>
             </div>
             <h3 className="text-2xl font-semibold text-gray-900 mb-2">Telefon</h3>
-            <p className="text-gray-600 mb-4">Allmänna frågor & service</p>
-            <div className="text-3xl font-bold text-gray-900 mb-4">08-59 120 541</div>
-            <p className="text-sm text-gray-500 mb-6">Mån-Fre 09:00-18:00, Lör 11:00-15:00</p>
-            <a href="tel:08-59120541">
+            <p className="text-gray-600 mb-4">Bilförsäljning & Aixam</p>
+            <div className="text-3xl font-bold text-gray-900 mb-4">0700 929 433</div>
+            <p className="text-sm text-gray-500 mb-6">Mån-Tor 09:00-18:00, Fre 09:00-17:00, Lör 11:00-15:00</p>
+            <a href="tel:+46700929433">
               <Button variant="primary" size="lg" className="w-full">
                 Ring nu
               </Button>
             </a>
           </div>
 
-          {/* Mobile Phone */}
+          {/* Workshop — now Auto Temple, a separate company */}
           <div className="bg-white rounded-lg shadow-sm p-8 text-center">
             <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
               <svg className="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
               </svg>
             </div>
-            <h3 className="text-2xl font-semibold text-gray-900 mb-2">Mobil</h3>
-            <p className="text-gray-600 mb-4">Verkstad & service</p>
-            <div className="text-3xl font-bold text-gray-900 mb-4">0700 92 94 34</div>
-            <p className="text-sm text-gray-500 mb-6">Vardagar 08:00-19:00</p>
-            <a href="tel:0700929434">
-              <Button variant="primary" size="lg" className="w-full">
-                Ring nu
+            <h3 className="text-2xl font-semibold text-gray-900 mb-2">Verkstad</h3>
+            <p className="text-gray-600 mb-4">Auto Temple, Voltgatan 23, Märsta</p>
+            <div className="text-3xl font-bold text-gray-900 mb-4">070-092 94 34</div>
+            <p className="text-sm text-gray-500 mb-6">Service och reparation av andra bilmärken än Aixam</p>
+            <a href="https://autotemple.se" target="_blank" rel="noopener noreferrer">
+              <Button variant="outline" size="lg" className="w-full">
+                autotemple.se
               </Button>
             </a>
           </div>

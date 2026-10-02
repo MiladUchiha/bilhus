@@ -95,9 +95,9 @@ export default function ContactQuotePage() {
               </div>
             </div>
 
-            <a href="tel:08-59120541">
+            <a href="tel:+46700929433">
               <Button variant="primary" size="lg" className="w-full">
-                Ring 08-59 120 541
+                Ring 0700 929 433
               </Button>
             </a>
           </div>

@@ -388,8 +388,8 @@ export default function CarDetailsPage() {
               />
               <ContactItem
                 label="Adress"
-                value="Maskingatan 12"
-                detail="195 60 Arlandastad"
+                value="Thulins Plats 4D"
+                detail="195 61 Arlandastad"
               />
               <ContactItem
                 label="Öppet"

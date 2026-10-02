@@ -17,10 +17,10 @@ interface ContactMethod {
 const contactMethods: ContactMethod[] = [
   {
     title: 'Telefon',
-    description: 'Ring oss direkt för snabb hjälp',
-    value: '08-59 120 541',
-    href: 'tel:08-59120541',
-    available: 'Mån-Fre 09:00-18:00, Lör 11:00-15:00',
+    description: 'Bilförsäljning och Aixam',
+    value: '0700 929 433',
+    href: 'tel:+46700929433',
+    available: 'Mån-Tor 09:00-18:00, Fre 09:00-17:00, Lör 11:00-15:00',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
@@ -28,11 +28,11 @@ const contactMethods: ContactMethod[] = [
     )
   },
   {
-    title: 'Mobil',
-    description: 'Verkstad & service',
-    value: '0700 92 94 34',
-    href: 'tel:0700929434',
-    available: 'Vardagar 08:00-19:00',
+    title: 'Verkstad',
+    description: 'Service och reparation sköts av Auto Temple',
+    value: 'autotemple.se',
+    href: 'https://autotemple.se',
+    available: 'Voltgatan 23, Märsta',
     icon: (
       <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
@@ -53,7 +53,7 @@ const contactMethods: ContactMethod[] = [
   },
   {
     title: 'Besök oss',
-    description: 'Maskingatan 12, Arlandastad',
+    description: 'Thulins Plats 4D, Arlandastad',
     value: 'Hitta hit',
     href: '/contact/location',
     available: 'Vardagar 09:00-18:00',
@@ -233,8 +233,8 @@ export default function ContactPage() {
               <div className="space-y-3">
                 <div>
                   <p className="font-medium text-gray-900">Märsta Bilhus</p>
-                  <p className="text-gray-600">Maskingatan 12</p>
-                  <p className="text-gray-600">195 60 Arlandastad</p>
+                  <p className="text-gray-600">Thulins Plats 4D</p>
+                  <p className="text-gray-600">195 61 Arlandastad</p>
                 </div>
                 <div className="text-sm text-gray-500">
                   <p>• 3 mil från Stockholm</p>
@@ -249,15 +249,15 @@ export default function ContactPage() {
               </div>
             </div>
 
-            {/* Emergency Contact */}
-            <div className="bg-red-50 border border-red-200 rounded-lg p-6">
-              <h3 className="text-lg font-semibold text-red-900 mb-2">Akuta ärenden</h3>
-              <p className="text-red-700 text-sm mb-4">
-                För brådskande bilproblem eller om du behöver direkt hjälp:
+            {/* Workshop referral */}
+            <div className="bg-gray-50 rounded-lg p-6">
+              <h3 className="text-xl font-semibold text-gray-900 mb-4">Verkstad</h3>
+              <p className="text-gray-600 mb-4">
+                Service och reparation av andra bilmärken än Aixam sköts av Auto Temple, Voltgatan 23 i Märsta, 070-092 94 34.
               </p>
-              <a href="tel:0700929433">
-                <Button variant="outline" size="sm" className="w-full border-red-300 text-red-700 hover:bg-red-100">
-                  Ring 0700 92 94 33
+              <a href="https://autotemple.se" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="sm" className="w-full">
+                  autotemple.se
                 </Button>
               </a>
             </div>

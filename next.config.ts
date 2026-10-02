@@ -21,6 +21,26 @@ const nextConfig: NextConfig = {
       },
     ],
   },
+  // The workshop is now run separately by Auto Temple, and the Hyundai
+  // authorisation ended with the move. Old workshop URLs still get search
+  // and bookmark traffic, so send it where the work is actually done.
+  async redirects() {
+    const workshop = 'hyundai|general|inspection|tires|repairs|booking';
+    return [
+      {
+        source: `/:locale(sv|en)?/service/:slug(${workshop})`,
+        destination: 'https://autotemple.se',
+        permanent: true,
+      },
+      {
+        source: '/:locale(sv|en)?/about/workshop',
+        destination: 'https://autotemple.se',
+        permanent: true,
+      },
+      { source: '/about/authorization', destination: '/about', permanent: true },
+      { source: '/:locale(sv|en)/about/authorization', destination: '/:locale/about', permanent: true },
+    ];
+  },
   async headers() {
     return [
       {

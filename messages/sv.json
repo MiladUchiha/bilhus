@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Startsida",
     "cars": "Bilar",
-    "service": "Service & Verkstad",
+    "service": "Service",
     "services": "Tjänster",
     "about": "Om oss",
     "contact": "Kontakt"
@@ -22,21 +22,11 @@
   "service": {
     "dropdown": {
       "allServices": "Alla tjänster",
-      "allServicesDescription": "Komplett översikt av våra tjänster",
-      "hyundaiService": "Hyundai originalservice",
-      "hyundaiServiceDescription": "Auktoriserad service med originaldelar",
+      "allServicesDescription": "Aixam-service och verkstad",
       "aixamService": "Aixam originalservice",
       "aixamServiceDescription": "Specialiserad service för mopedbilar",
-      "generalService": "Allmän bilservice",
-      "generalServiceDescription": "Service för alla bilmärken",
-      "inspection": "Besiktning",
-      "inspectionDescription": "Bilprovning och kontrollbesiktning",
-      "tires": "Däck & fälgar",
-      "tiresDescription": "Däckbyte, balansering och hjulinställning",
-      "repairs": "Reparationer & underhåll",
-      "repairsDescription": "Komplett bilverkstad med experttekniker",
-      "booking": "Boka tid online",
-      "bookingDescription": "Snabb och enkel tidsbokning"
+      "autoTemple": "Bilverkstad – Auto Temple",
+      "autoTempleDescription": "Service och reparation av andra bilmärken"
     }
   },
   "services": {
@@ -57,26 +47,19 @@
   },
   "dropdownHeaders": {
     "cars": "Nya och begagnade fordon",
-    "service": "Professionell bilservice",
+    "service": "Aixam-service och verkstad",
     "services": "Kompletterande tjänster",
     "about": "Lär känna oss bättre",
     "contact": "Kom i kontakt med oss"
   },
-  "dropdownFooters": {
-    "cars": "Auktoriserad Hyundai- och Aixam-återförsäljare",
-    "service": "Certifierad verkstad",
-    "services": "Allt för din bil på ett ställe",
-    "about": "Över 45 års erfarenhet i bilbranschen",
-    "contact": "Vi finns här för att hjälpa dig"
-  },
   "hero": {
     "title": "Märsta Bilhus",
-    "tagline": "Auktoriserad Hyundai-verkstad och expert på alla bilmärken",
+    "tagline": "Begagnade bilar och Aixam mopedbilar på Thulins Plats i Arlandastad",
     "services": "Säljer - Köper - Byter - Förmedlar",
     "cta": "Boka tid",
     "footer": {
-      "authorizedService": "Auktoriserad service",
-      "brands": "Hyundai • Aixam",
+      "authorizedService": "Auktoriserad återförsäljare",
+      "brands": "Aixam",
       "location": "Arlandastad",
       "country": "Stockholm • Sverige"
     },
@@ -90,12 +73,8 @@
     "dropdown": {
       "company": "Företaget",
       "companyDescription": "Vår historia och våra värderingar",
-      "workshop": "Vår verkstad",
-      "workshopDescription": "Modern utrustning och faciliteter",
-      "authorization": "Hyundai auktorisation",
-      "authorizationDescription": "Officiell Hyundai-partner",
       "staff": "Personal & expertis",
-      "staffDescription": "Erfarna och certifierade tekniker",
+      "staffDescription": "Människorna bakom bilhuset",
       "whyUs": "Varför välja oss",
       "whyUsDescription": "Vad som gör oss unika",
       "environment": "Miljötänk",
@@ -106,30 +85,30 @@
     "subtitle": "Över 45 år av bilexpertis i hjärtat av Arlandastad",
     "expertise": {
       "title": "Expertis du kan lita på",
-      "description": "Sedan mitten på 70-talet har Märsta Bilhus varit en pålitlig partner för bilägare i Stockholmsområdet. Som auktoriserad serviceverkstad för Hyundai och Aixam kombinerar vi officiell garanti-service med expertis inom alla bilmärken."
+      "description": "Sedan mitten på 70-talet har Märsta Bilhus sålt bilar till bilägare i Stockholmsområdet. I dag hittar du oss på Thulins Plats i Arlandastad, med begagnade bilar och auktoriserad försäljning och service av Aixam mopedbilar."
     },
     "whyChoose": {
       "title": "Varför välja oss?",
       "uniqueLocation": {
         "title": "Unik plats i Arlandastad",
-        "description": "Lämna bilen för service medan du reser utomlands"
+        "description": "Nära Arlanda och E4:an, några minuter från terminalerna"
       },
-      "warranty": {
-        "title": "Bibehållen tillverkargaranti",
-        "description": "Service av alla märken utan att påverka garantin"
+      "aixam": {
+        "title": "Aixam-återförsäljare",
+        "description": "Auktoriserad försäljning och service av Aixam mopedbilar"
       },
-      "certified": {
-        "title": "Certifierade tekniker",
-        "description": "Kontinuerlig utbildning inom bilens senaste teknik"
+      "financing": {
+        "title": "Finansiering & inbyte",
+        "description": "Billån via våra partners och inbyte av din nuvarande bil"
       }
     },
     "cta": {
       "contact": "Kontakta oss",
-      "services": "Se våra tjänster"
+      "services": "Se våra bilar"
     },
     "locationHighlight": {
       "title": "Strategiskt beläget i Arlandastad",
-      "description": "Vår unika plats nära Arlanda flygplats gör oss till det perfekta valet för resenärer. Lämna din bil för service medan du är bortrest – vi tar hand om allt medan du är borta.",
+      "description": "Vi ligger några minuter från Arlanda och nära E4:an, enkelt att nå från hela Stockholmsområdet.",
       "benefits": {
         "terminal": "5 min från Arlanda Terminal",
         "city": "30 min från Stockholm City",
@@ -141,17 +120,16 @@
     "company": {
       "name": "Märsta",
       "nameEmphasized": "Bilhus",
-      "description": "Din pålitliga partner för bilservice och försäljning i Arlandastad sedan mitten på 70-talet."
+      "description": "Din pålitliga partner för bilköp i Arlandastad sedan mitten på 70-talet."
     },
     "contact": {
       "title": "Kontakt",
-      "carSales": "Bilförsäljning",
-      "workshop": "Verkstad"
+      "carSales": "Bilförsäljning"
     },
     "address": {
       "title": "Adress",
-      "street": "Maskingatan 12",
-      "postal": "195 60 Arlandastad",
+      "street": "Thulins Plats 4D",
+      "postal": "195 61 Arlandastad",
       "country": "Sverige"
     },
     "quickLinks": {
@@ -163,25 +141,20 @@
     },
     "services": {
       "title": "Tjänster",
-      "authorizedService": "Auktoriserad Service",
-      "repairs": "Bilreparationer",
       "sales": "Bilförsäljning",
+      "aixam": "Aixam mopedbilar",
+      "financing": "Finansiering",
       "valuation": "Värdering"
     },
     "openingHours": {
       "title": "Öppettider",
-      "carSales": "Bilförsäljning",
-      "workshop": "Verkstad",
       "mondayThursday": "Mån-Tors",
       "friday": "Fredag",
-      "saturday": "Lördag",
-      "mondayFriday": "Mån-Fre"
+      "saturday": "Lördag"
     },
-    "authorizations": {
-      "title": "Auktoriseringar",
-      "hyundai": "Hyundai Service",
-      "aixam": "Aixam Service",
-      "damage": "Auktoriserad skadeverkstad"
+    "workshop": {
+      "title": "Verkstad",
+      "text": "Service och reparation av andra bilmärken: Auto Temple, Voltgatan 23, Märsta · 070-092 94 34"
     },
     "benefits": {
       "title": "Fördelar",
@@ -199,8 +172,7 @@
       "title": "Akut service"
     },
     "companyInfo": {
-      "orgNumber": "Märsta Bilhus AB - Organisationsnummer: 556631-7201 | Momsregistrerat",
-      "description": "Auktoriserad serviceverkstad för Hyundai och Aixam. Certifierad service av alla bilmärken med bibehållen tillverkargaranti."
+      "orgNumber": "Märsta Bilhus AB - Organisationsnummer: 556631-7201 | Momsregistrerat"
     }
   },
   "testimonials": {
@@ -245,20 +217,19 @@
     "phone": {
       "title": "Ring oss direkt",
       "description": "Snabbaste sättet att få hjälp",
-      "carSales": "Bilförsäljning:",
-      "workshop": "Verkstad:"
+      "carSales": "Bilförsäljning:"
     },
     "email": {
       "title": "Skicka e-post",
       "description": "Vi svarar inom 24 timmar",
-      "workshop": "Verkstad:",
+      "customerService": "Kundtjänst:",
       "sales": "Försäljning:"
     },
     "visit": {
       "title": "Besök oss",
-      "description": "Välkommen till vår verkstad",
-      "address": "Maskingatan 12",
-      "postal": "195 60 Arlandastad",
+      "description": "Välkommen till vår bilhall på Thulins Plats",
+      "address": "Thulins Plats 4D",
+      "postal": "195 61 Arlandastad",
       "country": "Sverige",
       "benefits": "• Gratis parkering • 5 min från Arlanda"
     },
@@ -267,13 +238,11 @@
       "phone": "Telefon",
       "email": "E-post",
       "address": "Adress",
-      "carSales": "Bilförsäljning",
-      "workshopService": "Verkstad / Service"
+      "carSales": "Bilförsäljning"
     },
     "openingHours": {
       "title": "Öppettider",
       "carSales": "Bilförsäljning",
-      "workshop": "Verkstad",
       "mondayThursday": "Måndag - Torsdag",
       "friday": "Fredag",
       "saturday": "Lördag",
@@ -282,13 +251,13 @@
       "weekends": "Lördag - Söndag",
       "byAgreement": "Enligt överenskommelse",
       "closed": "Stängt",
-      "tip": "Ring i förväg för att boka tid. Akuta reparationer kan ibland tas emot utanför ordinarie öppettider."
+      "tip": "Ring gärna i förväg om du vill titta på en viss bil eller boka provkörning."
     },
     "locationBenefits": {
       "title": "Varför Arlandastad?",
       "travelers": {
-        "title": "Perfekt för resenärer",
-        "description": "Lämna bilen för service medan du reser"
+        "title": "Nära Arlanda",
+        "description": "Några minuter från terminalerna"
       },
       "highway": {
         "title": "Nära E4:an",
@@ -307,15 +276,15 @@
       "addressTitle": "Adress",
       "company": "Märsta Bilhus AB",
       "directionsTitle": "Vägbeskrivning",
-      "fromE4": "Från E4: Ta avfart 195 mot Arlandastad",
+      "fromE4": "Från E4: Följ skyltarna mot Arlandastad",
       "fromAirport": "5 minuter från Arlanda Airport",
       "freeParking": "Gratis parkering på plats"
     },
     "emergency": {
-      "title": "Akut hjälp?",
-      "description": "För akuta reparationer eller nödsituationer, ring oss direkt. Vi försöker alltid hjälpa till även utanför ordinarie öppettider.",
+      "title": "Behöver bilen service?",
+      "description": "Verkstaden drivs numera av Auto Temple på Voltgatan 23 i Märsta. Aixam-service sköter vi själva.",
       "carSales": "Bilförsäljning: 0700 929 433",
-      "workshop": "Verkstad: 08 591 205 41"
+      "workshop": "Verkstad: Auto Temple"
     }
   },
   "cookies": {
@@ -332,41 +301,41 @@
     "title": "Tjänster",
     "titleEmphasis": "Våra",
     "service1": {
-      "title": "Auktoriserad Service",
-      "subtitle": "Hyundai • Aixam",
-      "description": "Officiell garantiservice för Hyundai och Aixam med originaldelar och certifierade tekniker.",
-      "feature1": "Garantiservice",
-      "feature2": "Originaldelar",
-      "feature3": "Certifierade tekniker",
-      "highlight": "Auktoriserad"
-    },
-    "service2": {
-      "title": "Alla Bilmärken",
-      "subtitle": "Fullserviceverkstad",
-      "description": "Professionell service och reparationer för alla bilmärken med bibehållen tillverkargaranti.",
-      "feature1": "Alla märken",
-      "feature2": "Bibehållen garanti",
-      "feature3": "Expertis & kvalitet",
-      "highlight": "Fullservice"
-    },
-    "service3": {
       "title": "Bilförsäljning",
       "subtitle": "Begagnade bilar",
       "description": "Kvalitetsgranskade fordon med transparent historik och konkurrenskraftiga priser.",
       "feature1": "Kvalitetsgranskat",
       "feature2": "Transparent historik",
       "feature3": "Konkurrenskraftigt",
-      "highlight": "Kvalitet"
+      "highlight": "Se bilarna"
+    },
+    "service2": {
+      "title": "Aixam mopedbilar",
+      "subtitle": "Försäljning • Service",
+      "description": "Auktoriserad återförsäljare för Aixam. Mopedbilar för 15-åringar och alla andra, med service hos oss.",
+      "feature1": "Auktoriserad återförsäljare",
+      "feature2": "Service och originaldelar",
+      "feature3": "Körs med AM-körkort",
+      "highlight": "Aixam"
+    },
+    "service3": {
+      "title": "Finansiering & inbyte",
+      "subtitle": "Billån • Inbyte",
+      "description": "Billån via våra partners och inbyte av din nuvarande bil, i samma affär.",
+      "feature1": "Billån",
+      "feature2": "Inbyte",
+      "feature3": "Värdering",
+      "highlight": "Finansiering"
     },
     "cta": {
-      "title": "Redo att lita på expertisen?",
-      "description": "Boka tid för professionell service eller rådgivning från våra certifierade tekniker.",
-      "button": "Boka service",
+      "title": "Hittat en bil du gillar?",
+      "description": "Kom förbi på Thulins Plats eller ring oss, så berättar vi mer om bilen och bokar en provkörning.",
+      "button": "Kontakta oss",
       "call": "Ring oss"
     },
     "stats": {
       "experience": "År av expertis",
-      "brands": "Auktoriserade märken",
+      "brands": "Auktoriserat märke",
       "satisfaction": "Kundnöjdhet"
     }
   },
@@ -421,6 +390,6 @@
     "title": "Märsta Bilhus",
     "description": "Vi säljer, köper och byter bilar.",
     "homeTitle": "Hem – Märsta Bilhus",
-    "homeDescription": "Välkommen till Märsta Bilhus, din pålitliga partner för bilar och service. Vi erbjuder ett brett utbud av nya och begagnade bilar, samt professionell service och reparation."
+    "homeDescription": "Välkommen till Märsta Bilhus i Arlandastad. Begagnade bilar, Aixam mopedbilar, finansiering och inbyte."
   }
 }

@@ -75,7 +75,7 @@ export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
 
         <div className="space-y-3">
           <a
-            href="tel:+46859120541"
+            href="tel:+46700929433"
             className="group flex items-center justify-between border border-line hover:border-ink px-5 py-4 transition-colors duration-200"
           >
             <div>
@@ -83,7 +83,7 @@ export default function BookingPopup({ isOpen, onClose }: BookingPopupProps) {
                 {t('booking.phoneLabel')}
               </span>
               <span className="font-mono text-base tabular text-ink mt-0.5 block group-hover:text-garnet transition-colors duration-200">
-                08 591 205 41
+                0700 929 433
               </span>
             </div>
             <svg className="h-4 w-4 text-ink-2 group-hover:text-ink transition-colors duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">

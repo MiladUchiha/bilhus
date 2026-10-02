@@ -37,7 +37,7 @@ export default function ServicesSection() {
       description: t('service1.description'),
       features: [t('service1.feature1'), t('service1.feature2'), t('service1.feature3')],
       highlight: t('service1.highlight'),
-      href: '/service/hyundai',
+      href: '/cars',
     },
     {
       idx: '02',
@@ -55,7 +55,7 @@ export default function ServicesSection() {
       description: t('service3.description'),
       features: [t('service3.feature1'), t('service3.feature2'), t('service3.feature3')],
       highlight: t('service3.highlight'),
-      href: '/service',
+      href: '/cars/financing',
     },
   ];
 

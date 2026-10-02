@@ -28,9 +28,9 @@ const statistics: Statistic[] = [
     description: "Baserat på kundrecensioner och återkommande kunder"
   },
   {
-    number: "2",
-    label: "Auktoriseringar",
-    description: "Auktoriserad service för Hyundai och Aixam"
+    number: "Aixam",
+    label: "Auktoriserad återförsäljare",
+    description: "Försäljning och service av Aixam mopedbilar"
   }
 ];
 
@@ -93,9 +93,9 @@ export default function AboutPage() {
                   Kontakta oss
                 </Button>
               </Link>
-              <Link href="/service">
+              <Link href="/cars">
                 <Button variant="outline" size="lg">
-                  Se våra tjänster
+                  Se våra bilar
                 </Button>
               </Link>
             </div>
@@ -118,13 +118,13 @@ export default function AboutPage() {
             </p>
             <p className="text-gray-600 mb-6">
               Som ett litet familjeföretag erbjuder vi personlig service och trygghet 
-              för våra kunder. Vi är auktoriserad serviceverkstad för Hyundai och 
-              auktoriserad återförsäljare och verkstad för Aixam mopedbil.
+              för våra kunder. Vi är auktoriserad återförsäljare för Aixam mopedbil 
+              och servar Aixam hos oss.
             </p>
             <p className="text-gray-600 mb-8">
-              Vår verkstad reparerar och servar din bil på ett fackmannamässigt 
-              sätt enligt tillverkarens instruktioner, vilket innebär att du 
-              behåller nybilsgarantin på bilen om sådan finns kvar.
+              Numera finns vi på Thulins Plats 4D i Arlandastad. Verkstaden som 
+              tidigare låg hos oss drivs nu som eget företag, Auto Temple i Märsta, 
+              dit vi hänvisar för service och reparation av andra bilmärken.
             </p>
             <div className="space-y-4">
               <div className="flex items-start gap-3">
@@ -215,7 +215,7 @@ export default function AboutPage() {
             Vad vi <span className="font-normal">erbjuder</span>
           </h2>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Vi erbjuder komplett service för alla dina bilbehov under samma tak.
+            Bilar, mopedbilar och det som hör till köpet.
           </p>
         </div>
 
@@ -227,9 +227,9 @@ export default function AboutPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Auktoriserad Service</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Aixam mopedbilar</h3>
             <p className="text-gray-600 mb-4">
-              Auktoriserad serviceverkstad för Hyundai och Aixam med bibehållen garanti.
+              Auktoriserad återförsäljare för Aixam. Vi säljer och servar mopedbilarna.
             </p>
           </div>
 
@@ -239,9 +239,9 @@ export default function AboutPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
               </svg>
             </div>
-            <h3 className="text-xl font-semibold text-gray-900 mb-3">Alla Bilmärken</h3>
+            <h3 className="text-xl font-semibold text-gray-900 mb-3">Finansiering & inbyte</h3>
             <p className="text-gray-600 mb-4">
-              Service och reparation av alla bilmärken med fackmannamässig kvalitet.
+              Billån via våra partners och inbyte av din nuvarande bil.
             </p>
           </div>
 

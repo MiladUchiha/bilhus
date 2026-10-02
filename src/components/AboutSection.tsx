@@ -73,7 +73,7 @@ export default function AboutSection() {
               {/* Caption strip */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-ink/70 to-transparent p-5 sm:p-8">
                 <p className="font-mono text-[10px] uppercase tracking-[0.16em] text-paper/80">
-                  Maskingatan 12 · Arlandastad
+                  Märsta Bilhus · Arlandastad
                 </p>
               </div>
             </div>
@@ -90,8 +90,8 @@ export default function AboutSection() {
             <dl className="space-y-6 border-t border-line pt-8">
               {[
                 { k: t('whyChoose.uniqueLocation.title'), v: t('whyChoose.uniqueLocation.description') },
-                { k: t('whyChoose.warranty.title'), v: t('whyChoose.warranty.description') },
-                { k: t('whyChoose.certified.title'), v: t('whyChoose.certified.description') },
+                { k: t('whyChoose.aixam.title'), v: t('whyChoose.aixam.description') },
+                { k: t('whyChoose.financing.title'), v: t('whyChoose.financing.description') },
               ].map((row, i) => (
                 <div key={i} className="grid grid-cols-12 gap-4">
                   <dt className="col-span-12 sm:col-span-4 font-mono text-[10px] uppercase tracking-[0.16em] text-ink-3 pt-0.5">
@@ -112,7 +112,7 @@ export default function AboutSection() {
                 {t('cta.contact')}
               </Link>
               <Link
-                href="/service"
+                href="/cars"
                 className="inline-flex items-center justify-center gap-2 border border-ink px-7 py-4 text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
               >
                 {t('cta.services')}

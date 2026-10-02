@@ -15,9 +15,9 @@ export default function Footer() {
   ];
 
   const services = [
-    { name: t('services.authorizedService'), href: '/service' },
-    { name: t('services.repairs'), href: '/service' },
     { name: t('services.sales'), href: '/cars' },
+    { name: t('services.aixam'), href: '/service/aixam' },
+    { name: t('services.financing'), href: '/cars/financing' },
     { name: t('services.valuation'), href: '/contact' },
   ];
 
@@ -51,17 +51,6 @@ export default function Footer() {
                 {t('contact.carSales')}
               </p>
             </div>
-            <div className="space-y-2 lg:text-right mt-2">
-              <a
-                href="tel:+46859120541"
-                className="block font-mono text-lg tabular text-paper hover:text-garnet transition-colors duration-200"
-              >
-                08-59 120 541
-              </a>
-              <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/50">
-                {t('contact.workshop')}
-              </p>
-            </div>
             <a
               href="mailto:kundservice@marstabilhus.se"
               className="mt-2 text-base text-paper hover:text-garnet transition-colors duration-200 lg:text-right"
@@ -82,26 +71,11 @@ export default function Footer() {
           </FooterCol>
 
           <FooterCol title={t('openingHours.title')}>
-            <div className="space-y-4 text-sm">
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/50 mb-2">
-                  {t('openingHours.carSales')}
-                </p>
-                <ul className="space-y-1">
-                  <Row k={t('openingHours.mondayThursday')} v="09:00–18:00" />
-                  <Row k={t('openingHours.friday')} v="09:00–17:00" />
-                  <Row k={t('openingHours.saturday')} v="11:00–15:00" />
-                </ul>
-              </div>
-              <div>
-                <p className="font-mono text-[10px] uppercase tracking-[0.14em] text-paper/50 mb-2">
-                  {t('openingHours.workshop')}
-                </p>
-                <ul className="space-y-1">
-                  <Row k={t('openingHours.mondayFriday')} v="07:30–16:30" />
-                </ul>
-              </div>
-            </div>
+            <ul className="space-y-1 text-sm">
+              <Row k={t('openingHours.mondayThursday')} v="09:00–18:00" />
+              <Row k={t('openingHours.friday')} v="09:00–17:00" />
+              <Row k={t('openingHours.saturday')} v="11:00–15:00" />
+            </ul>
           </FooterCol>
 
           <FooterCol title={t('quickLinks.title')}>
@@ -135,19 +109,26 @@ export default function Footer() {
           </FooterCol>
         </div>
 
-        {/* Authorizations strip */}
+        {/* Workshop referral — the workshop is now Auto Temple, a separate company */}
         <div className="grid grid-cols-12 gap-8 border-t border-paper/15 pt-10 pb-10">
           <div className="col-span-12 lg:col-span-3">
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-paper/50">
-              {t('authorizations.title')}
+              {t('workshop.title')}
             </span>
           </div>
-          <div className="col-span-12 lg:col-span-9 flex flex-wrap gap-x-10 gap-y-3 text-sm text-paper/85">
-            <span>{t('authorizations.hyundai')}</span>
-            <span className="text-paper/30">·</span>
-            <span>{t('authorizations.aixam')}</span>
-            <span className="text-paper/30">·</span>
-            <span>{t('authorizations.damage')}</span>
+          <div className="col-span-12 lg:col-span-9 flex flex-wrap items-baseline gap-x-10 gap-y-3 text-sm text-paper/85">
+            <span>{t('workshop.text')}</span>
+            <a
+              href="https://autotemple.se"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 text-paper hover:text-garnet transition-colors duration-200"
+            >
+              <span className="link-underline">autotemple.se</span>
+              <svg className="h-3 w-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14 5h5v5M19 5l-9 9" />
+              </svg>
+            </a>
           </div>
         </div>
 

@@ -2,7 +2,7 @@
   "navigation": {
     "home": "Home",
     "cars": "Cars",
-    "service": "Service & Workshop",
+    "service": "Service",
     "services": "Services",
     "about": "About Us",
     "contact": "Contact"
@@ -22,21 +22,11 @@
   "service": {
     "dropdown": {
       "allServices": "All services",
-      "allServicesDescription": "Complete overview of our services",
-      "hyundaiService": "Hyundai original service",
-      "hyundaiServiceDescription": "Authorized service with original parts",
+      "allServicesDescription": "Aixam service and workshop",
       "aixamService": "Aixam original service",
       "aixamServiceDescription": "Specialized service for moped cars",
-      "generalService": "General car service",
-      "generalServiceDescription": "Service for all car brands",
-      "inspection": "Inspection",
-      "inspectionDescription": "Vehicle testing and roadworthiness inspection",
-      "tires": "Tires & rims",
-      "tiresDescription": "Tire change, balancing and wheel alignment",
-      "repairs": "Repairs & maintenance",
-      "repairsDescription": "Complete car workshop with expert technicians",
-      "booking": "Book online",
-      "bookingDescription": "Quick and easy appointment booking"
+      "autoTemple": "Car workshop – Auto Temple",
+      "autoTempleDescription": "Service and repairs for other car brands"
     }
   },
   "services": {
@@ -57,26 +47,19 @@
   },
   "dropdownHeaders": {
     "cars": "New and used vehicles",
-    "service": "Professional car service",
+    "service": "Aixam service and workshop",
     "services": "Complementary services",
     "about": "Get to know us better",
     "contact": "Get in touch with us"
   },
-  "dropdownFooters": {
-    "cars": "Authorized Hyundai & Aixam dealer",
-    "service": "Certified workshop",
-    "services": "Everything for your car in one place",
-    "about": "Over 45 years of experience in the car industry",
-    "contact": "We are here to help you"
-  },
   "hero": {
     "title": "Märsta Car House",
-    "tagline": "Authorized Hyundai workshop and experts on all car brands",
+    "tagline": "Used cars and Aixam microcars on Thulins Plats in Arlandastad",
     "services": "We sell · buy · trade · broker",
     "cta": "Book appointment",
     "footer": {
-      "authorizedService": "Authorized service",
-      "brands": "Hyundai • Aixam",
+      "authorizedService": "Authorized dealer",
+      "brands": "Aixam",
       "location": "Arlandastad",
       "country": "Stockholm • Sweden"
     },
@@ -90,12 +73,8 @@
     "dropdown": {
       "company": "Our company",
       "companyDescription": "Our history and values",
-      "workshop": "Our workshop",
-      "workshopDescription": "Modern equipment and facilities",
-      "authorization": "Hyundai authorization",
-      "authorizationDescription": "Official Hyundai partner",
       "staff": "Staff & expertise",
-      "staffDescription": "Experienced and certified technicians",
+      "staffDescription": "The people behind the dealership",
       "whyUs": "Why choose us",
       "whyUsDescription": "What makes us unique",
       "environment": "Environmental thinking",
@@ -106,30 +85,30 @@
     "subtitle": "Over 45 years of automotive expertise in the heart of Arlandastad",
     "expertise": {
       "title": "Expertise you can trust",
-      "description": "Since the mid-70s, Märsta Car House has been a reliable partner for car owners in the Stockholm area. As an authorized service workshop for Hyundai and Aixam, we combine official warranty service with expertise in all car brands."
+      "description": "Since the mid-70s, Märsta Car House has sold cars to car owners in the Stockholm area. Today you will find us on Thulins Plats in Arlandastad, with used cars and authorized sales and service of Aixam microcars."
     },
     "whyChoose": {
       "title": "Why choose us?",
       "uniqueLocation": {
         "title": "Unique location in Arlandastad",
-        "description": "Leave your car for service while you travel abroad"
+        "description": "Close to Arlanda and the E4, a few minutes from the terminals"
       },
-      "warranty": {
-        "title": "Manufacturer warranty preserved",
-        "description": "Service of all brands without affecting the warranty"
+      "aixam": {
+        "title": "Aixam dealer",
+        "description": "Authorized sales and service of Aixam microcars"
       },
-      "certified": {
-        "title": "Certified technicians",
-        "description": "Continuous training in the car's latest technology"
+      "financing": {
+        "title": "Financing & trade-in",
+        "description": "Car loans through our partners and trade-in of your current car"
       }
     },
     "cta": {
       "contact": "Contact us",
-      "services": "See our services"
+      "services": "See our cars"
     },
     "locationHighlight": {
       "title": "Strategically located in Arlandastad",
-      "description": "Our unique location near Arlanda airport makes us the perfect choice for travelers. Leave your car for service while you're away – we take care of everything while you're gone.",
+      "description": "We are a few minutes from Arlanda and close to the E4, easy to reach from the whole Stockholm area.",
       "benefits": {
         "terminal": "5 min from Arlanda Terminal",
         "city": "30 min from Stockholm City",
@@ -141,17 +120,16 @@
     "company": {
       "name": "Märsta",
       "nameEmphasized": "Car House",
-      "description": "Your reliable partner for car service and sales in Arlandastad since the mid-70s."
+      "description": "Your reliable partner for buying a car in Arlandastad since the mid-70s."
     },
     "contact": {
       "title": "Contact",
-      "carSales": "Car sales",
-      "workshop": "Workshop"
+      "carSales": "Car sales"
     },
     "address": {
       "title": "Address",
-      "street": "Maskingatan 12",
-      "postal": "195 60 Arlandastad",
+      "street": "Thulins Plats 4D",
+      "postal": "195 61 Arlandastad",
       "country": "Sweden"
     },
     "quickLinks": {
@@ -163,25 +141,20 @@
     },
     "services": {
       "title": "Services",
-      "authorizedService": "Authorized Service",
-      "repairs": "Car repairs",
       "sales": "Car sales",
+      "aixam": "Aixam microcars",
+      "financing": "Financing",
       "valuation": "Valuation"
     },
     "openingHours": {
       "title": "Opening hours",
-      "carSales": "Car sales",
-      "workshop": "Workshop",
       "mondayThursday": "Mon-Thu",
       "friday": "Friday",
-      "saturday": "Saturday",
-      "mondayFriday": "Mon-Fri"
+      "saturday": "Saturday"
     },
-    "authorizations": {
-      "title": "Authorizations",
-      "hyundai": "Hyundai Service",
-      "aixam": "Aixam Service",
-      "damage": "Authorized damage workshop"
+    "workshop": {
+      "title": "Workshop",
+      "text": "Service and repairs for other car brands: Auto Temple, Voltgatan 23, Märsta · 070-092 94 34"
     },
     "benefits": {
       "title": "Benefits",
@@ -199,8 +172,7 @@
       "title": "Emergency service"
     },
     "companyInfo": {
-      "orgNumber": "Märsta Car House AB - Organization number: 556631-7201 | VAT registered",
-      "description": "Authorized service workshop for Hyundai and Aixam. Certified service of all car brands with preserved manufacturer warranty."
+      "orgNumber": "Märsta Car House AB - Organization number: 556631-7201 | VAT registered"
     }
   },
   "testimonials": {
@@ -245,20 +217,19 @@
     "phone": {
       "title": "Call us directly",
       "description": "The fastest way to get help",
-      "carSales": "Car sales:",
-      "workshop": "Workshop:"
+      "carSales": "Car sales:"
     },
     "email": {
       "title": "Send an email",
       "description": "We respond within 24 hours",
-      "workshop": "Workshop:",
+      "customerService": "Customer service:",
       "sales": "Sales:"
     },
     "visit": {
       "title": "Visit us",
-      "description": "Welcome to our workshop",
-      "address": "Maskingatan 12",
-      "postal": "195 60 Arlandastad",
+      "description": "Welcome to our showroom on Thulins Plats",
+      "address": "Thulins Plats 4D",
+      "postal": "195 61 Arlandastad",
       "country": "Sweden",
       "benefits": "• Free parking • 5 min from Arlanda"
     },
@@ -267,13 +238,11 @@
       "phone": "Phone",
       "email": "Email",
       "address": "Address",
-      "carSales": "Car sales",
-      "workshopService": "Workshop / Service"
+      "carSales": "Car sales"
     },
     "openingHours": {
       "title": "Opening hours",
       "carSales": "Car sales",
-      "workshop": "Workshop",
       "mondayThursday": "Monday - Thursday",
       "friday": "Friday",
       "saturday": "Saturday",
@@ -282,13 +251,13 @@
       "weekends": "Saturday - Sunday",
       "byAgreement": "By appointment",
       "closed": "Closed",
-      "tip": "Call ahead to book an appointment. We can sometimes take in urgent repairs outside regular opening hours."
+      "tip": "Feel free to call ahead if you want to look at a particular car or book a test drive."
     },
     "locationBenefits": {
       "title": "Why Arlandastad?",
       "travelers": {
-        "title": "Perfect for travelers",
-        "description": "Leave your car for service while you travel"
+        "title": "Close to Arlanda",
+        "description": "A few minutes from the terminals"
       },
       "highway": {
         "title": "Close to E4",
@@ -307,15 +276,15 @@
       "addressTitle": "Address",
       "company": "Märsta Car House AB",
       "directionsTitle": "Directions",
-      "fromE4": "From E4: Take exit 195 towards Arlandastad",
+      "fromE4": "From E4: Follow the signs towards Arlandastad",
       "fromAirport": "5 minutes from Arlanda Airport",
       "freeParking": "Free parking on site"
     },
     "emergency": {
-      "title": "Emergency help?",
-      "description": "For urgent repairs or emergencies, call us directly. We always try to help even outside regular opening hours.",
+      "title": "Does your car need service?",
+      "description": "The workshop is now run by Auto Temple at Voltgatan 23 in Märsta. We handle Aixam service ourselves.",
       "carSales": "Car sales: 0700 929 433",
-      "workshop": "Workshop: 08 591 205 41"
+      "workshop": "Workshop: Auto Temple"
     }
   },
   "cookies": {
@@ -332,41 +301,41 @@
     "title": "Services",
     "titleEmphasis": "Our",
     "service1": {
-      "title": "Authorized Service",
-      "subtitle": "Hyundai • Aixam",
-      "description": "Official warranty service for Hyundai and Aixam with original spare parts and certified technicians.",
-      "feature1": "Warranty service",
-      "feature2": "Original parts",
-      "feature3": "Certified technicians",
-      "highlight": "Authorized"
-    },
-    "service2": {
-      "title": "All Car Brands",
-      "subtitle": "Full-service workshop",
-      "description": "Professional service and repairs for all car brands with your manufacturer warranty intact.",
-      "feature1": "All brands",
-      "feature2": "Warranty preserved",
-      "feature3": "Expertise & quality",
-      "highlight": "Full-service"
-    },
-    "service3": {
       "title": "Car Sales",
       "subtitle": "Used cars",
       "description": "Quality-inspected vehicles with transparent history and competitive prices.",
       "feature1": "Quality-inspected",
       "feature2": "Transparent history",
       "feature3": "Competitive",
-      "highlight": "Quality"
+      "highlight": "See the cars"
+    },
+    "service2": {
+      "title": "Aixam microcars",
+      "subtitle": "Sales • Service",
+      "description": "Authorized Aixam dealer. Microcars for 15-year-olds and everyone else, serviced here with us.",
+      "feature1": "Authorized dealer",
+      "feature2": "Service and original parts",
+      "feature3": "Driven on an AM licence",
+      "highlight": "Aixam"
+    },
+    "service3": {
+      "title": "Financing & trade-in",
+      "subtitle": "Car loans • Trade-in",
+      "description": "Car loans through our partners and trade-in of your current car, in the same deal.",
+      "feature1": "Car loans",
+      "feature2": "Trade-in",
+      "feature3": "Valuation",
+      "highlight": "Financing"
     },
     "cta": {
-      "title": "Ready to trust the expertise?",
-      "description": "Book time for professional service or advice from our certified technicians.",
-      "button": "Book service",
+      "title": "Found a car you like?",
+      "description": "Drop by on Thulins Plats or give us a call, and we will tell you more about the car and book a test drive.",
+      "button": "Contact us",
       "call": "Call us"
     },
     "stats": {
       "experience": "Years of expertise",
-      "brands": "Authorized brands",
+      "brands": "Authorized brand",
       "satisfaction": "Customer satisfaction"
     }
   },
@@ -421,6 +390,6 @@
     "title": "Märsta Car House",
     "description": "We sell, buy and trade cars.",
     "homeTitle": "Home – Märsta Bilhus",
-    "homeDescription": "Welcome to Märsta Bilhus, your reliable partner for cars and service. We offer a wide range of new and used cars, plus professional service and repairs."
+    "homeDescription": "Welcome to Märsta Bilhus in Arlandastad. Used cars, Aixam microcars, financing and trade-in."
   }
 }

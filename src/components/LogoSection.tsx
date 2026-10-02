@@ -19,19 +19,6 @@ export default async function LogoSection() {
 
           <div className="flex flex-wrap items-center gap-x-12 gap-y-6 sm:justify-end">
             <Link
-              href="/service/hyundai"
-              className="group inline-flex items-center"
-            >
-              <Image
-                src="/hyundai.png"
-                alt="Hyundai"
-                width={130}
-                height={42}
-                style={{ width: 'auto', height: '32px' }}
-                className="object-contain opacity-60 grayscale transition-all duration-500 group-hover:opacity-100 group-hover:grayscale-0"
-              />
-            </Link>
-            <Link
               href="/service/aixam"
               className="group inline-flex items-center"
             >

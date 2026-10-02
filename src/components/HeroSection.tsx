@@ -164,7 +164,7 @@ export default function HeroSection() {
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-6 sm:gap-10 text-paper/85">
               <MetaItem label={t('footer.authorizedService')} value={t('footer.brands')} />
               <MetaItem label={t('footer.location')} value={t('footer.country')} />
-              <MetaItem label="Tel" value="08-59 120 541" mono />
+              <MetaItem label="Tel" value="0700 929 433" mono />
               <MetaItem label="Est." value="1979" mono />
             </div>
           </div>

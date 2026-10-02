@@ -152,8 +152,8 @@ export default function CookiesPage() {
               <div className="bg-gray-50 p-6 rounded-lg">
                 <div className="space-y-2">
                   <p><strong>Märsta Bilhus AB</strong></p>
-                  <p>Maskingatan 12</p>
-                  <p>195 60 Arlandastad</p>
+                  <p>Thulins Plats 4D</p>
+                  <p>195 61 Arlandastad</p>
                   <p>
                     <a href="mailto:kundservice@marstabilhus.se" className="text-blue-600 hover:text-blue-800">
                       kundservice@marstabilhus.se

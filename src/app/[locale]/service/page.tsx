@@ -2,8 +2,8 @@ import ServicePage from './Service';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Service & Verkstad - Märsta Bilhus',
-  description: 'Boka service eller reparation för din bil. Vi är en auktoriserad verkstad för Hyundai och Aixam, och erbjuder expertis för alla bilmärken.',
+  title: 'Service - Märsta Bilhus',
+  description: 'Aixam-service hos Märsta Bilhus i Arlandastad. För service och reparation av andra bilmärken hänvisar vi till Auto Temple i Märsta.',
 };
 
 const page = () => {

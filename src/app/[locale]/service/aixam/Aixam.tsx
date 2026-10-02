@@ -66,16 +66,16 @@ export default function AixamOriginalServicePage() {
             </p>
             <div className="hero-cta mt-10 flex flex-col sm:flex-row gap-3">
               <Link
-                href="/service/booking"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-paper px-7 py-4 text-ink font-medium transition-colors duration-200 hover:bg-garnet hover:text-paper"
               >
                 Boka service
               </Link>
               <a
-                href="tel:+46859120541"
+                href="tel:+46700929433"
                 className="inline-flex items-center justify-center gap-2 border border-paper/40 px-7 py-4 text-paper transition-colors duration-200 hover:bg-paper hover:text-ink"
               >
-                <span className="font-mono tabular">08 591 205 41</span>
+                <span className="font-mono tabular">0700 929 433</span>
               </a>
             </div>
           </div>
@@ -249,16 +249,16 @@ export default function AixamOriginalServicePage() {
             </div>
             <div className="col-span-12 lg:col-span-5 flex flex-col sm:flex-row gap-3 lg:justify-end">
               <Link
-                href="/service/booking"
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 bg-paper px-7 py-4 text-ink font-medium transition-colors duration-200 hover:bg-garnet hover:text-paper"
               >
-                Boka online
+                Kontakta oss
               </Link>
               <a
-                href="tel:+46859120541"
+                href="tel:+46700929433"
                 className="inline-flex items-center justify-center gap-2 border border-paper/40 px-7 py-4 text-paper transition-colors duration-200 hover:bg-paper hover:text-ink"
               >
-                <span className="font-mono tabular">08 591 205 41</span>
+                <span className="font-mono tabular">0700 929 433</span>
               </a>
             </div>
           </div>

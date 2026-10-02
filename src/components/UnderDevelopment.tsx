@@ -79,9 +79,6 @@ export default function UnderDevelopment({
                 <a href="tel:+46700929433" className="block text-gray-600 hover:text-gray-900">
                   0700 929 433 (Bilförsäljning)
                 </a>
-                <a href="tel:+46859120541" className="block text-gray-600 hover:text-gray-900">
-                  08 591 205 41 (Verkstad)
-                </a>
               </div>
             </div>
             
@@ -95,8 +92,8 @@ export default function UnderDevelopment({
             <div>
               <h4 className="font-semibold text-gray-900 mb-3">Besök oss</h4>
               <p className="text-gray-600">
-                Maskingatan 12<br />
-                195 60 Märsta, Arlandastad
+                Thulins Plats 4D<br />
+                195 61 Arlandastad
               </p>
             </div>
           </div>

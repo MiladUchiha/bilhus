@@ -64,7 +64,6 @@ export default function ContactSection() {
               description={t('phone.description')}
               rows={[
                 { label: t('phone.carSales'), value: '0700 929 433', href: 'tel:+46700929433' },
-                { label: t('phone.workshop'), value: '08-59 120 541', href: 'tel:+46859120541' },
               ]}
             />
             <ChannelBlock
@@ -73,7 +72,7 @@ export default function ContactSection() {
               description={t('email.description')}
               rows={[
                 { label: t('email.sales'), value: 'info@marstabilhus.se', href: 'mailto:info@marstabilhus.se' },
-                { label: t('email.workshop'), value: 'kundservice@marstabilhus.se', href: 'mailto:kundservice@marstabilhus.se' },
+                { label: t('email.customerService'), value: 'kundservice@marstabilhus.se', href: 'mailto:kundservice@marstabilhus.se' },
               ]}
             />
             <ChannelBlock
@@ -104,13 +103,6 @@ export default function ContactSection() {
                     [t('openingHours.friday'), '09:00 – 17:00'],
                     [t('openingHours.saturday'), '11:00 – 15:00'],
                     [t('openingHours.sunday'), t('openingHours.byAgreement')],
-                  ]}
-                />
-                <HoursBlock
-                  title={t('openingHours.workshop')}
-                  rows={[
-                    [t('openingHours.mondayFriday'), '07:30 – 16:30'],
-                    [t('openingHours.weekends'), t('openingHours.closed')],
                   ]}
                 />
               </div>
@@ -162,14 +154,14 @@ export default function ContactSection() {
 
           <div className="relative aspect-[16/9] sm:aspect-[21/9] overflow-hidden bg-paper-2 border border-line">
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2026.5962836474654!2d17.9163447!3d59.6520228!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9d46c2f3e3d5%3A0x41e7c7c7c7c7c7c7!2sMaskingatan%2012%2C%20195%2060%20Arlandastad%2C%20Sweden!5e0!3m2!1sen!2sse!4v1703123456789!5m2!1sen!2sse"
+              src="https://www.google.com/maps?q=Thulins+Plats+4D,+195+61+Arlandastad&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Märsta Bilhus AB - Maskingatan 12, Arlandastad"
+              title="Märsta Bilhus AB - Thulins Plats 4D, Arlandastad"
               className="grayscale-[60%] hover:grayscale-0 transition-all duration-500"
             />
           </div>
@@ -205,7 +197,7 @@ export default function ContactSection() {
               </ul>
               <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
                 <a
-                  href="https://maps.google.com/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad"
+                  href="https://maps.google.com/?q=Thulins+Plats+4D,+195+61+Arlandastad"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-ink hover:text-garnet transition-colors duration-200"
@@ -216,7 +208,7 @@ export default function ContactSection() {
                   </svg>
                 </a>
                 <a
-                  href="https://www.apple.com/maps/?q=Märsta+Bilhus+AB,+Maskingatan+12,+195+60+Arlandastad"
+                  href="https://maps.apple.com/?q=Thulins+Plats+4D,+195+61+Arlandastad"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 text-ink hover:text-garnet transition-colors duration-200"
@@ -250,7 +242,9 @@ export default function ContactSection() {
                 {t('emergency.carSales')}
               </a>
               <a
-                href="tel:+46859120541"
+                href="https://autotemple.se"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 border border-ink px-7 py-4 text-ink transition-colors duration-200 hover:bg-ink hover:text-paper"
               >
                 {t('emergency.workshop')}

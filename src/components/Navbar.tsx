@@ -32,7 +32,7 @@ export default function Navbar() {
   // top of the page is paper, so the navbar must render in ink with a paper bg.
   const stripLocale = (p: string) => p.replace(/^\/[a-z]{2}(?=\/|$)/, '') || '/';
   const path = stripLocale(pathname);
-  const darkHeroPages = ['/', '/service/hyundai', '/service/aixam', '/service/repairs'];
+  const darkHeroPages = ['/', '/service/aixam'];
   const onDarkHero = darkHeroPages.some((p) =>
     p === '/' ? path === '/' : path.startsWith(p)
   );
@@ -61,13 +61,8 @@ export default function Navbar() {
       href: '/service',
       dropdown: [
         { name: t('service.dropdown.allServices'), href: '/service', description: t('service.dropdown.allServicesDescription') },
-        { name: t('service.dropdown.hyundaiService'), href: '/service/hyundai', description: t('service.dropdown.hyundaiServiceDescription') },
         { name: t('service.dropdown.aixamService'), href: '/service/aixam', description: t('service.dropdown.aixamServiceDescription') },
-        { name: t('service.dropdown.generalService'), href: '/service/general', description: t('service.dropdown.generalServiceDescription') },
-        { name: t('service.dropdown.inspection'), href: '/service/inspection', description: t('service.dropdown.inspectionDescription') },
-        { name: t('service.dropdown.tires'), href: '/service/tires', description: t('service.dropdown.tiresDescription') },
-        { name: t('service.dropdown.repairs'), href: '/service/repairs', description: t('service.dropdown.repairsDescription') },
-        { name: t('service.dropdown.booking'), href: '/service/booking', description: t('service.dropdown.bookingDescription') },
+        { name: t('service.dropdown.autoTemple'), href: 'https://autotemple.se', description: t('service.dropdown.autoTempleDescription') },
       ],
     },
     {
@@ -87,8 +82,6 @@ export default function Navbar() {
       href: '/about',
       dropdown: [
         { name: t('about.dropdown.company'), href: '/about', description: t('about.dropdown.companyDescription') },
-        { name: t('about.dropdown.workshop'), href: '/about/workshop', description: t('about.dropdown.workshopDescription') },
-        { name: t('about.dropdown.authorization'), href: '/about/authorization', description: t('about.dropdown.authorizationDescription') },
         { name: t('about.dropdown.staff'), href: '/about/staff', description: t('about.dropdown.staffDescription') },
         { name: t('about.dropdown.whyUs'), href: '/about/why-us', description: t('about.dropdown.whyUsDescription') },
       ],
@@ -389,8 +382,8 @@ export default function Navbar() {
             </p>
             <p className="text-sm text-ink">{t('hero.footer.brands')}</p>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 pt-2">
-              <a href="tel:0859120541" className="font-mono text-sm tabular text-ink-2 hover:text-garnet transition-colors duration-200">
-                08-59 120 541
+              <a href="tel:+46700929433" className="font-mono text-sm tabular text-ink-2 hover:text-garnet transition-colors duration-200">
+                0700 929 433
               </a>
               <span className="text-ink-3">·</span>
               <a href="mailto:info@marstabilhus.se" className="text-sm text-ink-2 hover:text-garnet transition-colors duration-200">

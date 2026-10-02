@@ -4,7 +4,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'Öppettider - Märsta Bilhus',
-  description: 'Våra öppettider för bilförsäljning och verkstad. Se när du kan besöka oss eller kontakta oss för service.',
+  description: 'Öppettider för Märsta Bilhus på Thulins Plats 4D i Arlandastad. Se när du kan besöka oss.',
 };
 
 export default function ContactHoursPage() {
@@ -32,8 +32,12 @@ export default function ContactHoursPage() {
             
             <div className="space-y-4">
               <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="text-gray-600">Måndag - Fredag</span>
+                <span className="text-gray-600">Måndag - Torsdag</span>
                 <span className="font-semibold text-gray-900">09:00 - 18:00</span>
+              </div>
+              <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                <span className="text-gray-600">Fredag</span>
+                <span className="font-semibold text-gray-900">09:00 - 17:00</span>
               </div>
               <div className="flex justify-between items-center py-2 border-b border-gray-100">
                 <span className="text-gray-600">Lördag</span>
@@ -60,27 +64,18 @@ export default function ContactHoursPage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
               </svg>
             </div>
-            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Verkstad & Service</h2>
-            
-            <div className="space-y-4">
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="text-gray-600">Måndag - Fredag</span>
-                <span className="font-semibold text-gray-900">07:30 - 16:30</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="text-gray-600">Lördag</span>
-                <span className="font-semibold text-red-600">Stängt</span>
-              </div>
-              <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                <span className="text-gray-600">Söndag</span>
-                <span className="font-semibold text-red-600">Stängt</span>
-              </div>
-            </div>
-            
-            <div className="mt-6 p-4 bg-green-50 rounded-lg">
-              <p className="text-sm text-green-800">
-                <strong>Notering:</strong> Boka tid i förväg för service
-              </p>
+            <h2 className="text-2xl font-semibold text-gray-900 mb-6">Verkstad</h2>
+
+            <p className="text-gray-600">
+              Service och reparation av andra bilmärken än Aixam sköts av Auto Temple, Voltgatan 23 i Märsta. Se deras öppettider på autotemple.se.
+            </p>
+
+            <div className="mt-6">
+              <a href="https://autotemple.se" target="_blank" rel="noopener noreferrer">
+                <Button variant="outline" size="lg" className="w-full">
+                  autotemple.se
+                </Button>
+              </a>
             </div>
           </div>
         </div>
@@ -97,9 +92,9 @@ export default function ContactHoursPage() {
               Ring oss för att boka tid eller om du har frågor om våra öppettider.
             </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-              <a href="tel:08-59120541">
+              <a href="tel:+46700929433">
                 <Button variant="primary" size="lg" className="w-full">
-                  Ring 08-59 120 541
+                  Ring 0700 929 433
                 </Button>
               </a>
               <Link href="/contact">

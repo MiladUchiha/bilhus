@@ -32,8 +32,8 @@ export default function FindUsPage() {
             <h2 className="text-2xl font-semibold text-gray-900 mb-4">Vår adress</h2>
             <div className="space-y-2 mb-6">
               <p className="text-xl font-medium text-gray-900">Märsta Bilhus</p>
-              <p className="text-gray-600">Maskingatan 12</p>
-              <p className="text-gray-600">195 60 Arlandastad</p>
+              <p className="text-gray-600">Thulins Plats 4D</p>
+              <p className="text-gray-600">195 61 Arlandastad</p>
             </div>
             <div className="space-y-2 text-sm text-gray-500 mb-6">
               <p>• 3 mil från Stockholm</p>
@@ -41,7 +41,7 @@ export default function FindUsPage() {
               <p>• Gratis parkering</p>
               <p>• Lättillgängligt med kollektivtrafik</p>
             </div>
-            <a href="https://maps.google.com/?q=Maskingatan+12,+195+60+Arlandastad" target="_blank" rel="noopener noreferrer">
+            <a href="https://maps.google.com/?q=Thulins+Plats+4D,+195+61+Arlandastad" target="_blank" rel="noopener noreferrer">
               <Button variant="primary" size="lg" className="w-full">
                 Öppna i Google Maps
               </Button>
@@ -64,7 +64,7 @@ export default function FindUsPage() {
                   <li>• Ta E4 norrut mot Arlanda</li>
                   <li>• Avfart 183 mot Märsta/Arlandastad</li>
                   <li>• Följ skyltarna till Arlandastad</li>
-                  <li>• Sväng in på Maskingatan</li>
+                  <li>• Sväng in på Thulins Plats</li>
                 </ul>
               </div>
               
@@ -72,8 +72,7 @@ export default function FindUsPage() {
                 <h3 className="font-semibold text-gray-900 mb-2">Kollektivtrafik:</h3>
                 <ul className="text-sm text-gray-600 space-y-1">
                   <li>• Pendeltåg till Märsta station</li>
-                  <li>• Buss 583 mot Arlandastad</li>
-                  <li>• Kliv av vid Maskingatan</li>
+                  <li>• Sök resa till Thulins Plats 4D, Arlandastad i SL-appen</li>
                 </ul>
               </div>
             </div>
@@ -83,10 +82,14 @@ export default function FindUsPage() {
         <div className="mt-12">
           <div className="bg-blue-50 border border-blue-200 rounded-lg p-8 text-center">
             <h3 className="text-xl font-semibold text-blue-900 mb-4">Öppettider</h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-4 text-sm">
               <div>
-                <p className="font-medium text-blue-900">Måndag - Fredag</p>
+                <p className="font-medium text-blue-900">Måndag - Torsdag</p>
                 <p className="text-blue-700">09:00 - 18:00</p>
+              </div>
+              <div>
+                <p className="font-medium text-blue-900">Fredag</p>
+                <p className="text-blue-700">09:00 - 17:00</p>
               </div>
               <div>
                 <p className="font-medium text-blue-900">Lördag</p>

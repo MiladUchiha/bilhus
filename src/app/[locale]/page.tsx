@@ -25,16 +25,16 @@ export async function generateMetadata({params}: Props): Promise<Metadata> {
 export default async function Home() {
   const localBusinessSchema = {
     "@context": "http://schema.org",
-    "@type": "LocalBusiness",
+    "@type": "AutoDealer",
     "name": "Märsta Bilhus",
     "address": {
       "@type": "PostalAddress",
-      "streetAddress": "Maskingatan 12",
+      "streetAddress": "Thulins Plats 4D",
       "addressLocality": "Arlandastad",
-      "postalCode": "195 60",
+      "postalCode": "195 61",
       "addressCountry": "SE"
     },
-    "telephone": "+46859120541",
+    "telephone": "+46700929433",
     "openingHours": ["Mo-Th 09:00-18:00", "Fr 09:00-17:00", "Sa 11:00-15:00"],
     "url": "https://marstabilhus.se"
   };

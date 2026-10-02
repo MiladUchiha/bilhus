@@ -37,8 +37,8 @@ type Props = {
 export async function generateMetadata({params}: {params: Promise<{locale: string}>}): Promise<Metadata> {
   const {locale} = await params;
   return {
-    title: locale === 'en' ? 'Märsta Bilhus — Authorized Hyundai & Aixam, Arlandastad' : 'Märsta Bilhus — Auktoriserad Hyundai & Aixam, Arlandastad',
-    description: locale === 'en' ? 'Family-run Swedish car dealership and authorized workshop. Sales, service, trade-in. Since 1979.' : 'Familjeägd bilhandlare och auktoriserad verkstad i Arlandastad. Försäljning, service, inbyte. Sedan 1979.',
+    title: locale === 'en' ? 'Märsta Bilhus — Used cars & Aixam, Arlandastad' : 'Märsta Bilhus — Begagnade bilar & Aixam, Arlandastad',
+    description: locale === 'en' ? 'Family-run car dealership on Thulins Plats in Arlandastad. Used cars, Aixam microcars, financing and trade-in. Since 1979.' : 'Familjeägd bilhandlare på Thulins Plats i Arlandastad. Begagnade bilar, Aixam mopedbilar, finansiering och inbyte. Sedan 1979.',
   };
 }
 
